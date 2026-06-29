@@ -1,1 +1,74 @@
-<p>nav-bar works!</p>
+<nav
+  class="fixed top-0 left-0 w-full z-50 md:px-20 md:py-4 px-4.5 py-2 flex items-center justify-between transition-all duration-300"
+  [class.bg-transparent]="!isScrolled()"
+  [class.bg-[#FFFFFF99]]="isScrolled()"
+  [class.shadow-lg]="isScrolled()"
+>
+  <div class="flex items-center">
+    <img src="images/logo.png" alt="Super Fitness Logo" class="h-13.75 w-auto" />
+  </div>
+
+  <ul class="hidden md:flex items-center gap-6 font-bold" [class.text-neutral-800]="!isScrolled()">
+    @for (item of navItems; track item.link) {
+      <li>
+        <a
+          [routerLink]="item.link"
+          routerLinkActive="text-primary-brand"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="hover:text-primary-brand transition-colors duration-200"
+        >
+          {{ item.label }}
+        </a>
+      </li>
+    }
+  </ul>
+
+  <div class="hidden md:flex items-center gap-5">
+    <app-button variant="solid" [showArrow]="true" routerLink="/login">LOGIN</app-button>
+    <app-button variant="outline" [showArrow]="true" routerLink="/register">SIGN UP</app-button>
+  </div>
+
+  <div class="flex md:hidden items-center gap-3">
+    <p-button
+      routerLink="/profile"
+      icon="pi pi-user"
+      [rounded]="true"
+      severity="danger"
+      styleClass="bg-primary-brand border-none w-10 h-10"
+    />
+
+    <p-button
+      icon="pi pi-bars"
+      [rounded]="true"
+      severity="danger"
+      styleClass="bg-primary-brand border-none w-10 h-10"
+      (onClick)="toggleMobileMenu()"
+    />
+  </div>
+</nav>
+
+<p-drawer
+  [(visible)]="mobileMenuVisible"
+  position="left"
+  styleClass="w-72  text-white border-r border-neutral-800"
+>
+  <ng-template #header>
+    <div class="flex items-center py-2">
+      <img src="images/logo.png" alt="Super Fitness Logo" class="h-15 w-auto" />
+    </div>
+  </ng-template>
+
+  <div class="flex flex-col gap-6 font-semibold text-lg px-2">
+    @for (item of navItems; track item.link) {
+      <a
+        [routerLink]="item.link"
+        (click)="mobileMenuVisible.set(false)"
+        routerLinkActive="text-primary-brand"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="hover:text-primary-brand transition-colors duration-200"
+      >
+        {{ item.label }}
+      </a>
+    }
+  </div>
+</p-drawer>
