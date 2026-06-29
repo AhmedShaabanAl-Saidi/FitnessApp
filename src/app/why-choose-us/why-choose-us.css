@@ -1,0 +1,38 @@
+/* تأثيرات الحركة العامة للكروت */
+.benefit-item {
+  cursor: pointer;
+}
+.benefit-item:hover {
+  box-shadow: 0 10px 25px rgba(255, 87, 34, 0.08);
+  transform: translateY(-2px);
+}
+.benefit-item:hover .w-12 {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 87, 34, 0.3);
+}
+
+/* 🌙 جزء الدارك مود المستقبلي (هيشتغل تلقائياً أول ما تبدل الكلاس الرئيسي في الـ HTML لـ dark-theme) */
+.benefits-section.dark-theme {
+  background-color: #0c0c0e !important;
+}
+.benefits-section.dark-theme .section-title,
+.benefits-section.dark-theme .card-title {
+  color: #ffffff !important;
+}
+.benefits-section.dark-theme .section-subtitle,
+.benefits-section.dark-theme .card-desc {
+  color: #a1a1aa !important;
+}
+.benefits-section.dark-theme .benefit-item {
+  background-color: #141416 !important;
+  border-color: #232329 !important;
+}
+.benefits-section.dark-theme .benefit-item:hover {
+  border-color: #ff5722 !important;
+  box-shadow: 0 10px 30px rgba(255, 87, 34, 0.15);
+}
+.benefits-section.dark-theme .image-placeholder {
+  background-color: #141416 !important;
+  border-color: #232329 !important;
+  color: #52525b !important;
+}
