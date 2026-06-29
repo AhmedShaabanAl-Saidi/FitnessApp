@@ -9,6 +9,37 @@ import { MarqueeTricker } from '../../../../shared/marquee-tricker/marquee-trick
   styleUrl: './hero.css',
 })
 export class Hero {
+  content = {
+    title: {
+      before: 'Your body can',
+      highlight1: 'stand',
+      highlight2: 'almost',
+      after: 'anything',
+    },
+
+    description:
+      "It's your mind that needs convincing. Push past your limits, stay committed, and watch as your body transform into powerhouse of strength and resilience. Start your journey today & truly capable of!",
+
+    stats: [
+      {
+        value: '1200+',
+        label: 'Active Members',
+      },
+      {
+        value: '12+',
+        label: 'Certified Trainers',
+      },
+      {
+        value: '20+',
+        label: 'Years Of Experience',
+      },
+    ],
+
+    buttons: {
+      primary: 'Get Started',
+      secondary: 'Explore More',
+    },
+  };
   marqueeItems = signal<string[]>([
     'Personal Trainers',
     'Live Classes',

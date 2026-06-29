@@ -13,42 +13,40 @@
       <h1
         class="text-3xl sm:text-5xl lg:text-[64px] font-bold text-[#242424] uppercase tracking-tight leading-[1.1]"
       >
-        Your body can <span class="text-primary-brand">stand</span> <br class="hidden sm:block" />
-        <span class="text-primary-brand">almost</span> anything
+        {{ content.title.before }}
+        <span class="text-primary-brand">{{ content.title.highlight1 }}</span>
+        <br class="hidden sm:block" />
+        <span class="text-primary-brand">{{ content.title.highlight2 }}</span>
+        {{ content.title.after }}
       </h1>
 
       <div class="border-l-4 border-primary-brand ps-4 max-w-xl">
         <p class="text-sm md:text-base text-[#242424] font-medium leading-relaxed">
-          It's your mind that needs convincing. Push past your limits, stay committed, and watch as
-          your body transform into powerhouse of strength and resilience. Start your journey today &
-          truly capable of!
+          {{ content.description }}
         </p>
       </div>
 
       <div class="grid grid-cols-3 gap-2 sm:gap-4 max-w-md pt-2">
-        <div>
-          <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-[#242424]">1200+</h3>
-          <p class="text-[11px] sm:text-xs md:text-sm text-[#242424]/80 font-semibold mt-1">
-            Active Members
-          </p>
-        </div>
-        <div>
-          <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-[#242424]">12+</h3>
-          <p class="text-[11px] sm:text-xs md:text-sm text-[#242424]/80 font-semibold mt-1">
-            Certified Trainers
-          </p>
-        </div>
-        <div>
-          <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-[#242424]">20+</h3>
-          <p class="text-[11px] sm:text-xs md:text-sm text-[#242424]/80 font-semibold mt-1">
-            Years Of Experience
-          </p>
-        </div>
+        @for (stat of content.stats; track stat.label) {
+          <div>
+            <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-[#242424]">
+              {{ stat.value }}
+            </h3>
+            <p class="text-[11px] sm:text-xs md:text-sm text-[#242424]/80 font-semibold mt-1">
+              {{ stat.label }}
+            </p>
+          </div>
+        }
       </div>
 
       <div class="flex flex-wrap items-center gap-6 pt-2">
-        <app-button variant="solid" [showArrow]="true">Get Started</app-button>
-        <app-button variant="outline" [showArrow]="true">Explore More</app-button>
+        <app-button variant="solid" [showArrow]="true">
+          {{ content.buttons.primary }}
+        </app-button>
+
+        <app-button variant="outline" [showArrow]="true">
+          {{ content.buttons.secondary }}
+        </app-button>
       </div>
     </div>
 
