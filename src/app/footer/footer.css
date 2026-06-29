@@ -1,0 +1,57 @@
+/* إخفاء السكرول بار من الشريط البرتقالي في الشاشات الصغيرة ليظهر بشكل ناعم */
+.overflow-x-auto::-webkit-scrollbar {
+  display: none;
+}
+.overflow-x-auto {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.footer-link {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.footer-link:hover {
+  transform: translateX(4px);
+}
+
+/* 🌙 وضع الدارك مود المستقبلي للشريط والفوتر ككل */
+.footer-section.dark-theme {
+  background-color: #0c0c0e !important;
+  border-top-color: #232329 !important;
+}
+.footer-section.dark-theme h3,
+.footer-section.dark-theme h4 {
+  color: #ffffff !important;
+}
+.footer-section.dark-theme p,
+.footer-section.dark-theme .footer-link,
+.footer-section.dark-theme ul li span:first-child {
+  color: #a1a1aa !important;
+}
+.footer-section.dark-theme ul li {
+  border-bottom-color: #232329 !important;
+}
+.footer-section.dark-theme ul li span.font-bold {
+  color: #ffffff !important;
+}
+.footer-section.dark-theme .social-icon {
+  background-color: #141416 !important;
+  border-color: #232329 !important;
+  color: #ffffff !important;
+}
+.footer-section.dark-theme .social-icon:hover {
+  background-color: #ff5722 !important;
+  color: white !important;
+  border-color: #ff5722 !important;
+}
+.footer-section.dark-theme input {
+  background-color: #141416 !important;
+  border-color: #232329 !important;
+  color: #ffffff !important;
+}
+.footer-section.dark-theme input:focus {
+  border-color: #ff5722 !important;
+}
+.footer-section.dark-theme .border-t {
+  border-top-color: #232329 !important;
+}
