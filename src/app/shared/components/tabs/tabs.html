@@ -1,0 +1,21 @@
+<div
+  class="mx-auto flex w-[calc(100%-2rem)] gap-2 overflow-x-auto py-2 scrollbar-none md:w-[min(75%,980px)] [&::-webkit-scrollbar]:hidden"
+  role="tablist"
+  aria-label="Workout categories"
+>
+  @for (tab of tabs(); track tab.id) {
+    <button
+      type="button"
+      role="tab"
+      class="shrink-0 cursor-pointer rounded-full border-0 px-[0.8rem] py-[0.45rem] text-xs font-bold text-[#242424] transition-colors duration-200 md:px-4 md:py-2 md:text-sm"
+      [attr.aria-selected]="activeTabId() === tab.id"
+      [ngClass]="{
+        'bg-primary-brand text-white': activeTabId() === tab.id,
+        'bg-transparent text-black': activeTabId() !== tab.id,
+      }"
+      (click)="tabChange.emit(tab.id)"
+    >
+      {{ tab.label }}
+    </button>
+  }
+</div>

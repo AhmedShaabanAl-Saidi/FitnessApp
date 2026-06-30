@@ -3,7 +3,7 @@ import { Component, HostListener, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { DrawerModule } from 'primeng/drawer';
-import { Button } from '../../../../shared/button/button';
+import { Button } from '../../../../shared/components/button/button';
 @Component({
   selector: 'app-nav-bar',
   imports: [ButtonModule, DrawerModule, CommonModule, RouterLink, RouterLinkActive, Button],
