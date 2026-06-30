@@ -1,5 +1,25 @@
 <div class="flex h-screen w-screen overflow-hidden font-sans text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-[#0c0c0e] transition-colors duration-500">
   
+  <!-- Floating Theme Switcher Toggle Button -->
+  <button 
+    (click)="toggleTheme()"
+    type="button"
+    class="absolute top-6 right-6 z-50 p-3 rounded-full bg-white/40 dark:bg-black/20 backdrop-blur-md border border-black/10 dark:border-white/5 shadow-lg text-gray-800 dark:text-gray-200 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer select-none"
+    title="Toggle Theme"
+  >
+    @if (isDarkMode()) {
+      <!-- Sun Icon (Active in dark mode to switch to light) -->
+      <svg class="w-5 h-5 text-amber-500 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"></path>
+      </svg>
+    } @else {
+      <!-- Moon Icon (Active in light mode to switch to dark) -->
+      <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+      </svg>
+    }
+  </button>
+
   <!-- Left Side: Gym Character & Logo (Desktop Only - Remains moody/dark as the base branding) -->
   <div class="relative hidden md:flex flex-col items-center justify-start p-12 w-1/2 h-full bg-cover bg-center select-none"
        style="background-image: url('/auth_athlete.png')">
