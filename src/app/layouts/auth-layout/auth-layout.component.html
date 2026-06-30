@@ -1,0 +1,76 @@
+<div class="flex h-screen w-screen overflow-hidden font-sans text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-[#0c0c0e] transition-colors duration-500">
+  
+  <!-- Left Side: Gym Character & Logo (Desktop Only - Remains moody/dark as the base branding) -->
+  <div class="relative hidden md:flex flex-col items-center justify-start p-12 w-1/2 h-full bg-cover bg-center select-none"
+       style="background-image: url('/auth_athlete.png')">
+    <div class="absolute inset-0 bg-black/45 backdrop-blur-[1px] z-0"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-[1.5px] bg-gradient-to-b from-transparent via-orange-500/30 dark:via-orange-500/50 to-transparent z-10"></div>
+    
+    <!-- Branding Header -->
+    <div class="relative z-10 flex flex-col items-center mt-12 animate-fade-in">
+      <div class="absolute -inset-1 bg-orange-500/20 rounded-2xl blur-xl"></div>
+      <div class="relative flex items-center justify-center p-4 rounded-2xl bg-black/40 backdrop-blur-md border border-white/10 shadow-xl">
+        <svg class="w-16 h-16" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="18" y="18" width="64" height="64" rx="15" transform="rotate(45 50 50)" fill="url(#orange-gradient)"/>
+          <path d="M28 50H72" stroke="white" stroke-width="5" stroke-linecap="round"/>
+          <rect x="34" y="36" width="5" height="28" rx="2.5" fill="white"/>
+          <rect x="40" y="40" width="3.5" height="20" rx="1.75" fill="white"/>
+          <rect x="61" y="36" width="5" height="28" rx="2.5" fill="white"/>
+          <rect x="56.5" y="40" width="3.5" height="20" rx="1.75" fill="white"/>
+          <path d="M54 30L38 52H48L44 70L62 46H50L54 30Z" fill="white"/>
+          
+          <defs>
+            <linearGradient id="orange-gradient" x1="18" y1="18" x2="82" y2="82" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#FF7A00"/>
+              <stop offset="100%" stop-color="#FF3D00"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <h1 class="mt-5 text-3xl font-extrabold tracking-[0.3em] text-white uppercase text-center drop-shadow-md">
+        Super <span class="text-orange-500">Fitness</span>
+      </h1>
+      <p class="mt-2 text-xs tracking-wider text-gray-400 uppercase opacity-85">Sculpt Your Ultimate Self</p>
+    </div>
+  </div>
+
+  <!-- Right Side: Authentication Forms (Dynamic Content Router) -->
+  <div class="relative flex-1 flex flex-col justify-center items-center p-6 md:p-12 h-full overflow-y-auto transition-colors duration-500">
+    <!-- Mobile Background Cover (hidden on desktop) -->
+    <div class="absolute inset-0 md:hidden bg-cover bg-center z-0" style="background-image: url('/auth_athlete.png')"></div>
+    <div class="absolute inset-0 md:hidden bg-white/85 dark:bg-black/85 backdrop-blur-md z-0 transition-colors duration-500"></div>
+    
+    <!-- Desktop Subtle Glow Accents -->
+    <div class="absolute inset-0 hidden md:block bg-gray-50 dark:bg-[#0f0f12] z-0 select-none pointer-events-none transition-colors duration-500">
+      <div class="absolute top-[10%] right-[15%] w-[450px] h-[450px] bg-orange-600/5 dark:bg-orange-600/[0.03] rounded-full blur-[140px]"></div>
+      <div class="absolute bottom-[10%] left-[10%] w-[350px] h-[350px] bg-red-600/5 dark:bg-red-600/[0.03] rounded-full blur-[120px]"></div>
+    </div>
+
+    <!-- Mobile Logo Header (hidden on desktop) -->
+    <div class="relative z-10 md:hidden flex flex-col items-center mb-8 select-none animate-fade-in">
+      <div class="flex items-center justify-center p-2.5 rounded-xl bg-black/10 dark:bg-black/30 backdrop-blur-md border border-black/10 dark:border-white/10 shadow-lg">
+        <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="18" y="18" width="64" height="64" rx="15" transform="rotate(45 50 50)" fill="#FF5E00"/>
+          <path d="M28 50H72" stroke="white" stroke-width="5" stroke-linecap="round"/>
+          <rect x="34" y="36" width="5" height="28" rx="2.5" fill="white"/>
+          <rect x="61" y="36" width="5" height="28" rx="2.5" fill="white"/>
+          <path d="M54 30L38 52H48L44 70L62 46H50L54 30Z" fill="white"/>
+        </svg>
+      </div>
+      <h1 class="mt-3 text-xl font-extrabold tracking-widest text-gray-900 dark:text-white uppercase transition-colors duration-500">
+        Super <span class="text-orange-500">Fitness</span>
+      </h1>
+    </div>
+
+    <!-- Glassmorphic Container Box -->
+    <div class="relative z-10 w-full max-w-[440px] bg-white/75 dark:bg-white/[0.02] backdrop-blur-2xl border border-black/[0.08] dark:border-white/10 rounded-[32px] shadow-xl dark:shadow-2xl p-8 md:p-10 transition-all duration-500 hover:border-black/[0.15] dark:hover:border-white/15">
+      <!-- Glow aura for the container on hover (subtle animation) -->
+      <div class="absolute -inset-[1px] rounded-[32px] bg-gradient-to-r from-orange-500/10 via-transparent to-orange-500/10 opacity-0 hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0"></div>
+      
+      <div class="relative z-10 w-full">
+        <!-- Angular dynamic content renders here -->
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
