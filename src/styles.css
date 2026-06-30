@@ -1,3 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+@import 'primeicons/primeicons.css';
+@custom-variant dark (&:where(.dark, .dark *));
+@theme {
+  --color-primary-brand: #ff4100;
+  --color-primary-brand-hover: var(--color-orange-700);
+  --animate-marquee: marquee 25s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+}

@@ -1,0 +1,44 @@
+<article
+  class="group cursor-pointer overflow-hidden rounded-2xl transition-transform duration-300 hover:-translate-y-1"
+>
+  <div class="h-64 overflow-hidden bg-[#f5f5f5] max-sm:h-76">
+    <img
+      [src]="image() || fallbackImage()"
+      [alt]="title()"
+      class="block h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+    />
+  </div>
+
+  <div class="bg-white/60 dark:bg-[#24242480] px-6 py-5 backdrop-blur-md max-sm:p-[1.35rem]">
+    <h4
+      class="m-0 text-[1.1rem] dark:text-[#F3F3F4] leading-tight font-extrabold tracking-normal text-[#262626] uppercase max-sm:text-sm max-sm:tracking-[0.08em] max-sm:text-white"
+    >
+      {{ title() }}
+    </h4>
+
+    <div
+      class="mt-3 flex items-center gap-[0.6rem] text-[0.9rem] font-bold text-primary-brand max-sm:text-xs"
+    >
+      <span>{{ actionLabel() }}</span>
+      <span
+        class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary-brand text-white transition-transform duration-300 group-hover:rotate-45 max-sm:h-[1.65rem] max-sm:w-[1.65rem]"
+        aria-hidden="true"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="7" y1="17" x2="17" y2="7"></line>
+          <polyline points="7 7 17 7 17 17"></polyline>
+        </svg>
+      </span>
+    </div>
+  </div>
+</article>
