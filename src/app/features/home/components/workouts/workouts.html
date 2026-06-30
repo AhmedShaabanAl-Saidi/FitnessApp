@@ -1,4 +1,6 @@
-<section class="relative h-screen w-full bg-[#F3F3F4] max-sm:h-auto max-sm:min-h-screen">
+<section
+  class="relative h-screen w-full bg-[#F3F3F4] dark:bg-[#24242499] max-sm:h-auto max-sm:min-h-screen"
+>
   <div
     class="absolute inset-0 w-full h-full bg-center bg-cover bg-no-repeat bg-[url('/images/home/workouts-bg.jpg')]"
   ></div>
@@ -35,10 +37,10 @@
     </span>
   </div>
   <div
-    class="relative bg-[linear-gradient(to_bottom,#a3a3a3_0_360px,transparent_360px_100%)] pb-6 md:h-100 md:bg-[linear-gradient(to_bottom,#a3a3a3_0_450px,transparent_450px_100%)] md:pb-10"
+    class="relative dark-card bg-[linear-gradient(to_bottom,#a3a3a3_0_360px,transparent_360px_100%)] dark:bg-[linear-gradient(to_bottom,#242424_0_360px,transparent_360px_100%)] pb-6 md:h-100 md:bg-[linear-gradient(to_bottom,#a3a3a3_0_450px,transparent_450px_100%)] dark:md:bg-[linear-gradient(to_bottom,#242424_0_450px,transparent_450px_100%)] md:pb-10"
   >
     <h2
-      class="text-2xl py-5 md:text-[40px] 2xl:w-1/3 text-center mx-auto font-bold text-neutral-800"
+      class="text-2xl py-5 md:text-[40px] 2xl:w-1/3 dark:text-[#F3F3F4] text-center mx-auto font-bold text-neutral-800"
     >
       Transform Your Body with Our Dynamic <span class="text-primary-brand">Upcoming Workouts</span>
     </h2>
@@ -48,7 +50,7 @@
       @if (content()) {
         <app-carousel [items]="carouselItems()" [rows]="1" />
       } @else {
-        <div class="text-center py-12 text-neutral-500">
+        <div class="text-center py-12 dark:text-[#F3F3F4] text-neutral-500">
           <p class="animate-pulse">Loading workouts routines...</p>
         </div>
       }

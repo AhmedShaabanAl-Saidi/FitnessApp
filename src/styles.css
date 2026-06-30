@@ -2,6 +2,7 @@
 
 @import 'tailwindcss';
 @import 'primeicons/primeicons.css';
+@custom-variant dark (&:where(.dark, .dark *));
 @theme {
   --color-primary-brand: #ff4100;
   --color-primary-brand-hover: var(--color-orange-700);
