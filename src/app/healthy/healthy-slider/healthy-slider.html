@@ -1,0 +1,24 @@
+<swiper-container
+  slides-per-view="3"
+  space-between="30"
+  navigation="true"
+  pagination="true"
+  loop="true"
+  speed="700"
+  autoplay-delay="3000"
+  autoplay-disable-on-interaction="false">
+
+  @for (meal of meals; track meal.idMeal) {
+
+    <swiper-slide>
+
+      <app-meal-card
+        [meal]="meal"
+        (recipeClick)="openRecipe($event)">
+      </app-meal-card>
+
+    </swiper-slide>
+
+  }
+
+</swiper-container>

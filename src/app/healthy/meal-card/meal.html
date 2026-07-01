@@ -1,0 +1,37 @@
+<div class="meal-card">
+
+  <div class="meal-image">
+
+    <img
+      [src]="meal.strMealThumb"
+      [alt]="meal.strMeal">
+
+  </div>
+
+  <div class="meal-content">
+
+    <span class="country">
+
+      {{ meal.strCountry || meal.strArea || 'Healthy' }}
+
+    </span>
+
+    <h3>
+
+      {{ meal.strMeal }}
+
+    </h3>
+
+    <button
+      class="read-more"
+      (click)="openRecipe()">
+
+      Read More
+
+      <i class="pi pi-arrow-right"></i>
+
+    </button>
+
+  </div>
+
+</div>

@@ -1,0 +1,41 @@
+swiper-container{
+    width:100%;
+    padding:20px 10px 70px;
+}
+
+swiper-slide{
+    height:auto;
+}
+
+swiper-container::part(button-prev),
+swiper-container::part(button-next){
+
+    color:#ff5b22;
+
+}
+
+swiper-container::part(pagination-bullet-active){
+
+    background:#ff5b22;
+
+}
+
+@media(max-width:991px){
+
+swiper-container{
+
+--swiper-slides-per-view:2;
+
+}
+
+}
+
+@media(max-width:640px){
+
+swiper-container{
+
+--swiper-slides-per-view:1;
+
+}
+
+}
