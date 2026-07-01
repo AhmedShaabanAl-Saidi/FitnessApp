@@ -1,0 +1,113 @@
+@if (loading()) {
+
+<div class="loading-container">
+
+  <div class="spinner"></div>
+
+  <p>Loading Meal Details...</p>
+
+</div>
+
+} @else if (mealData(); as meal) {
+
+<div class="meal-details-container">
+
+  <!-- Image -->
+
+  <div class="meal-image">
+
+    <img
+      [src]="meal.strMealThumb"
+      [alt]="meal.strMeal">
+
+  </div>
+
+  <!-- Details -->
+
+  <div class="meal-content">
+
+    <div class="chips">
+
+      <span class="chip category">
+
+        {{ meal.strCategory }}
+
+      </span>
+
+      <span class="chip">
+
+        {{ meal.strArea }}
+
+      </span>
+
+    </div>
+
+    <h2>
+
+      {{ meal.strMeal }}
+
+    </h2>
+
+    <!-- Ingredients -->
+
+    <h3>Ingredients</h3>
+
+    <div class="ingredients-grid">
+
+      @for(item of getIngredients(); track item.ingredient){
+
+      <div class="ingredient-card">
+
+        <strong>
+
+          {{ item.ingredient }}
+
+        </strong>
+
+        <small>
+
+          {{ item.measure }}
+
+        </small>
+
+      </div>
+
+      }
+
+    </div>
+
+    <!-- Instructions -->
+
+    <h3>
+
+      Instructions
+
+    </h3>
+
+    <div class="instructions">
+
+      {{ meal.strInstructions }}
+
+    </div>
+
+    @if(meal.strYoutube){
+
+    <a
+
+      class="youtube-btn"
+
+      [href]="meal.strYoutube"
+
+      target="_blank">
+
+      ▶ Watch Recipe
+
+    </a>
+
+    }
+
+  </div>
+
+</div>
+
+}

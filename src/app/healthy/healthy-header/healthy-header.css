@@ -1,0 +1,123 @@
+.healthy-header{
+
+    position:relative;
+
+    padding:120px 0 80px;
+
+    text-align:center;
+
+    overflow:hidden;
+
+}
+
+/* كلمة HEALTHY */
+
+.watermark{
+
+    position:absolute;
+
+    left:50%;
+
+    top:20px;
+
+    transform:translateX(-50%);
+
+    font-size:110px;
+
+    font-weight:900;
+
+    color:transparent;
+
+    -webkit-text-stroke:2px rgba(0,0,0,.07);
+
+    letter-spacing:10px;
+
+    pointer-events:none;
+
+}
+
+/* اللوجو */
+
+.logo{
+
+    position:relative;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:12px;
+
+    color:#ff5b22;
+
+    font-weight:700;
+
+    margin-bottom:25px;
+
+}
+
+.logo-icon{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    background:#ff5b22;
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+/* العنوان */
+
+.healthy-header h2{
+
+    position:relative;
+
+    z-index:5;
+
+    font-size:60px;
+
+    font-weight:900;
+
+    line-height:1.15;
+
+    text-transform:uppercase;
+
+    color:#1b1b1b;
+
+}
+
+.healthy-header h2 span{
+
+    color:#ff5b22;
+
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+.watermark{
+
+font-size:55px;
+
+}
+
+.healthy-header h2{
+
+font-size:34px;
+
+}
+
+}

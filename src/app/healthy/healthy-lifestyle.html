@@ -1,0 +1,30 @@
+<app-healthy-header></app-healthy-header>
+
+<app-healthy-slider
+  [meals]="meals()"
+  (recipeClick)="openRecipe($event)">
+</app-healthy-slider>
+
+@if (selectedMealId()) {
+
+<div class="recipe-modal">
+
+  <div class="recipe-content">
+
+    <button
+      class="close-btn"
+      (click)="closeRecipe()">
+
+      ×
+
+    </button>
+
+    <app-meal-details
+      [mealId]="selectedMealId()">
+    </app-meal-details>
+
+  </div>
+
+</div>
+
+}
