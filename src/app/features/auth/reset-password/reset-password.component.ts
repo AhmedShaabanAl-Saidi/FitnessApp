@@ -1,54 +1,59 @@
 import { Component, signal, computed } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { AppInputComponent } from '../../../shared/components/input/input.component';
+import { TextInputComponent } from '../../../shared/ui/reusable-input/text/text-input.component';
 import { AppErrorMessageComponent } from '../../../shared/components/error-message/error-message.component';
 import { AppButtonComponent } from '../../../shared/components/button/button.component';
-import { form, FormField, required, minLength } from '@angular/forms/signals';
+import { AuthPage, AuthPageData } from '../../../core/layout/auth-layout/interfaces/auth-page-data';
 
 @Component({
   selector: 'app-reset-password',
   standalone: true,
   imports: [
     CommonModule,
-    FormField,
-    AppInputComponent,
-    AppErrorMessageComponent,
+    TextInputComponent,
     AppButtonComponent
   ],
   templateUrl: './reset-password.component.html',
   styleUrl: './reset-password.component.css'
 })
-export class ResetPasswordComponent {
-  auth = signal({ password: '', confirmPassword: '' });
+export class ResetPasswordComponent implements AuthPage {
+  password = signal('');
+  confirmPassword = signal('');
+  
+  passwordTouched = signal(false);
+  confirmPasswordTouched = signal(false);
 
-  resetForm = form(this.auth, (path) => ({
-    password: [required(path.password), minLength(path.password, 6)],
-    confirmPassword: [required(path.confirmPassword)]
-  }));
+  passwordError = computed(() => {
+    const val = this.password();
+    if (!val) return { key: 'VALIDATION.REQUIRED' };
+    if (val.length < 6) return { key: 'VALIDATION.MIN_LENGTH', params: { length: 6 } };
+    return null;
+  });
 
-  // Computed signal to track if passwords match
-  passwordsMatch = computed(() => {
-    return this.auth().password === this.auth().confirmPassword;
+  confirmPasswordError = computed(() => {
+    const val = this.confirmPassword();
+    if (!val) return { key: 'VALIDATION.REQUIRED' };
+    if (val !== this.password()) return { key: 'VALIDATION.MISMATCH' };
+    return null;
+  });
+
+  isFormValid = computed(() => !this.passwordError() && !this.confirmPasswordError());
+
+  authData = signal<AuthPageData>({
+    title: 'Create New Password',
+    description: 'Make Sure Its 8 Characters Or More'
   });
 
   constructor(private router: Router) {}
 
-  isFieldInvalid(fieldControl: any): boolean {
-    return fieldControl().invalid() && (fieldControl().dirty() || fieldControl().touched());
-  }
-
-  isConfirmPasswordInvalid(): boolean {
-    const confirmControl = this.resetForm.confirmPassword;
-    return (confirmControl().invalid() || !this.passwordsMatch()) && (confirmControl().dirty() || confirmControl().touched());
-  }
-
   onSubmit() {
-    if (this.resetForm().valid() && this.passwordsMatch()) {
-      console.log('Reset Password Submitted:', this.resetForm().value());
+    this.passwordTouched.set(true);
+    this.confirmPasswordTouched.set(true);
+
+    if (this.isFormValid()) {
+      console.log('Reset Password Submitted:', { password: this.password() });
       this.router.navigate(['/auth/login']);
-    } else {
-      this.resetForm().markAsTouched();
     }
   }
 }

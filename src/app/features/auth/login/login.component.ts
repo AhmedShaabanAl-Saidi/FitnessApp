@@ -1,10 +1,10 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, computed } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { AppInputComponent } from '../../../shared/components/input/input.component';
+import { TextInputComponent } from '../../../shared/ui/reusable-input/text/text-input.component';
 import { AppErrorMessageComponent } from '../../../shared/components/error-message/error-message.component';
 import { AppButtonComponent } from '../../../shared/components/button/button.component';
-import { form, FormField, required, email, minLength } from '@angular/forms/signals';
+import { AuthPage, AuthPageData } from '../../../core/layout/auth-layout/interfaces/auth-page-data';
 
 @Component({
   selector: 'app-login',
@@ -12,34 +12,53 @@ import { form, FormField, required, email, minLength } from '@angular/forms/sign
   imports: [
     CommonModule, 
     RouterLink, 
-    FormField,
-    AppInputComponent,
-    AppErrorMessageComponent,
+    TextInputComponent,
     AppButtonComponent
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
-  auth = signal({ email: '', password: '' });
+export class LoginComponent implements AuthPage {
+  email = signal('');
+  password = signal('');
+  
+  emailTouched = signal(false);
+  passwordTouched = signal(false);
 
-  loginForm = form(this.auth, (path) => ({
-    email: [required(path.email), email(path.email)],
-    password: [required(path.password), minLength(path.password, 6)]
-  }));
+  emailError = computed(() => {
+    const val = this.email();
+    if (!val) return { key: 'VALIDATION.REQUIRED' };
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(val)) return { key: 'VALIDATION.EMAIL' };
+    return null;
+  });
+
+  passwordError = computed(() => {
+    const val = this.password();
+    if (!val) return { key: 'VALIDATION.REQUIRED' };
+    if (val.length < 6) return { key: 'VALIDATION.MIN_LENGTH', params: { length: 6 } };
+    return null;
+  });
+
+  isFormValid = computed(() => !this.emailError() && !this.passwordError());
+
+  authData = signal<AuthPageData>({
+    title: 'WELCOME BACK',
+    description: 'Hey There',
+    footerText: 'Dont Have An Account Yet?',
+    footerLinkText: 'Register',
+    footerLinkRoute: '/auth/register'
+  });
 
   constructor(private router: Router) {}
 
-  isFieldInvalid(fieldControl: any): boolean {
-    return fieldControl().invalid() && (fieldControl().dirty() || fieldControl().touched());
-  }
-
   onSubmit() {
-    if (this.loginForm().valid()) {
-      console.log('Login Form Submitted:', this.loginForm().value());
+    this.emailTouched.set(true);
+    this.passwordTouched.set(true);
+    
+    if (this.isFormValid()) {
+      console.log('Login Form Submitted:', { email: this.email(), password: this.password() });
       // Logic for authentication goes here
-    } else {
-      this.loginForm().markAsTouched();
     }
   }
 }

@@ -1,27 +1,36 @@
-import { Component, ElementRef, ViewChildren, QueryList, AfterViewInit, signal } from '@angular/core';
+import { Component, ElementRef, ViewChildren, QueryList, AfterViewInit, signal, computed } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AppButtonComponent } from '../../../shared/components/button/button.component';
-import { form, FormField, required, pattern } from '@angular/forms/signals';
+import { AuthPage, AuthPageData } from '../../../core/layout/auth-layout/interfaces/auth-page-data';
 
 @Component({
   selector: 'app-otp',
   standalone: true,
-  imports: [CommonModule, FormField, AppButtonComponent],
+  imports: [CommonModule, AppButtonComponent],
   templateUrl: './otp.component.html',
   styleUrl: './otp.component.css'
 })
-export class OtpComponent implements AfterViewInit {
+export class OtpComponent implements AfterViewInit, AuthPage {
   @ViewChildren('otpInput') inputs!: QueryList<ElementRef>;
   
-  otpData = signal({ digit1: '', digit2: '', digit3: '', digit4: '' });
-  
-  otpForm = form(this.otpData, (path) => ({
-    digit1: [required(path.digit1), pattern(path.digit1, /^[0-9]$/)],
-    digit2: [required(path.digit2), pattern(path.digit2, /^[0-9]$/)],
-    digit3: [required(path.digit3), pattern(path.digit3, /^[0-9]$/)],
-    digit4: [required(path.digit4), pattern(path.digit4, /^[0-9]$/)]
-  }));
+  digit1 = signal('');
+  digit2 = signal('');
+  digit3 = signal('');
+  digit4 = signal('');
+
+  isFormValid = computed(() => {
+    const regex = /^[0-9]$/;
+    return regex.test(this.digit1()) &&
+           regex.test(this.digit2()) &&
+           regex.test(this.digit3()) &&
+           regex.test(this.digit4());
+  });
+
+  authData = signal<AuthPageData>({
+    title: 'OTP CODE',
+    description: 'Enter Your OTP Check Your Email'
+  });
 
   resendTimer = 30;
   private intervalId: ReturnType<typeof setInterval> | undefined;
@@ -50,25 +59,29 @@ export class OtpComponent implements AfterViewInit {
     }, 1000);
   }
 
-  onKeyUp(event: KeyboardEvent, index: number) {
-    const val = event.key;
-    const inputElements = this.inputs.toArray();
+  onInput(event: Event, index: number, signalRef: any) {
+    const inputElement = event.target as HTMLInputElement;
+    let val = inputElement.value;
+    
+    // Only allow numeric
+    val = val.replace(/[^0-9]/g, '');
+    inputElement.value = val;
+    signalRef.set(val);
 
-    if (val >= '0' && val <= '9') {
-      if (index < 3) {
-        inputElements[index + 1].nativeElement.focus();
-      }
+    const inputElements = this.inputs.toArray();
+    if (val.length === 1 && index < 3) {
+      inputElements[index + 1].nativeElement.focus();
     }
   }
 
   onKeyDown(event: KeyboardEvent, index: number) {
     const key = event.key;
     const inputElements = this.inputs.toArray();
+    const signalRefs = [this.digit1, this.digit2, this.digit3, this.digit4];
 
     if (key === 'Backspace') {
-      const controlKey = `digit${index + 1}` as keyof typeof this.otpForm;
-      const currentControl = (this.otpForm as any)[controlKey];
-      if (!currentControl().value() && index > 0) {
+      const currentControl = signalRefs[index];
+      if (!currentControl() && index > 0) {
         inputElements[index - 1].nativeElement.focus();
       }
     }
@@ -81,12 +94,10 @@ export class OtpComponent implements AfterViewInit {
   }
 
   onSubmit() {
-    if (this.otpForm().valid()) {
-      const otpValue = this.otpForm.digit1().value() + this.otpForm.digit2().value() + this.otpForm.digit3().value() + this.otpForm.digit4().value();
+    if (this.isFormValid()) {
+      const otpValue = this.digit1() + this.digit2() + this.digit3() + this.digit4();
       console.log('OTP Form Submitted:', otpValue);
       this.router.navigate(['/auth/reset-password']);
-    } else {
-      this.otpForm().markAsTouched();
     }
   }
 }
