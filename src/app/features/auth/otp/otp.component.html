@@ -15,34 +15,20 @@
     </div>
 
     <!-- Form -->
-    <form [formGroup]="otpForm" (ngSubmit)="onSubmit()" class="space-y-8">
-      <!-- 4 Digit Inputs (Underlines instead of boxes) -->
+    <form (ngSubmit)="onSubmit()" class="space-y-6">
+      
+      <!-- OTP Input Area -->
       <div class="flex justify-center gap-6 my-4">
-        @for (controlName of ['digit1', 'digit2', 'digit3', 'digit4']; track controlName) {
-          <input
-            #otpInput
-            type="text"
-            maxLength="1"
-            [formControlName]="controlName"
-            (keyup)="onKeyUp($event, $index)"
-            (keydown)="onKeyDown($event, $index)"
-            class="w-12 h-12 text-center text-3xl font-bold bg-transparent border-0 border-b-[3px] border-[#FF5E00]/60 hover:border-[#FF5E00] focus:border-[#FF5E00] text-[#FF5E00] focus:outline-none focus:ring-0 transition-colors duration-300"
-            pattern="[0-9]"
-            inputmode="numeric"
-          />
-        }
+        <input #otpInput type="text" [formField]="otpForm.digit1" (keyup)="onKeyUp($event, 0)" (keydown)="onKeyDown($event, 0)" class="w-12 h-12 text-center text-3xl font-bold bg-transparent border-0 border-b-[3px] border-[#FF5E00]/60 hover:border-[#FF5E00] focus:border-[#FF5E00] text-[#FF5E00] focus:outline-none focus:ring-0 transition-colors duration-300" inputmode="numeric">
+        <input #otpInput type="text" [formField]="otpForm.digit2" (keyup)="onKeyUp($event, 1)" (keydown)="onKeyDown($event, 1)" class="w-12 h-12 text-center text-3xl font-bold bg-transparent border-0 border-b-[3px] border-[#FF5E00]/60 hover:border-[#FF5E00] focus:border-[#FF5E00] text-[#FF5E00] focus:outline-none focus:ring-0 transition-colors duration-300" inputmode="numeric">
+        <input #otpInput type="text" [formField]="otpForm.digit3" (keyup)="onKeyUp($event, 2)" (keydown)="onKeyDown($event, 2)" class="w-12 h-12 text-center text-3xl font-bold bg-transparent border-0 border-b-[3px] border-[#FF5E00]/60 hover:border-[#FF5E00] focus:border-[#FF5E00] text-[#FF5E00] focus:outline-none focus:ring-0 transition-colors duration-300" inputmode="numeric">
+        <input #otpInput type="text" [formField]="otpForm.digit4" (keyup)="onKeyUp($event, 3)" (keydown)="onKeyDown($event, 3)" class="w-12 h-12 text-center text-3xl font-bold bg-transparent border-0 border-b-[3px] border-[#FF5E00]/60 hover:border-[#FF5E00] focus:border-[#FF5E00] text-[#FF5E00] focus:outline-none focus:ring-0 transition-colors duration-300" inputmode="numeric">
       </div>
-
-      @if (otpForm.invalid && otpForm.touched) {
-        <div class="text-xs text-red-500 text-center pl-1 -mt-2">
-          Please fill in all 4 digits.
-        </div>
-      }
 
       <!-- Submit Button -->
       <app-button
         type="submit"
-        [disabled]="otpForm.invalid"
+        [disabled]="otpForm().invalid()"
         label="Confirm"
       ></app-button>
     </form>

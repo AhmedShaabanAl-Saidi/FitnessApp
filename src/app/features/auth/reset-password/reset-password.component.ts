@@ -1,17 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, signal, computed } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AppInputComponent } from '../../../shared/components/input/input.component';
 import { AppErrorMessageComponent } from '../../../shared/components/error-message/error-message.component';
 import { AppButtonComponent } from '../../../shared/components/button/button.component';
+import { form, FormField, required, minLength } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-reset-password',
   standalone: true,
   imports: [
-    CommonModule, 
-    ReactiveFormsModule,
+    CommonModule,
+    FormField,
     AppInputComponent,
     AppErrorMessageComponent,
     AppButtonComponent
@@ -20,33 +20,35 @@ import { AppButtonComponent } from '../../../shared/components/button/button.com
   styleUrl: './reset-password.component.css'
 })
 export class ResetPasswordComponent {
-  resetForm: FormGroup;
+  auth = signal({ password: '', confirmPassword: '' });
 
-  constructor(private fb: FormBuilder, private router: Router) {
-    this.resetForm = this.fb.group({
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['', Validators.required]
-    }, { validators: this.passwordMatchValidator });
+  resetForm = form(this.auth, (path) => ({
+    password: [required(path.password), minLength(path.password, 6)],
+    confirmPassword: [required(path.confirmPassword)]
+  }));
+
+  // Computed signal to track if passwords match
+  passwordsMatch = computed(() => {
+    return this.auth().password === this.auth().confirmPassword;
+  });
+
+  constructor(private router: Router) {}
+
+  isFieldInvalid(fieldControl: any): boolean {
+    return fieldControl().invalid() && (fieldControl().dirty() || fieldControl().touched());
   }
 
-  passwordMatchValidator(g: FormGroup) {
-    const password = g.get('password')?.value;
-    const confirmPassword = g.get('confirmPassword')?.value;
-    return password === confirmPassword ? null : { mismatch: true };
-  }
-
-  isFieldInvalid(field: string): boolean {
-    const control = this.resetForm.get(field);
-    return !!(control && control.invalid && (control.dirty || control.touched));
+  isConfirmPasswordInvalid(): boolean {
+    const confirmControl = this.resetForm.confirmPassword;
+    return (confirmControl().invalid() || !this.passwordsMatch()) && (confirmControl().dirty() || confirmControl().touched());
   }
 
   onSubmit() {
-    if (this.resetForm.valid) {
-      console.log('Reset Password Form Submitted:', this.resetForm.value);
-      alert('Password Reset Successful!');
+    if (this.resetForm().valid() && this.passwordsMatch()) {
+      console.log('Reset Password Submitted:', this.resetForm().value());
       this.router.navigate(['/auth/login']);
     } else {
-      this.resetForm.markAllAsTouched();
+      this.resetForm().markAsTouched();
     }
   }
 }

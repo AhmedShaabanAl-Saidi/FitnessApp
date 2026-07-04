@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Component, signal } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AppInputComponent } from '../../../shared/components/input/input.component';
 import { AppErrorMessageComponent } from '../../../shared/components/error-message/error-message.component';
 import { AppButtonComponent } from '../../../shared/components/button/button.component';
+import { form, FormField, required, email, minLength } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,7 @@ import { AppButtonComponent } from '../../../shared/components/button/button.com
   imports: [
     CommonModule, 
     RouterLink, 
-    ReactiveFormsModule,
+    FormField,
     AppInputComponent,
     AppErrorMessageComponent,
     AppButtonComponent
@@ -21,27 +21,25 @@ import { AppButtonComponent } from '../../../shared/components/button/button.com
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  loginForm: FormGroup;
+  auth = signal({ email: '', password: '' });
 
-  constructor(private fb: FormBuilder) {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      rememberMe: [false]
-    });
-  }
+  loginForm = form(this.auth, (path) => ({
+    email: [required(path.email), email(path.email)],
+    password: [required(path.password), minLength(path.password, 6)]
+  }));
 
-  isFieldInvalid(field: string): boolean {
-    const control = this.loginForm.get(field);
-    return !!(control && control.invalid && (control.dirty || control.touched));
+  constructor(private router: Router) {}
+
+  isFieldInvalid(fieldControl: any): boolean {
+    return fieldControl().invalid() && (fieldControl().dirty() || fieldControl().touched());
   }
 
   onSubmit() {
-    if (this.loginForm.valid) {
-      console.log('Login Form Submitted:', this.loginForm.value);
-      alert('Mock Sign In Successful!');
+    if (this.loginForm().valid()) {
+      console.log('Login Form Submitted:', this.loginForm().value());
+      // Logic for authentication goes here
     } else {
-      this.loginForm.markAllAsTouched();
+      this.loginForm().markAsTouched();
     }
   }
 }

@@ -1,17 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AppInputComponent } from '../../../shared/components/input/input.component';
 import { AppErrorMessageComponent } from '../../../shared/components/error-message/error-message.component';
 import { AppButtonComponent } from '../../../shared/components/button/button.component';
+import { form, FormField, required, email } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-forgot-password',
   standalone: true,
   imports: [
-    CommonModule, 
-    ReactiveFormsModule,
+    CommonModule,
+    FormField,
     AppInputComponent,
     AppErrorMessageComponent,
     AppButtonComponent
@@ -20,25 +20,24 @@ import { AppButtonComponent } from '../../../shared/components/button/button.com
   styleUrl: './forgot-password.component.css'
 })
 export class ForgotPasswordComponent {
-  forgotForm: FormGroup;
+  auth = signal({ email: '' });
 
-  constructor(private fb: FormBuilder, private router: Router) {
-    this.forgotForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]]
-    });
-  }
+  forgotForm = form(this.auth, (path) => ({
+    email: [required(path.email), email(path.email)]
+  }));
 
-  isFieldInvalid(field: string): boolean {
-    const control = this.forgotForm.get(field);
-    return !!(control && control.invalid && (control.dirty || control.touched));
+  constructor(private router: Router) {}
+
+  isFieldInvalid(fieldControl: any): boolean {
+    return fieldControl().invalid() && (fieldControl().dirty() || fieldControl().touched());
   }
 
   onSubmit() {
-    if (this.forgotForm.valid) {
-      console.log('Forgot Password Form Submitted:', this.forgotForm.value);
+    if (this.forgotForm().valid()) {
+      console.log('Forgot Password Submitted:', this.forgotForm().value());
       this.router.navigate(['/auth/otp']);
     } else {
-      this.forgotForm.markAllAsTouched();
+      this.forgotForm().markAsTouched();
     }
   }
 }

@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Component, signal } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AppInputComponent } from '../../../shared/components/input/input.component';
 import { AppErrorMessageComponent } from '../../../shared/components/error-message/error-message.component';
 import { AppButtonComponent } from '../../../shared/components/button/button.component';
+import { form, FormField, required, email, minLength } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +12,7 @@ import { AppButtonComponent } from '../../../shared/components/button/button.com
   imports: [
     CommonModule, 
     RouterLink, 
-    ReactiveFormsModule,
+    FormField,
     AppInputComponent,
     AppErrorMessageComponent,
     AppButtonComponent
@@ -21,28 +21,27 @@ import { AppButtonComponent } from '../../../shared/components/button/button.com
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  registerForm: FormGroup;
+  auth = signal({ firstName: '', lastName: '', email: '', password: '' });
 
-  constructor(private fb: FormBuilder) {
-    this.registerForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
-    });
-  }
+  registerForm = form(this.auth, (path) => ({
+    firstName: required(path.firstName),
+    lastName: required(path.lastName),
+    email: [required(path.email), email(path.email)],
+    password: [required(path.password), minLength(path.password, 6)]
+  }));
 
-  isFieldInvalid(field: string): boolean {
-    const control = this.registerForm.get(field);
-    return !!(control && control.invalid && (control.dirty || control.touched));
+  constructor(private router: Router) {}
+
+  isFieldInvalid(fieldControl: any): boolean {
+    return fieldControl().invalid() && (fieldControl().dirty() || fieldControl().touched());
   }
 
   onSubmit() {
-    if (this.registerForm.valid) {
-      console.log('Register Form Submitted:', this.registerForm.value);
-      alert('Mock Sign Up Successful!');
+    if (this.registerForm().valid()) {
+      console.log('Register Form Submitted:', this.registerForm().value());
+      // Logic for authentication goes here
     } else {
-      this.registerForm.markAllAsTouched();
+      this.registerForm().markAsTouched();
     }
   }
 }
