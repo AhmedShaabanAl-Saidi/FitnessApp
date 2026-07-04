@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
     <button
       [type]="type"
       [disabled]="disabled || loading"
-      class="w-full py-4 mt-2 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 disabled:from-gray-800 disabled:to-gray-800 disabled:text-gray-500 disabled:cursor-not-allowed text-white font-bold text-sm tracking-widest uppercase rounded-2xl shadow-[0_4px_20px_rgba(255,94,0,0.25)] hover:shadow-[0_6px_25px_rgba(255,94,0,0.4)] active:scale-[0.98] transition-all duration-300 flex items-center justify-center cursor-pointer select-none"
+      class="w-full py-4 mt-2 bg-[#FF5E00] hover:bg-[#E05300] disabled:bg-gray-800 disabled:text-gray-500 disabled:cursor-not-allowed text-white font-bold text-sm tracking-widest uppercase rounded-xl shadow-md hover:shadow-lg active:scale-[0.98] transition-all duration-300 flex items-center justify-center cursor-pointer select-none"
     >
       <!-- Optional Loading Spinner -->
       @if (loading) {

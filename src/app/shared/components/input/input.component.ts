@@ -50,7 +50,7 @@ import { CommonModule } from '@angular/common';
         [class.pl-12]="icon"
         [class.pr-12]="type === 'password'"
         [class.border-red-500]="hasError"
-        class="w-full pr-4 py-3.5 bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.08] dark:border-white/10 hover:border-black/[0.12] dark:hover:border-white/15 focus:border-orange-500/50 rounded-2xl text-gray-800 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-orange-500/30 transition-all duration-300 text-sm"
+        class="w-full pr-4 py-3.5 bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.08] dark:border-white/10 hover:border-black/[0.12] dark:hover:border-white/15 focus:border-[#FF5E00] rounded-xl text-gray-800 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[#FF5E00]/25 transition-all duration-300 text-sm"
       />
 
       <!-- Password toggle icon -->
