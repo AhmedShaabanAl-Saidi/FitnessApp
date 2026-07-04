@@ -1,7 +1,7 @@
 <div class="w-full flex flex-col text-left">
   <!-- Header Outside Card -->
   <div class="mb-6 text-center">
-    <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight uppercase transition-colors duration-500">
+    <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight mt-1 transition-colors duration-500">
       OTP CODE
     </h2>
   </div>
@@ -10,14 +10,14 @@
   <div class="relative bg-white/75 dark:bg-white/[0.02] backdrop-blur-2xl border border-black/[0.08] dark:border-white/10 rounded-[24px] shadow-xl dark:shadow-2xl p-8 md:p-10 transition-all duration-500 hover:border-black/[0.15] dark:hover:border-white/15">
     
     <!-- Card Internal Title -->
-    <div class="mb-6 text-center">
-      <h3 class="text-base font-semibold text-gray-500 dark:text-gray-400 tracking-wide transition-colors duration-500">Enter Your OTP-Check Your Email</h3>
+    <div class="mb-8 text-center">
+      <h3 class="text-base font-semibold text-gray-900 dark:text-white tracking-wide transition-colors duration-500">Enter Your OTP Check Your Email</h3>
     </div>
 
     <!-- Form -->
-    <form [formGroup]="otpForm" (ngSubmit)="onSubmit()" class="space-y-6">
-      <!-- 4 Digit Inputs -->
-      <div class="flex justify-between gap-3 my-4">
+    <form [formGroup]="otpForm" (ngSubmit)="onSubmit()" class="space-y-8">
+      <!-- 4 Digit Inputs (Underlines instead of boxes) -->
+      <div class="flex justify-center gap-6 my-4">
         @for (controlName of ['digit1', 'digit2', 'digit3', 'digit4']; track controlName) {
           <input
             #otpInput
@@ -26,7 +26,7 @@
             [formControlName]="controlName"
             (keyup)="onKeyUp($event, $index)"
             (keydown)="onKeyDown($event, $index)"
-            class="w-16 h-16 text-center text-2xl font-bold bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.08] dark:border-white/10 hover:border-black/[0.12] dark:hover:border-white/15 focus:border-[#FF5E00] rounded-xl text-gray-800 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#FF5E00]/25 transition-all duration-300"
+            class="w-12 h-12 text-center text-3xl font-bold bg-transparent border-0 border-b-[3px] border-[#FF5E00]/60 hover:border-[#FF5E00] focus:border-[#FF5E00] text-[#FF5E00] focus:outline-none focus:ring-0 transition-colors duration-300"
             pattern="[0-9]"
             inputmode="numeric"
           />
@@ -34,7 +34,7 @@
       </div>
 
       @if (otpForm.invalid && otpForm.touched) {
-        <div class="text-xs text-red-500 text-center pl-1">
+        <div class="text-xs text-red-500 text-center pl-1 -mt-2">
           Please fill in all 4 digits.
         </div>
       }
@@ -48,13 +48,18 @@
     </form>
 
     <!-- Footer Link -->
-    <div class="mt-6 text-center border-t border-black/[0.06] dark:border-white/5 pt-5 transition-colors duration-500 flex flex-col items-center">
-      <p class="text-xs text-gray-500 dark:text-gray-400 transition-colors duration-500">
-        Dont Receive the Password Code?
+    <div class="mt-6 text-center pt-2 transition-colors duration-500 flex flex-col items-center">
+      <p class="text-xs text-gray-500 dark:text-gray-400 transition-colors duration-500 font-medium">
+        Didnt Recieve Verification Code?
       </p>
-      <a routerLink="/auth/register" class="mt-2 text-sm font-bold text-[#FF5E00] hover:text-[#E05300] transition-colors duration-200 uppercase">
-        REGISTER!
-      </a>
+      <button
+        type="button"
+        (click)="resendCode()"
+        [disabled]="resendTimer > 0"
+        class="mt-1 text-xs font-bold text-[#FF5E00] hover:text-[#E05300] disabled:text-gray-500 transition-colors duration-200 underline underline-offset-4 cursor-pointer"
+      >
+        {{ resendTimer > 0 ? 'Resend in ' + resendTimer + 's' : 'Resend Code?' }}
+      </button>
     </div>
   </div>
 </div>
