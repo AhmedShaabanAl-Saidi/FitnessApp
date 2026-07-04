@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AppInputComponent } from '../../../shared/components/input/input.component';
@@ -11,7 +11,6 @@ import { AppButtonComponent } from '../../../shared/components/button/button.com
   standalone: true,
   imports: [
     CommonModule, 
-    RouterLink, 
     ReactiveFormsModule,
     AppInputComponent,
     AppErrorMessageComponent,
