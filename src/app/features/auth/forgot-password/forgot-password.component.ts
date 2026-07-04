@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AppLabelComponent } from '../../../shared/components/label/label.component';
 import { AppInputComponent } from '../../../shared/components/input/input.component';
 import { AppErrorMessageComponent } from '../../../shared/components/error-message/error-message.component';
 import { AppButtonComponent } from '../../../shared/components/button/button.component';
@@ -14,7 +13,6 @@ import { AppButtonComponent } from '../../../shared/components/button/button.com
     CommonModule, 
     RouterLink, 
     ReactiveFormsModule,
-    AppLabelComponent,
     AppInputComponent,
     AppErrorMessageComponent,
     AppButtonComponent

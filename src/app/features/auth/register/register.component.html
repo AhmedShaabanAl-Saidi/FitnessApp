@@ -1,106 +1,110 @@
 <div class="w-full flex flex-col text-left">
-  <!-- Header -->
-  <div class="mb-6">
+  <!-- Header Outside Card -->
+  <div class="mb-6 text-center">
     <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight uppercase transition-colors duration-500">
-      Create An <span class="text-orange-500">Account</span>
+      Create An Account
     </h2>
-    <p class="text-gray-500 dark:text-gray-400 text-sm mt-1 transition-colors duration-500">Get started on your fitness journey.</p>
   </div>
 
-  <!-- Form -->
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-4">
-    <!-- Full Name Input -->
-    <div class="flex flex-col space-y-1">
-      <app-label for="name">Name</app-label>
-      <app-input
-        id="name"
-        type="text"
-        formControlName="name"
-        placeholder="Mahmoud Samy"
-        icon="user"
-        [hasError]="isFieldInvalid('name')"
-      ></app-input>
-      @if (isFieldInvalid('name')) {
-        <app-error-message>
-          Full name is required
-        </app-error-message>
-      }
+  <!-- Card Container -->
+  <div class="relative bg-white/75 dark:bg-white/[0.02] backdrop-blur-2xl border border-black/[0.08] dark:border-white/10 rounded-[24px] shadow-xl dark:shadow-2xl p-8 md:p-10 transition-all duration-500 hover:border-black/[0.15] dark:hover:border-white/15">
+    
+    <!-- Card Internal Title -->
+    <div class="mb-6 text-center">
+      <h3 class="text-xl font-bold text-gray-900 dark:text-white tracking-wide transition-colors duration-500">Register</h3>
     </div>
 
-    <!-- Email Input -->
-    <div class="flex flex-col space-y-1">
-      <app-label for="email">Email</app-label>
-      <app-input
-        id="email"
-        type="email"
-        formControlName="email"
-        placeholder="name@example.com"
-        icon="email"
-        [hasError]="isFieldInvalid('email')"
-      ></app-input>
-      @if (isFieldInvalid('email')) {
-        <app-error-message>
-          Please enter a valid email address
-        </app-error-message>
-      }
+    <!-- Form -->
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-4">
+      <!-- Full Name Input -->
+      <div class="flex flex-col space-y-1">
+        <app-input
+          id="name"
+          type="text"
+          formControlName="name"
+          placeholder="Name"
+          icon="user"
+          [hasError]="isFieldInvalid('name')"
+        ></app-input>
+        @if (isFieldInvalid('name')) {
+          <app-error-message>
+            Full name is required
+          </app-error-message>
+        }
+      </div>
+
+      <!-- Email Input -->
+      <div class="flex flex-col space-y-1">
+        <app-input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="Email"
+          icon="email"
+          [hasError]="isFieldInvalid('email')"
+        ></app-input>
+        @if (isFieldInvalid('email')) {
+          <app-error-message>
+            Please enter a valid email address
+          </app-error-message>
+        }
+      </div>
+
+      <!-- Password Input -->
+      <div class="flex flex-col space-y-1">
+        <app-input
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="Password"
+          icon="lock"
+          [hasError]="isFieldInvalid('password')"
+        ></app-input>
+        @if (isFieldInvalid('password')) {
+          <app-error-message>
+            Password must be at least 6 characters
+          </app-error-message>
+        }
+      </div>
+
+      <!-- Confirm Password Input -->
+      <div class="flex flex-col space-y-1">
+        <app-input
+          id="confirmPassword"
+          type="password"
+          formControlName="confirmPassword"
+          placeholder="Confirm Password"
+          icon="lock"
+          [hasError]="isFieldInvalid('confirmPassword') || registerForm.hasError('mismatch')"
+        ></app-input>
+        @if (isFieldInvalid('confirmPassword')) {
+          <app-error-message>
+            Confirm password is required
+          </app-error-message>
+        }
+        @if (registerForm.hasError('mismatch') && (registerForm.get('confirmPassword')?.dirty || registerForm.get('confirmPassword')?.touched)) {
+          <app-error-message>
+            Passwords do not match
+          </app-error-message>
+        }
+      </div>
+
+      <!-- Submit Button -->
+      <app-button
+        type="submit"
+        [disabled]="registerForm.invalid"
+        label="Register"
+      ></app-button>
+    </form>
+
+    <!-- Footer Link -->
+    <div class="mt-6 text-center border-t border-black/[0.06] dark:border-white/5 pt-5 transition-colors duration-500">
+      <p class="text-xs text-gray-500 dark:text-gray-400 transition-colors duration-500">
+        Already have an account?
+        <a routerLink="/auth/login" class="text-[#FF5E00] hover:text-[#E05300] font-bold ml-1 transition-colors duration-200">
+          Sign In
+        </a>
+      </p>
     </div>
-
-    <!-- Password Input -->
-    <div class="flex flex-col space-y-1">
-      <app-label for="password">Password</app-label>
-      <app-input
-        id="password"
-        type="password"
-        formControlName="password"
-        placeholder="••••••••"
-        icon="lock"
-        [hasError]="isFieldInvalid('password')"
-      ></app-input>
-      @if (isFieldInvalid('password')) {
-        <app-error-message>
-          Password must be at least 6 characters
-        </app-error-message>
-      }
-    </div>
-
-    <!-- Confirm Password Input -->
-    <div class="flex flex-col space-y-1">
-      <app-label for="confirmPassword">Confirm Password</app-label>
-      <app-input
-        id="confirmPassword"
-        type="password"
-        formControlName="confirmPassword"
-        placeholder="••••••••"
-        icon="lock"
-        [hasError]="isFieldInvalid('confirmPassword') || registerForm.hasError('mismatch')"
-      ></app-input>
-      @if (isFieldInvalid('confirmPassword')) {
-        <app-error-message>
-          Confirm password is required
-        </app-error-message>
-      }
-      @if (registerForm.hasError('mismatch') && (registerForm.get('confirmPassword')?.dirty || registerForm.get('confirmPassword')?.touched)) {
-        <app-error-message>
-          Passwords do not match
-        </app-error-message>
-      }
-    </div>
-
-    <!-- Submit Button -->
-    <app-button
-      type="submit"
-      [disabled]="registerForm.invalid"
-      label="Register"
-    ></app-button>
-  </form>
-
-  <!-- Footer Link -->
-  <div class="mt-6 text-center border-t border-black/[0.06] dark:border-white/5 pt-5 transition-colors duration-500">
-    <p class="text-xs text-gray-500 dark:text-gray-400 transition-colors duration-500">
-      Already have an account?
-      <a routerLink="/auth/login" class="text-orange-500 hover:text-orange-400 font-bold ml-1 transition-colors duration-200">
-        Sign In
-      </a>
-    </p>
   </div>
 </div>
