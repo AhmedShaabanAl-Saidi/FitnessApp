@@ -27,6 +27,10 @@ export const routes: Routes = [
         loadComponent: () => import('./features/auth/otp/otp.component').then(m => m.OtpComponent)
       },
       {
+        path: 'onboarding',
+        loadComponent: () => import('./features/auth/onboarding-sandbox/onboarding-sandbox.component').then(m => m.OnboardingSandboxComponent)
+      },
+      {
         path: '',
         redirectTo: 'login',
         pathMatch: 'full'
