@@ -1,0 +1,51 @@
+<div class="w-full flex flex-col text-left">
+  <!-- Header Outside Card -->
+  <div class="mb-6 text-center">
+    <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight mt-1 transition-colors duration-500">
+      OTP CODE
+    </h2>
+  </div>
+
+  <!-- Card Container -->
+  <div class="relative bg-white/75 dark:bg-white/[0.02] backdrop-blur-2xl border border-black/[0.08] dark:border-white/10 rounded-[24px] shadow-xl dark:shadow-2xl p-8 md:p-10 transition-all duration-500 hover:border-black/[0.15] dark:hover:border-white/15">
+    
+    <!-- Card Internal Title -->
+    <div class="mb-8 text-center">
+      <h3 class="text-base font-semibold text-gray-900 dark:text-white tracking-wide transition-colors duration-500">Enter Your OTP Check Your Email</h3>
+    </div>
+
+    <!-- Form -->
+    <form (ngSubmit)="onSubmit()" class="space-y-6">
+      
+      <!-- OTP Input Area -->
+      <div class="flex justify-center gap-6 my-4">
+        <input #otpInput type="text" maxlength="1" [value]="digit1()" (input)="onInput($event, 0, digit1)" (keydown)="onKeyDown($event, 0)" class="w-12 h-12 text-center text-3xl font-bold bg-transparent border-0 border-b-[3px] border-[#FF5E00]/60 hover:border-[#FF5E00] focus:border-[#FF5E00] text-[#FF5E00] focus:outline-none focus:ring-0 transition-colors duration-300" inputmode="numeric">
+        <input #otpInput type="text" maxlength="1" [value]="digit2()" (input)="onInput($event, 1, digit2)" (keydown)="onKeyDown($event, 1)" class="w-12 h-12 text-center text-3xl font-bold bg-transparent border-0 border-b-[3px] border-[#FF5E00]/60 hover:border-[#FF5E00] focus:border-[#FF5E00] text-[#FF5E00] focus:outline-none focus:ring-0 transition-colors duration-300" inputmode="numeric">
+        <input #otpInput type="text" maxlength="1" [value]="digit3()" (input)="onInput($event, 2, digit3)" (keydown)="onKeyDown($event, 2)" class="w-12 h-12 text-center text-3xl font-bold bg-transparent border-0 border-b-[3px] border-[#FF5E00]/60 hover:border-[#FF5E00] focus:border-[#FF5E00] text-[#FF5E00] focus:outline-none focus:ring-0 transition-colors duration-300" inputmode="numeric">
+        <input #otpInput type="text" maxlength="1" [value]="digit4()" (input)="onInput($event, 3, digit4)" (keydown)="onKeyDown($event, 3)" class="w-12 h-12 text-center text-3xl font-bold bg-transparent border-0 border-b-[3px] border-[#FF5E00]/60 hover:border-[#FF5E00] focus:border-[#FF5E00] text-[#FF5E00] focus:outline-none focus:ring-0 transition-colors duration-300" inputmode="numeric">
+      </div>
+
+      <!-- Submit Button -->
+      <app-button
+        type="submit"
+        [disabled]="!isFormValid()"
+        label="Confirm"
+      ></app-button>
+    </form>
+
+    <!-- Footer Link -->
+    <div class="mt-6 text-center pt-2 transition-colors duration-500 flex flex-col items-center">
+      <p class="text-xs text-gray-500 dark:text-gray-400 transition-colors duration-500 font-medium">
+        Didnt Recieve Verification Code?
+      </p>
+      <button
+        type="button"
+        (click)="resendCode()"
+        [disabled]="resendTimer > 0"
+        class="mt-1 text-xs font-bold text-[#FF5E00] hover:text-[#E05300] disabled:text-gray-500 transition-colors duration-200 underline underline-offset-4 cursor-pointer"
+      >
+        {{ resendTimer > 0 ? 'Resend in ' + resendTimer + 's' : 'Resend Code?' }}
+      </button>
+    </div>
+  </div>
+</div>
