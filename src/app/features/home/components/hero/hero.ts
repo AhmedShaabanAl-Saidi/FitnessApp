@@ -40,10 +40,4 @@ export class Hero {
       secondary: 'Explore More',
     },
   };
-  marqueeItems = signal<string[]>([
-    'Personal Trainers',
-    'Live Classes',
-    'Outdoor & Online Trainers',
-    'Personal Training',
-  ]);
 }

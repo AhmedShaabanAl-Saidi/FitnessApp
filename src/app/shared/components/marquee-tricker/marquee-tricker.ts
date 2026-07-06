@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 
 @Component({
   selector: 'app-marquee-tricker',
@@ -7,5 +7,10 @@ import { Component, input } from '@angular/core';
   styleUrl: './marquee-tricker.css',
 })
 export class MarqueeTricker {
-  items = input.required<string[]>();
+  items = signal<string[]>([
+    'Personal Trainers',
+    'Live Classes',
+    'Outdoor & Online Trainers',
+    'Personal Training',
+  ]);
 }

@@ -47,8 +47,12 @@
     <app-tabs [tabs]="tabs()" [activeTabId]="selectedTab()" (tabChange)="clickTab($event)" />
 
     <div class="mx-auto mt-4 flex w-[calc(100%-2rem)] flex-col px-0 md:mt-8 md:w-3/4 md:px-4">
-      @if (content()) {
+      @if (content() && content()!.totalMuscles > 0) {
         <app-carousel [items]="carouselItems()" [rows]="1" />
+      } @else if (content()?.totalMuscles === 0) {
+        <div class="text-center py-12 dark:text-[#F3F3F4] text-white md:text-4xl">
+          <p class="animate-pulse">No workouts available at the moment.</p>
+        </div>
       } @else {
         <div class="text-center py-12 dark:text-[#F3F3F4] text-neutral-500">
           <p class="animate-pulse">Loading workouts routines...</p>

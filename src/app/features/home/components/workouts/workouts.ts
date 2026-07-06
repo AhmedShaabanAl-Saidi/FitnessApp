@@ -1,9 +1,10 @@
-import { Component, DestroyRef, computed, inject, OnInit, signal } from '@angular/core';
-import { MuscleAPIResponse, MuscleGroup } from '../../../../shared/interfaces/muscles';
-import { MuscleService } from '../../../../shared/services/muscle-service';
+import { Component, computed, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
 import { Carousel } from '../../../../shared/components/carousel/carousel';
 import { TabItem, Tabs } from '../../../../shared/components/tabs/tabs';
+import { MuscleAPIResponse, MuscleGroup } from '../../../../shared/interfaces/muscles';
+import { MuscleService } from '../../../../shared/services/muscle-service';
 @Component({
   selector: 'app-workouts',
   imports: [Carousel, Tabs],
@@ -29,47 +30,39 @@ export class Workouts implements OnInit {
       image: muscle.image,
     })),
   );
-
-  ngOnInit() {
+  private loadInitialMuscleGroups(): void {
     this.service
       .getMuscleGroups()
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe({
         next: (res) => {
-          if (res && res.musclesGroup) {
+          if (res?.musclesGroup) {
             this.muscleGroups.set([...res.musclesGroup]);
           }
         },
       });
+  }
+  ngOnInit() {
+    this.loadInitialMuscleGroups();
     this.clickTab('full-body');
   }
 
   clickTab(id: string) {
     this.selectedTab.set(id);
-    if (id === 'full-body') {
-      this.service
-        .getMuscleFullBody()
-        .pipe(takeUntilDestroyed(this._destroyRef))
-        .subscribe({
-          next: (res) => {
-            if (res) this.content.set(res);
-          },
-        });
-    } else {
-      this.service
-        .getMuscleById(id)
-        .pipe(takeUntilDestroyed(this._destroyRef))
-        .subscribe({
-          next: (res) => {
-            if (res) {
-              this.content.set({
-                message: res.message,
-                totalMuscles: res.muscles.length,
-                muscles: res.muscles,
-              });
-            }
-          },
-        });
-    }
+
+    const request$ =
+      id === 'full-body'
+        ? this.service.getMuscleFullBody()
+        : this.service.getMuscleById(id).pipe(
+            map((res) => ({
+              message: res.message,
+              totalMuscles: res.muscles.length,
+              muscles: res.muscles,
+            })),
+          );
+    request$.pipe(takeUntilDestroyed(this._destroyRef)).subscribe({
+      next: (content) => this.content.set(content),
+      error: (err) => console.error(err),
+    });
   }
 }
