@@ -1,0 +1,30 @@
+<div class="min-h-screen relative overflow-hidden">
+    <!-- Full-page blurred background image -->
+    <div class="absolute inset-0">
+        <img ngSrc="Background image.png" fill alt="" class="object-cover w-full h-full blur-sm brightness-[0.35]" priority />
+    </div>
+
+    <!-- Grid layout on top of background -->
+    <div class="relative z-10 min-h-screen grid grid-cols-1 lg:grid-cols-2">
+
+        <!-- Left Panel: Logo + Athlete -->
+        <div class="hidden lg:block relative h-full border-r border-[#FF5E00]/30">
+            <app-auth-background />
+        </div>
+
+        <!-- Right Panel: Form Content -->
+        <div class="flex flex-col justify-center items-center p-8 lg:p-12 relative w-full">
+
+            <!-- Theme & Language Switchers -->
+            <div class="absolute top-6 right-8 flex items-center gap-4">
+                <app-language-switcher />
+                <app-theme-switcher />
+            </div>
+
+            <div class="w-full max-w-[480px]">
+                <router-outlet (activate)="onActivate($event)"></router-outlet>
+            </div>
+
+        </div>
+    </div>
+</div>
