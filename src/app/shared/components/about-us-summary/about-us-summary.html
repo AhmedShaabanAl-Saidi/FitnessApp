@@ -27,13 +27,13 @@
 
     <div class="relative">
       <h2
-        class="absolute -top-7 md:-top-12 md:left-0 text-[64px] md:text-[82px] font-bold uppercase text-transparent [-webkit-text-stroke:2px_#d8d8d8] opacity-50 pointer-events-none select-none"
+        class="absolute -top-7 md:-top-12 md:-start-5 text-[64px] md:text-[82px] font-bold uppercase text-transparent [-webkit-text-stroke:2px_#d8d8d8] opacity-50 pointer-events-none select-none"
       >
-        {{ content.sectionTitle }}
+        {{ 'ABOUT_US.SECTION_TITLE' | translate }}
       </h2>
 
       <div
-        class="relative top-8 inset-s-5 z-10 flex items-center gap-2 text-primary-brand font-semibold"
+        class="relative top-8 inset-s-15 z-10 flex items-center gap-2 text-primary-brand font-semibold"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -55,32 +55,32 @@
           <line x1="9" y1="12" x2="15" y2="12" />
         </svg>
 
-        <span>{{ content.sectionTitle }}</span>
+        <span>{{ 'ABOUT_US.SECTION_TITLE' | translate }}</span>
       </div>
 
       <h1
         class="mt-10 pt-5 text-[40px] dark:text-[#F3F3F4] leading-16 font-bold tracking-tight text-neutral-800"
       >
-        {{ content.heading }}
+        {{ 'ABOUT_US.HEADING' | translate }}
         <br />
-        <span class="text-primary-brand">{{ content.highlight }}</span>
-        {{ content.headingEnd }}
+        <span class="text-primary-brand">{{ 'ABOUT_US.HIGHLIGHT' | translate }}</span>
+        {{ 'ABOUT_US.HEADING_END' | translate }}
       </h1>
 
       <p class="mt-6 max-w-155 text-[17px] leading-8 dark:text-[#F3F3F4] text-neutral-800">
-        {{ content.description }}
+        {{ 'ABOUT_US.DESCRIPTION' | translate }}
       </p>
 
       <div class="mt-14 grid md:grid-cols-2 gap-x-12 dark:text-[#F3F3F4]">
-        @for (feature of content.features; track feature.title) {
+        @for (feature of features; track feature.titleKey) {
           <div class="py-8" [class.border-b]="!$last" [class.border-gray-200]="!$last">
             <div class="flex items-center gap-3 mb-4">
               <span class="text-primary-brand text-xl">↗</span>
-              <h3 class="text-lg font-bold">{{ feature.title }}</h3>
+              <h3 class="text-lg font-bold">{{ feature.titleKey | translate }}</h3>
             </div>
 
             <p class="leading-8 text-neutral-800 dark:text-[#F3F3F4]">
-              {{ feature.description }}
+              {{ feature.descKey | translate }}
             </p>
           </div>
         }
@@ -88,7 +88,7 @@
 
       <div class="mt-4">
         <app-button [showArrow]="true">
-          {{ content.buttonText }}
+          {{ 'ABOUT_US.GET_STARTED' | translate }}
         </app-button>
       </div>
     </div>
