@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Workouts } from '../home/components/workouts/workouts';
+import { Workouts } from '../../shared/components/workouts/workouts';
 
 @Component({
   selector: 'app-classes',

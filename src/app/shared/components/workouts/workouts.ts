@@ -1,11 +1,11 @@
 import { Component, computed, DestroyRef, inject, input, OnInit, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
-import { Carousel } from '../../../../shared/components/carousel/carousel';
-import { TabItem, Tabs } from '../../../../shared/components/tabs/tabs';
-import { MuscleAPIResponse, MuscleGroup } from '../../../../shared/interfaces/muscles';
-import { MuscleService } from '../../../../shared/services/muscle-service';
-import { MarqueeTricker } from '../../../../shared/components/marquee-tricker/marquee-tricker';
+import { Carousel } from '../carousel/carousel';
+import { TabItem, Tabs } from '../tabs/tabs';
+import { MuscleAPIResponse, MuscleGroup } from '../../interfaces/muscles';
+import { MuscleService } from '../../services/muscle-service';
+import { MarqueeTricker } from '../marquee-tricker/marquee-tricker';
 @Component({
   selector: 'app-workouts',
   imports: [Carousel, Tabs, MarqueeTricker],
