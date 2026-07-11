@@ -1,17 +1,19 @@
-import { Component, computed, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, DestroyRef, inject, input, OnInit, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { Carousel } from '../../../../shared/components/carousel/carousel';
 import { TabItem, Tabs } from '../../../../shared/components/tabs/tabs';
 import { MuscleAPIResponse, MuscleGroup } from '../../../../shared/interfaces/muscles';
 import { MuscleService } from '../../../../shared/services/muscle-service';
+import { MarqueeTricker } from '../../../../shared/components/marquee-tricker/marquee-tricker';
 @Component({
   selector: 'app-workouts',
-  imports: [Carousel, Tabs],
+  imports: [Carousel, Tabs, MarqueeTricker],
   templateUrl: './workouts.html',
   styleUrl: './workouts.css',
 })
 export class Workouts implements OnInit {
+  showMarquee = input<boolean>(false);
   muscleGroups = signal<MuscleGroup[]>([]);
   private readonly service = inject(MuscleService);
   selectedTab = signal<string>('full-body');

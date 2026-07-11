@@ -19,7 +19,7 @@ export class NavBar {
   }
   navItems = [
     { label: 'Home', link: '/home' },
-    { label: 'About', link: '/about' },
+    { label: 'About', link: '/about-us' },
     { label: 'Classes', link: '/classes' },
     { label: 'Healthy', link: '/healthy' },
   ];

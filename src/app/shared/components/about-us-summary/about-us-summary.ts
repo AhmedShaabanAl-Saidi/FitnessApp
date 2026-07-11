@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
-import { Button } from '../../../../shared/components/button/button';
+import { Component, input } from '@angular/core';
+import { Button } from '../button/button';
+import { MarqueeTricker } from '../marquee-tricker/marquee-tricker';
 
 @Component({
-  selector: 'app-about-us',
-  imports: [Button],
-  templateUrl: './about-us.html',
-  styleUrl: './about-us.css',
+  selector: 'app-about-us-summary',
+  imports: [Button, MarqueeTricker],
+  templateUrl: './about-us-summary.html',
+  styleUrl: './about-us-summary.css',
 })
-export class AboutUs {
+export class AboutUsSummary {
+  showMarquee = input<boolean>(false);
   content = {
     sectionTitle: 'About Us',
     heading: 'EMPOWERING YOU TO ACHIEVE',
