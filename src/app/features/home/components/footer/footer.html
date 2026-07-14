@@ -1,0 +1,124 @@
+<app-marquee-tricker></app-marquee-tricker>
+
+<footer class="bg-white">
+
+  <div class="max-w-6xl mx-auto px-6 py-12">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 items-start">
+
+      <!-- Logo -->
+      <div>
+
+        <img
+          src="images/logo.png"
+          alt="Logo"
+          class="w-20 mb-5"
+        />
+
+        @for(line of content.description; track line){
+
+        <p class="text-sm text-neutral-500 leading-7">
+          {{ line }}
+        </p>
+
+        }
+
+      </div>
+
+      <!-- Contact -->
+
+      <div>
+
+        <h4 class="uppercase font-bold text-sm mb-6">
+
+          {{ content.contact.title }}
+
+        </h4>
+
+        <div class="space-y-5">
+
+          <div class="flex items-center gap-3">
+
+            <i class="pi pi-phone w-10 h-10 rounded-full border border-neutral-300 flex items-center justify-center text-primary-brand"></i>
+
+            <span class="text-sm text-neutral-600">
+
+              {{ content.contact.phone }}
+
+            </span>
+
+          </div>
+
+          <div class="flex items-center gap-3">
+
+            <i class="pi pi-envelope w-10 h-10 rounded-full border border-neutral-300 flex items-center justify-center text-primary-brand"></i>
+
+            <span class="text-sm text-neutral-600">
+
+              {{ content.contact.email }}
+
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Timing -->
+
+      <div>
+
+        <h4 class="uppercase font-bold text-sm mb-6">
+
+          {{ content.timing.title }}
+
+        </h4>
+
+        @for(item of content.timing.items; track item.day){
+
+        <div class="mb-3 text-sm text-neutral-600">
+
+          <span class="font-medium">
+
+            {{ item.day }}
+
+          </span>
+
+          :
+
+          {{ item.time }}
+
+        </div>
+
+        }
+
+      </div>
+
+      <!-- Location -->
+
+      <div>
+
+        <h4 class="uppercase font-bold text-sm mb-6">
+
+          {{ content.location.title }}
+
+        </h4>
+
+        @for(address of content.location.address; track address){
+
+        <p class="text-sm text-neutral-600 leading-7">
+
+          {{ address }}
+
+        </p>
+
+        }
+
+      </div>
+
+    </div>
+
+  </div>
+
+</footer>
