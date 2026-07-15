@@ -1,0 +1,71 @@
+<app-healthy-header />
+
+<section class="bg-white py-20">
+  <div class="mx-auto max-w-7xl px-4 md:px-8">
+    <div class="mb-12 text-center">
+      <span class="text-primary-brand text-xs font-black uppercase tracking-[4px]">
+        Healthy Nutrition
+      </span>
+
+      <h2 class="mt-3 text-4xl font-black uppercase text-neutral-900 md:text-5xl">
+        Explore Healthy Meals
+      </h2>
+
+      <p class="mx-auto mt-4 max-w-2xl text-neutral-500">
+        Browse delicious recipes from around the world and discover healthy meals tailored for your
+        lifestyle.
+      </p>
+    </div>
+
+    <div class="categories-scroll mb-14 flex gap-4 overflow-x-auto pb-2">
+      @for (category of categories(); track category.idCategory) {
+        <button
+          (click)="changeCategory(category.strCategory)"
+          class="flex shrink-0 items-center gap-3 rounded-full border border-neutral-200 bg-white px-5 py-3 transition-all duration-300"
+          [class.bg-primary-brand]="selectedCategory() === category.strCategory"
+          [class.border-primary-brand]="selectedCategory() === category.strCategory"
+          [class.text-white]="selectedCategory() === category.strCategory"
+        >
+          <img
+            [src]="category.strCategoryThumb"
+            [alt]="category.strCategory"
+            class="h-9 w-9 rounded-full object-cover"
+          />
+
+          <span
+            style="
+              color: black !important;
+              font-size: 18px !important;
+              font-weight: bold !important;
+            "
+          >
+            {{ category.strCategory }}
+          </span>
+        </button>
+      }
+    </div>
+
+    <app-healthy-slider [meals]="meals()" (recipeClick)="openRecipe($event)" />
+  </div>
+</section>
+
+@if (selectedMealId()) {
+  <div
+    class="recipe-modal fixed inset-0 z-[9999] flex items-center bg-black/60 backdrop-blur-sm p-4"
+    (click)="closeRecipe()"
+  >
+    <div
+      class="relative w-full max-w-5xl rounded-3xl bg-white shadow-2xl"
+      (click)="$event.stopPropagation()"
+    >
+      <button
+        (click)="closeRecipe()"
+        class="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full bg-neutral-100 text-2xl transition hover:bg-primary-brand hover:text-white"
+      >
+        ×
+      </button>
+
+      <app-meal-details [mealId]="selectedMealId()!" />
+    </div>
+  </div>
+}

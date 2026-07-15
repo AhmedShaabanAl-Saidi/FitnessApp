@@ -1,0 +1,19 @@
+<swiper-container
+  #swiper
+  init="false"
+  class="healthy-swiper">
+
+  @for (meal of meals; track meal.idMeal) {
+
+    <swiper-slide>
+
+      <app-meal-card
+        [meal]="meal"
+        (recipeClick)="openRecipe($event)">
+      </app-meal-card>
+
+    </swiper-slide>
+
+  }
+
+</swiper-container>

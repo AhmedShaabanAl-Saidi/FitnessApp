@@ -1,0 +1,33 @@
+:host {
+  display: block;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+img {
+  display: block;
+}
+
+@media (max-width: 768px) {
+
+  h2 {
+    font-size: 2rem;
+    line-height: 2.4rem;
+  }
+
+}

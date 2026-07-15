@@ -1,0 +1,48 @@
+<div
+  class="group overflow-hidden rounded-[28px] bg-white border border-neutral-200 shadow-sm hover:shadow-2xl transition-all duration-500 h-full"
+>
+
+
+  <div class="relative overflow-hidden">
+
+    <img
+      [src]="meal.strMealThumb"
+      [alt]="meal.strMeal"
+      class="h-72 w-full object-cover transition duration-700 group-hover:scale-110"
+    >
+
+    <div
+      class="absolute left-5 top-5 rounded-full bg-primary-brand px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white"
+    >
+
+      {{ meal.strCountry || meal.strArea || 'Healthy' }}
+
+    </div>
+
+  </div>
+
+
+  <div class="p-7">
+
+    <h3
+      class="line-clamp-2 text-2xl font-bold leading-9 text-neutral-900"
+    >
+
+      {{ meal.strMeal }}
+
+    </h3>
+
+    <button
+      (click)="openRecipe()"
+      class="mt-8 inline-flex items-center gap-3 font-semibold text-primary-brand transition-all duration-300 hover:gap-5"
+    >
+
+      Read More
+
+      <i class="pi pi-arrow-right"></i>
+
+    </button>
+
+  </div>
+
+</div>

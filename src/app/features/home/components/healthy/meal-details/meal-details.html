@@ -1,0 +1,144 @@
+@if (loading()) {
+
+<div class="flex items-center justify-center py-24">
+
+  <div
+    class="h-12 w-12 animate-spin rounded-full border-4 border-primary-brand border-t-transparent">
+  </div>
+
+</div>
+
+} @else if (meal()) {
+
+<div class="p-8 lg:p-10">
+
+
+  <div class="grid gap-8 lg:grid-cols-2">
+
+
+    <div>
+
+      <img
+        [src]="meal()!.strMealThumb"
+        [alt]="meal()!.strMeal"
+        class="h-[380px] w-full rounded-3xl object-cover shadow-xl"
+      />
+
+    </div>
+
+
+    <div>
+
+      <span
+        class="inline-flex rounded-full bg-primary-brand/10 px-4 py-2 text-sm font-semibold text-primary-brand">
+
+        {{ meal()!.strCategory }}
+
+      </span>
+
+      <h2
+        class="mt-5 text-4xl font-black leading-tight text-neutral-900">
+
+        {{ meal()!.strMeal }}
+
+      </h2>
+
+      <div
+        class="mt-6 flex flex-wrap gap-3">
+
+        <div
+          class="rounded-full border border-neutral-200 px-4 py-2">
+
+          🌍 {{ meal()!.strCountry }}
+
+        </div>
+
+        <div
+          class="rounded-full border border-neutral-200 px-4 py-2">
+
+          🍽 {{ meal()!.strArea }}
+
+        </div>
+
+      </div>
+
+      @if (meal()!.strYoutube) {
+
+      <a
+        [href]="meal()!.strYoutube"
+        target="_blank"
+        class="mt-8 inline-flex items-center gap-3 rounded-xl bg-primary-brand px-6 py-4 font-semibold text-white transition hover:opacity-90">
+
+        Watch Video
+
+        <i class="pi pi-play"></i>
+
+      </a>
+
+      }
+
+    </div>
+
+  </div>
+
+
+  <div class="mt-14">
+
+    <h3
+      class="mb-6 text-3xl font-bold">
+
+      Ingredients
+
+    </h3>
+
+    <div
+      class="grid gap-4 md:grid-cols-2">
+
+      @for (item of ingredients; track item) {
+
+      <div
+        class="flex items-center gap-3 rounded-xl border border-neutral-200 p-4">
+
+        <div
+          class="flex h-8 w-8 items-center justify-center rounded-full bg-primary-brand text-white">
+
+          ✓
+
+        </div>
+
+        <span>
+
+          {{ item }}
+
+        </span>
+
+      </div>
+
+      }
+
+    </div>
+
+  </div>
+
+
+  <div class="mt-14">
+
+    <h3
+      class="mb-6 text-3xl font-bold">
+
+      Instructions
+
+    </h3>
+
+    <p
+      class="whitespace-pre-line leading-9 text-neutral-600">
+
+      {{ meal()!.strInstructions }}
+
+    </p>
+
+  </div>
+
+</div>
+
+}

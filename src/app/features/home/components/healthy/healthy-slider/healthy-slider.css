@@ -1,0 +1,62 @@
+:host {
+    display: block;
+    width: 100%;
+}
+
+.healthy-swiper {
+    width: 100%;
+    padding: 16px 8px 70px;
+
+    --swiper-theme-color: #ff5b22;
+
+    --swiper-navigation-size: 26px;
+
+    --swiper-pagination-bottom: 8px;
+}
+
+swiper-slide {
+    height: auto;
+    display: flex;
+}
+
+swiper-slide app-meal-card {
+    width: 100%;
+}
+
+swiper-container::part(button-prev),
+swiper-container::part(button-next) {
+    color: #ff5b22;
+    transition: .3s;
+}
+
+swiper-container::part(button-prev):hover,
+swiper-container::part(button-next):hover {
+    transform: scale(1.1);
+}
+
+swiper-container::part(pagination) {
+    bottom: 0;
+}
+
+swiper-container::part(bullet) {
+    width: 10px;
+    height: 10px;
+    background: #d4d4d8;
+    opacity: 1;
+}
+
+swiper-container::part(bullet-active) {
+    background: #ff5b22;
+    width: 28px;
+    border-radius: 999px;
+}
+
+@media (max-width: 768px) {
+
+    .healthy-swiper {
+
+        padding-bottom: 55px;
+
+    }
+
+}
