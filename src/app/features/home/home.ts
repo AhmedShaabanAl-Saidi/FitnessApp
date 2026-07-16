@@ -1,11 +1,11 @@
-import { AboutUs } from './components/about-us/about-us';
 import { Component } from '@angular/core';
+import { AboutUsSummary } from '../../shared/components/about-us-summary/about-us-summary';
 import { Hero } from './components/hero/hero';
-import { Workouts } from './components/workouts/workouts';
+import { Workouts } from '../../shared/components/workouts/workouts';
 
 @Component({
   selector: 'app-home',
-  imports: [Hero, AboutUs, Workouts],
+  imports: [Hero, Workouts, AboutUsSummary],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

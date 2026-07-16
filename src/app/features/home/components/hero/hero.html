@@ -4,7 +4,7 @@
   <div
     class="absolute inset-0 bg-[url('/images/home/hero-bg.png')] bg-cover bg-center bg-no-repeat"
   ></div>
-  <div class="absolute inset-0 bg-white/60 dark:bg-[#24242499] backdrop-blur-2xl"></div>
+  <div class="absolute inset-0 bg-white/60 dark:bg-[#24242499]"></div>
 
   <div
     class="relative z-10 grid grid-cols-1 md:grid-cols-12 w-full px-6 sm:px-12 lg:px-20 pt-25 items-center gap-10 md:gap-6"
@@ -13,23 +13,23 @@
       <h1
         class="text-3xl sm:text-5xl lg:text-[64px] font-bold text-[#242424] dark:text-[#F3F3F4] uppercase tracking-tight leading-[1.1]"
       >
-        {{ content.title.before }}
-        <span class="text-primary-brand">{{ content.title.highlight1 }}</span>
+        {{ 'HERO.TITLE_BEFORE' | translate }}
+        <span class="text-primary-brand mx-2">{{ 'HERO.TITLE_HIGHLIGHT1' | translate }}</span>
         <br class="hidden sm:block" />
-        <span class="text-primary-brand">{{ content.title.highlight2 }}</span>
-        {{ content.title.after }}
+        <span class="text-primary-brand">{{ 'HERO.TITLE_HIGHLIGHT2' | translate }}</span>
+        {{ 'HERO.TITLE_AFTER' | translate }}
       </h1>
 
       <div class="border-l-4 border-primary-brand ps-4 max-w-xl">
         <p
           class="text-sm md:text-base text-[#242424] dark:text-[#F3F3F4] font-medium leading-relaxed"
         >
-          {{ content.description }}
+          {{ 'HERO.DESCRIPTION' | translate }}
         </p>
       </div>
 
       <div class="grid grid-cols-3 gap-2 sm:gap-4 max-w-md pt-2">
-        @for (stat of content.stats; track stat.label) {
+        @for (stat of stats; track stat.labelKey) {
           <div>
             <h3
               class="text-xl sm:text-2xl md:text-3xl font-bold text-[#242424] dark:text-[#F3F3F4]"
@@ -39,7 +39,7 @@
             <p
               class="text-[11px] sm:text-xs md:text-sm text-[#242424]/80 dark:text-[#F3F3F4]/80 font-semibold mt-1"
             >
-              {{ stat.label }}
+              {{ stat.labelKey | translate }}
             </p>
           </div>
         }
@@ -47,11 +47,11 @@
 
       <div class="flex flex-wrap items-center gap-6 pt-2">
         <app-button variant="solid" [showArrow]="true">
-          {{ content.buttons.primary }}
+          {{ 'HERO.GET_STARTED' | translate }}
         </app-button>
 
         <app-button variant="outline" [showArrow]="true">
-          {{ content.buttons.secondary }}
+          {{ 'HERO.EXPLORE_MORE' | translate }}
         </app-button>
       </div>
     </div>

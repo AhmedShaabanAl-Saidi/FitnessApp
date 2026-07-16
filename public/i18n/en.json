@@ -1,0 +1,73 @@
+{
+  "NAVBAR": {
+    "HOME": "Home",
+    "ABOUT": "About",
+    "CLASSES": "Classes",
+    "HEALTHY": "Healthy",
+    "LOGIN": "LOGIN",
+    "SIGN_UP": "SIGN UP"
+  },
+  "HERO": {
+    "TITLE_BEFORE": "Your body can",
+    "TITLE_HIGHLIGHT1": "stand",
+    "TITLE_HIGHLIGHT2": "almost",
+    "TITLE_AFTER": "anything",
+    "DESCRIPTION": "It's your mind that needs convincing. Push past your limits, stay committed, and watch as your body transform into powerhouse of strength and resilience. Start your journey today & truly capable of!",
+    "ACTIVE_MEMBERS": "Active Members",
+    "CERTIFIED_TRAINERS": "Certified Trainers",
+    "YEARS_OF_EXPERIENCE": "Years Of Experience",
+    "GET_STARTED": "Get Started",
+    "EXPLORE_MORE": "Explore More"
+  },
+  "ABOUT_US": {
+    "SECTION_TITLE": "About Us",
+    "HEADING": "EMPOWERING YOU TO ACHIEVE",
+    "HIGHLIGHT": "YOUR FITNESS",
+    "HEADING_END": "GOALS",
+    "DESCRIPTION": "We believe fitness is more than just a workout—it's a lifestyle. With top-of-the-line facilities, certified trainers, and a supportive community, we're here to inspire and guide you every step of the way.",
+    "GET_STARTED": "Get Started",
+    "PERSONAL_TRAINER": {
+      "TITLE": "Personal Trainer",
+      "DESC": "Achieve your fitness goals with the guidance of our certified trainers."
+    },
+    "CARDIO_PROGRAMS": {
+      "TITLE": "Cardio Programs",
+      "DESC": "From steady-state runs to interval sprints, our treadmill programs."
+    },
+    "QUALITY_EQUIPMENT": {
+      "TITLE": "Quality Equipment",
+      "DESC": "Our gym is equipped with the latest cardio & strength machines."
+    },
+    "HEALTHY_NUTRITIONS": {
+      "TITLE": "Healthy Nutritions",
+      "DESC": "Fuel your fitness journey with customized meal plans for you."
+    }
+  },
+  "WORKOUTS": {
+    "TITLE": "WorkOuts",
+    "SUBTITLE": "Fitness Class",
+    "HEADER": "Transform Your Body with Our Dynamic",
+    "HEADER_HIGHLIGHT": "Upcoming Workouts",
+    "FULL_BODY": "Full Body",
+    "NO_WORKOUTS": "No workouts available at the moment.",
+    "LOADING": "Loading workouts routines..."
+  },
+  "CLASS_DETAILS": {
+    "BACK_TO_CLASSES": "Back to classes",
+    "SYNCING_ROUTINE": "Syncing routine...",
+    "LOADING_DETAILS": "Loading experience details...",
+    "SELECT_EXERCISE": "Select an exercise from the left menu to display details.",
+    "EXPERT_WORKOUT": "Expertly designed workout.",
+    "RECOMMENDATION": "Recommendation For You",
+    "MEALS_OFFLINE": "Meal programs are offline at the moment.",
+    "NO_CUSTOM_ACTIVITIES": "No custom activities mapped to this tier.",
+    "MIN": "MIN",
+    "CAL": "Cal",
+    "TARGET_REGION": "Target Region",
+    "EQUIPMENT_NEEDED": "Equipment needed",
+    "THIS_ACTION_USES": "This action uses",
+    "MOVEMENTS_WITH": "movements with a specialized",
+    "TECHNIQUE_STRATEGY": "technique strategy.",
+    "STANDARD": "standard"
+  }
+}

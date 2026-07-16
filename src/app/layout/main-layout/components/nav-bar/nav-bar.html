@@ -18,16 +18,19 @@
           [routerLinkActiveOptions]="{ exact: true }"
           class="transition-colors duration-200 hover:text-primary-brand"
         >
-          {{ item.label }}
+          {{ item.label | translate }}
         </a>
       </li>
     }
   </ul>
 
   <div class="hidden md:flex items-center gap-5">
-    <app-button variant="solid" [showArrow]="true" routerLink="/login"> LOGIN </app-button>
-
-    <app-button variant="outline" [showArrow]="true" routerLink="/register"> SIGN UP </app-button>
+    <app-button variant="solid" [showArrow]="true" routerLink="/login">
+      {{ 'NAVBAR.LOGIN' | translate }}
+    </app-button>
+    <app-button variant="outline" [showArrow]="true" routerLink="/register">
+      {{ 'NAVBAR.SIGN_UP' | translate }}
+    </app-button>
   </div>
 
   <div class="flex md:hidden items-center gap-3">
@@ -69,7 +72,7 @@
         [routerLinkActiveOptions]="{ exact: true }"
         class="text-neutral-800 dark:text-neutral-100 hover:text-primary-brand transition-colors duration-200"
       >
-        {{ item.label }}
+        {{ item.label | translate }}
       </a>
     }
   </div>
