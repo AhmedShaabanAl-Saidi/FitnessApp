@@ -1,39 +1,38 @@
 <!-- Floating Trigger Button -->
-@if (!state.isOpen()) {
-  <div
-    (click)="state.openPanel()"
-    class="chatbot-trigger-container fixed bottom-6 right-8 z-50 flex flex-col items-center cursor-pointer select-none group"
-    aria-label="Open Smart Coach"
-  >
-    <!-- Robot Character -->
-    <div class="relative transition-all duration-300 group-hover:scale-108 group-hover:-translate-y-1">
-      <img
-        src="images/chatbot/Chatbot.png"
-        alt="Smart Coach Robot"
-        class="w-22 h-22 object-contain drop-shadow-[0_8px_16px_rgba(255,65,0,0.35)]"
-      />
-      <!-- Active pulsing dot -->
-      <span class="absolute top-3 right-3 flex h-3 w-3">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
-      </span>
-    </div>
-    
-    <!-- Hey Ask Me Label Pill -->
-    <div
-      class="hey-ask-me-pill -mt-3.5 bg-primary-brand text-white text-[11px] font-black px-4.5 py-1.5 rounded-full uppercase tracking-widest shadow-lg shadow-primary-brand/30 transition-all duration-300 border border-white/10 group-hover:bg-orange-600 group-hover:shadow-primary-brand/65 group-hover:shadow-[0_0_20px_rgba(255,65,0,0.65)]"
-    >
-      Hey Ask Me
-    </div>
+<div
+  (click)="state.openPanel()"
+  class="chatbot-trigger-container fixed bottom-6 right-8 z-50 flex flex-col items-center cursor-pointer select-none group"
+  [class.active]="!state.isOpen()"
+  aria-label="Open Smart Coach"
+>
+  <!-- Robot Character -->
+  <div class="relative transition-all duration-300 group-hover:scale-108 group-hover:-translate-y-1">
+    <img
+      src="images/chatbot/Chatbot.png"
+      alt="Smart Coach Robot"
+      class="w-22 h-22 object-contain drop-shadow-[0_8px_16px_rgba(255,65,0,0.35)]"
+    />
+    <!-- Active pulsing dot -->
+    <span class="absolute top-3 right-3 flex h-3 w-3">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
+    </span>
   </div>
-}
+  
+  <!-- Hey Ask Me Label Pill -->
+  <div
+    class="hey-ask-me-pill -mt-3.5 bg-primary-brand text-white text-[11px] font-black px-4.5 py-1.5 rounded-full uppercase tracking-widest shadow-lg shadow-primary-brand/30 transition-all duration-300 border border-white/10 group-hover:bg-orange-600 group-hover:shadow-primary-brand/65 group-hover:shadow-[0_0_20px_rgba(255,65,0,0.65)]"
+  >
+    Hey Ask Me
+  </div>
+</div>
 
 
 <!-- Chat Panel Container (Docked to bottom-right) -->
-@if (state.isOpen()) {
-  <div
-    class="chatbot-panel-container fixed bottom-6 right-8 z-50 flex flex-col items-center w-[92%] sm:w-[390px] h-[80vh] md:h-[700px] transition-all duration-300 animate-slide-up"
-  >
+<div
+  class="chatbot-panel-container fixed bottom-6 right-8 z-50 flex flex-col items-center w-[92%] sm:w-[390px] h-[80vh] md:h-[700px]"
+  [class.open]="state.isOpen()"
+>
     <!-- Top Robot Character waving (sits on top of the panel) -->
     <div class="relative z-30 transition-transform duration-300 hover:scale-105 select-none shrink-0">
       <img
@@ -97,53 +96,15 @@
         class="relative z-10 flex-1 overflow-y-auto px-4 py-5 space-y-4 scroll-smooth custom-scrollbar"
       >
         @for (msg of state.messages(); track msg.id) {
-          <div class="flex flex-col">
-            <!-- AI Message -->
-            @if (msg.role === 'model') {
-              <div class="flex items-start gap-2.5 w-full justify-start">
-                <div class="w-8 h-8 rounded-full border border-primary-brand overflow-hidden shrink-0 flex items-center justify-center bg-neutral-900 shadow-sm">
-                  <img src="images/chatbot/Chatbot.png" alt="Coach Avatar" class="w-6.5 h-6.5 object-contain" />
-                </div>
-                <div class="flex flex-col gap-1 max-w-[78%]">
-                  <div class="bg-neutral-900/80 backdrop-blur-md border border-white/10 text-white rounded-2xl rounded-tl-xs px-3.5 py-2.5 text-sm leading-relaxed shadow-lg">
-                    @if (msg.text === '') {
-                      <div class="typing-indicator flex gap-1 items-center py-1">
-                        <span class="dot w-1.5 h-1.5 bg-primary-brand rounded-full animate-bounce"></span>
-                        <span class="dot w-1.5 h-1.5 bg-primary-brand rounded-full animate-bounce" style="animation-delay: 0.2s"></span>
-                        <span class="dot w-1.5 h-1.5 bg-primary-brand rounded-full animate-bounce" style="animation-delay: 0.4s"></span>
-                      </div>
-                    } @else {
-                      <p class="whitespace-pre-wrap select-text font-normal font-sans" [innerHTML]="msg.text"></p>
-                    }
-                  </div>
-                  <span class="text-[9px] text-gray-500 self-start ml-1">{{ msg.timestamp | date:'shortTime' }}</span>
-                </div>
-              </div>
-            }
-
-            <!-- User Message -->
-            @if (msg.role === 'user') {
-              <div class="flex items-start gap-2.5 w-full justify-end">
-                <div class="flex flex-col gap-1 max-w-[78%] items-end">
-                  <div class="bg-primary-brand text-white rounded-2xl rounded-tr-xs px-3.5 py-2.5 text-sm leading-relaxed shadow-lg shadow-primary-brand/10">
-                    <p class="whitespace-pre-wrap select-text font-normal font-sans">{{ msg.text }}</p>
-                  </div>
-                  <span class="text-[9px] text-gray-500 self-end mr-1">{{ msg.timestamp | date:'shortTime' }}</span>
-                </div>
-                <div class="w-8 h-8 rounded-full bg-neutral-800 border border-white/10 shrink-0 flex items-center justify-center shadow-sm">
-                  <i class="pi pi-user text-white text-xs"></i>
-                </div>
-              </div>
-            }
-          </div>
+          <app-chat-bubble [message]="msg" />
         }
       </div>
 
       <!-- History Overlay / Drawer -->
-      @if (state.isMenuOpen()) {
-        <div
-          class="absolute inset-0 z-20 bg-neutral-950/95 backdrop-blur-md p-5 flex flex-col animate-fade-in"
-        >
+      <div
+        class="chatbot-history-drawer rounded-2xl"
+        [class.open]="state.isMenuOpen()"
+      >
           <header class="flex items-center justify-between pb-4 border-b border-white/10">
             <h4 class="font-bold text-white text-lg flex items-center gap-2">
               <i class="pi pi-history text-primary-brand text-sm"></i>
@@ -202,7 +163,6 @@
             }
           </div>
         </div>
-      }
 
 
 
@@ -236,4 +196,3 @@
       </footer>
     </div>
   </div>
-}

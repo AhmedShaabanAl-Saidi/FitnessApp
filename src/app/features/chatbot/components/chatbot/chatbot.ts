@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ChatbotStateService } from '../../services/chatbot-state.service';
 import { Tooltip } from 'primeng/tooltip';
+import { ChatBubbleComponent } from '../chat-bubble/chat-bubble';
 
 @Component({
   selector: 'app-chatbot',
   standalone: true,
-  imports: [CommonModule, FormsModule, Tooltip],
+  imports: [CommonModule, FormsModule, Tooltip, ChatBubbleComponent],
   templateUrl: './chatbot.html',
   styleUrl: './chatbot.css',
 })
