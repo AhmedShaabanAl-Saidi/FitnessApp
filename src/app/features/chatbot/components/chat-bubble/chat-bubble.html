@@ -1,0 +1,37 @@
+<!-- AI Message -->
+@if (message.role === 'model') {
+  <div class="flex items-start gap-2.5 w-full justify-start animate-fade-in">
+    <div class="w-8 h-8 rounded-full border border-primary-brand overflow-hidden shrink-0 flex items-center justify-center bg-neutral-900 shadow-sm">
+      <img src="images/chatbot/Chatbot.png" alt="Coach Avatar" class="w-6.5 h-6.5 object-contain" />
+    </div>
+    <div class="flex flex-col gap-1 max-w-[78%]">
+      <div class="bg-neutral-900/80 backdrop-blur-md border border-white/10 text-white rounded-2xl rounded-tl-xs px-3.5 py-2.5 text-sm leading-relaxed shadow-lg">
+        @if (message.text === '') {
+          <div class="typing-indicator flex gap-1 items-center py-1">
+            <span class="dot w-1.5 h-1.5 bg-primary-brand rounded-full animate-bounce"></span>
+            <span class="dot w-1.5 h-1.5 bg-primary-brand rounded-full animate-bounce" style="animation-delay: 0.2s"></span>
+            <span class="dot w-1.5 h-1.5 bg-primary-brand rounded-full animate-bounce" style="animation-delay: 0.4s"></span>
+          </div>
+        } @else {
+          <p class="whitespace-pre-wrap select-text font-normal font-sans" [innerHTML]="message.text"></p>
+        }
+      </div>
+      <span class="text-[9px] text-gray-500 self-start ml-1">{{ message.timestamp | date:'shortTime' }}</span>
+    </div>
+  </div>
+}
+
+<!-- User Message -->
+@if (message.role === 'user') {
+  <div class="flex items-start gap-2.5 w-full justify-end animate-fade-in">
+    <div class="flex flex-col gap-1 max-w-[78%] items-end">
+      <div class="bg-primary-brand text-white rounded-2xl rounded-tr-xs px-3.5 py-2.5 text-sm leading-relaxed shadow-lg shadow-primary-brand/10">
+        <p class="whitespace-pre-wrap select-text font-normal font-sans">{{ message.text }}</p>
+      </div>
+      <span class="text-[9px] text-gray-500 self-end mr-1">{{ message.timestamp | date:'shortTime' }}</span>
+    </div>
+    <div class="w-8 h-8 rounded-full bg-neutral-800 border border-white/10 shrink-0 flex items-center justify-center shadow-sm">
+      <i class="pi pi-user text-white text-xs"></i>
+    </div>
+  </div>
+}
