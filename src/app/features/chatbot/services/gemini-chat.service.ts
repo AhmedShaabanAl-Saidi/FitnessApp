@@ -30,7 +30,7 @@ export class GeminiChatService implements ChatService {
       });
     }
 
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:streamGenerateContent?key=${apiKey}`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:streamGenerateContent?key=${apiKey}`;
 
     // Map history to Gemini content structure
     const contents = history.map((msg) => ({
