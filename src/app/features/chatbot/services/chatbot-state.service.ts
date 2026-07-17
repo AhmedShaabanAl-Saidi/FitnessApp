@@ -81,7 +81,7 @@ export class ChatbotStateService {
         this.messages.update((msgs) =>
           msgs.map((m) =>
             m.id === coachMsgId
-              ? { ...m, text: 'Hello! How can I assist you today?' }
+              ? { ...m, text: this.getErrorMessage(err) }
               : m
           )
         );
@@ -167,7 +167,7 @@ export class ChatbotStateService {
         this.messages.update((msgs) =>
           msgs.map((m) =>
             m.id === coachMsgId
-              ? { ...m, text: `Error calling Smart Coach API. Please check settings or API key.` }
+              ? { ...m, text: this.getErrorMessage(err) }
               : m
           )
         );
@@ -262,5 +262,23 @@ export class ChatbotStateService {
         console.error('Error loading conversations from localStorage:', e);
       }
     }
+  }
+
+  private getErrorMessage(err: any): string {
+    const message = err?.message || '';
+
+    if (message.includes('429')) {
+      return 'Smart Coach is temporarily rate-limited. Please wait a moment and try again.';
+    }
+    if (message.includes('503')) {
+      return 'Smart Coach is experiencing high demand right now. Please try again in a few seconds.';
+    }
+    if (message.includes('not configured')) {
+      return 'API key is not configured. Please set your Gemini API key in the browser console: localStorage.setItem(\'gemini_api_key\', \'YOUR_KEY\')';
+    }
+    if (message.includes('404')) {
+      return 'The AI model is currently unavailable. Please try again later.';
+    }
+    return 'Unable to reach Smart Coach right now. Please check your connection and try again.';
   }
 }
