@@ -69,5 +69,134 @@
     "MOVEMENTS_WITH": "حركات مع تقنية",
     "TECHNIQUE_STRATEGY": "متخصصة.",
     "STANDARD": "قياسي"
+  },
+  "AUTH": {
+    "COMMON": {
+      "AUTHENTICATION": "المصادقة",
+      "SUPER_FITNESS": "سوبر فيتنس",
+      "HEY_THERE": "مرحبًا بك",
+      "EMAIL": "البريد الإلكتروني",
+      "PASSWORD": "كلمة المرور",
+      "FIRST_NAME": "الاسم الأول",
+      "LAST_NAME": "اسم العائلة",
+      "REENTER_PASSWORD": "أعد إدخال كلمة المرور",
+      "LOGIN": "تسجيل الدخول",
+      "REGISTER": "إنشاء حساب",
+      "NEXT": "التالي",
+      "DONE": "تم",
+      "BACK": "رجوع",
+      "SEND_OTP": "إرسال رمز التحقق",
+      "CONFIRM": "تأكيد",
+      "VERIFICATION_CODE": "رمز التحقق",
+      "OR": "أو",
+      "SHOW_PASSWORD": "إظهار كلمة المرور",
+      "HIDE_PASSWORD": "إخفاء كلمة المرور",
+      "OTP_GROUP": "رمز التحقق لمرة واحدة",
+      "OTP_DIGIT": "الرقم {{current}} من {{total}} في رمز التحقق",
+      "STEP_OF": "الخطوة {{current}} من {{total}}",
+      "LANGUAGE": "اللغة",
+      "ENGLISH": "الإنجليزية",
+      "ARABIC": "العربية"
+    },
+    "VALIDATION": {
+      "EMAIL_REQUIRED": "البريد الإلكتروني مطلوب.",
+      "EMAIL_INVALID": "أدخل بريدًا إلكترونيًا صحيحًا.",
+      "PASSWORD_REQUIRED": "كلمة المرور مطلوبة.",
+      "PASSWORD_MIN": "يجب ألا تقل كلمة المرور عن 8 أحرف.",
+      "FIRST_NAME_REQUIRED": "الاسم الأول مطلوب.",
+      "FIRST_NAME_MIN": "يجب ألا يقل الاسم الأول عن حرفين.",
+      "LAST_NAME_REQUIRED": "اسم العائلة مطلوب.",
+      "LAST_NAME_MIN": "يجب ألا يقل اسم العائلة عن حرفين.",
+      "CODE_REQUIRED": "رمز التحقق مطلوب.",
+      "CODE_INCOMPLETE": "أدخل رمز التحقق كاملًا والمكوّن من 4 أرقام.",
+      "CONFIRM_PASSWORD_REQUIRED": "يرجى تأكيد كلمة المرور.",
+      "PASSWORD_MISMATCH": "كلمتا المرور غير متطابقتين."
+    },
+    "SOCIAL": {
+      "OPTIONS_LABEL": "خيارات تسجيل الدخول الاجتماعي",
+      "CONTINUE_WITH": "المتابعة باستخدام {{provider}}",
+      "SELECTED": "تم اختيار {{provider}}",
+      "FACEBOOK": "فيسبوك",
+      "GOOGLE": "جوجل",
+      "APPLE": "آبل"
+    },
+    "LOGIN": {
+      "TITLE": "مرحبًا بعودتك",
+      "CARD_TITLE": "تسجيل الدخول",
+      "FORGOT_PASSWORD": "نسيت كلمة المرور؟",
+      "NO_ACCOUNT": "ليس لديك حساب؟",
+      "REGISTER_LINK": "أنشئ حسابًا"
+    },
+    "REGISTER": {
+      "TITLE": "إنشاء حساب",
+      "CARD_TITLE": "إنشاء حساب",
+      "FORGOT_PASSWORD": "نسيت كلمة المرور؟",
+      "ALREADY_HAVE_ACCOUNT": "لديك حساب بالفعل؟",
+      "LOGIN_LINK": "سجّل الدخول"
+    },
+    "FORGOT_PASSWORD": {
+      "TITLE": "نسيت كلمة المرور",
+      "DESCRIPTION": "أدخل بريدك الإلكتروني"
+    },
+    "OTP": {
+      "TITLE": "رمز التحقق",
+      "DESCRIPTION": "أدخل رمز التحقق المرسل إلى بريدك الإلكتروني",
+      "DID_NOT_RECEIVE": "لم يصلك رمز التحقق؟",
+      "RESEND": "إعادة إرسال الرمز",
+      "RESENT": "تم إرسال رمز تحقق جديد."
+    },
+    "RESET_PASSWORD": {
+      "TITLE": "إنشاء كلمة مرور جديدة",
+      "DESCRIPTION": "تأكد من أن كلمة المرور تتكون من 8 أحرف على الأقل"
+    },
+    "ONBOARDING": {
+      "PLAN_SUBTITLE": "يساعدنا ذلك على إنشاء خطة مخصصة لك",
+      "GENDER": {
+        "TITLE": "أخبرنا عن نفسك!",
+        "SUBTITLE": "نحتاج إلى معرفة جنسك",
+        "GROUP_LABEL": "الجنس",
+        "MALE": "ذكر",
+        "FEMALE": "أنثى"
+      },
+      "AGE": {
+        "TITLE": "كم عمرك؟",
+        "SELECTED_LABEL": "العمر المختار"
+      },
+      "WEIGHT": {
+        "TITLE": "ما وزنك؟",
+        "SELECTED_LABEL": "الوزن المختار"
+      },
+      "HEIGHT": {
+        "TITLE": "ما طولك؟",
+        "SELECTED_LABEL": "الطول المختار"
+      },
+      "GOAL": {
+        "TITLE": "ما هدفك؟",
+        "GROUP_LABEL": "هدف اللياقة البدنية",
+        "OPTIONS": {
+          "GAIN_WEIGHT": "زيادة الوزن",
+          "LOSE_WEIGHT": "خسارة الوزن",
+          "GET_FITTER": "تحسين اللياقة",
+          "GAIN_FLEXIBILITY": "زيادة المرونة",
+          "LEARN_BASICS": "تعلم الأساسيات"
+        }
+      },
+      "ACTIVITY": {
+        "TITLE": "ما مستوى نشاطك البدني المعتاد؟",
+        "GROUP_LABEL": "مستوى النشاط البدني",
+        "OPTIONS": {
+          "ROOKIE": "حديث العهد",
+          "BEGINNER": "مبتدئ",
+          "INTERMEDIATE": "متوسط",
+          "ADVANCED": "متقدم",
+          "TRUE_BEAST": "محترف"
+        }
+      },
+      "UNITS": {
+        "YEAR": "سنة",
+        "KILOGRAM": "كجم",
+        "CENTIMETER": "سم"
+      }
+    }
   }
 }

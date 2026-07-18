@@ -1,6 +1,6 @@
 <main class="relative min-h-dvh overflow-hidden bg-[#171719] text-white"
   [attr.aria-labelledby]="layoutData().title ? 'auth-page-title' : null"
-  [attr.aria-label]="layoutData().title ? null : 'Authentication'">
+  [attr.aria-label]="layoutData().title ? null : ('AUTH.COMMON.AUTHENTICATION' | translate)">
   <div class="pointer-events-none absolute inset-0" aria-hidden="true">
     <img ngSrc="/images/auth/authlayout-bg.png" fill priority sizes="100vw" alt=""
       class="scale-110 object-cover object-center blur-2xl brightness-[0.18] saturate-50" />
@@ -10,12 +10,27 @@
     </div>
   </div>
 
+  <nav
+    class="absolute inset-e-4 top-4 z-30 flex gap-1 rounded-full border border-white/25 bg-black/30 p-1 backdrop-blur-md"
+    dir="ltr" [attr.aria-label]="'AUTH.COMMON.LANGUAGE' | translate">
+    @for (language of languages; track language.code) {
+    <button type="button"
+      class="min-w-9 cursor-pointer rounded-full px-2 py-1 text-xs font-bold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-brand"
+      [class.bg-primary-brand]="currentLanguage() === language.code"
+      [class.text-white]="currentLanguage() === language.code"
+      [class.text-white/65]="currentLanguage() !== language.code" [attr.aria-label]="language.nameKey | translate"
+      [attr.aria-pressed]="currentLanguage() === language.code" (click)="changeLanguage(language.code)">
+      {{ language.label }}
+    </button>
+    }
+  </nav>
+
   <div class="relative z-10 grid min-h-dvh grid-cols-1 lg:grid-cols-2">
     <div class="relative hidden min-h-dvh overflow-hidden border-e border-primary-brand/25 lg:block">
-      <img ngSrc="/images/auth/auth-logo.png" width="243" height="151" alt="Super Fitness"
+      <img ngSrc="/images/auth/auth-logo.png" width="243" height="151" [alt]="'AUTH.COMMON.SUPER_FITNESS' | translate"
         class="absolute left-1/2 top-[11%] h-auto w-[clamp(10rem,14vw,15.25rem)] -translate-x-1/2 object-contain drop-shadow-2xl" />
 
-      <img ngSrc="/images/auth/authlayout-img.png" width="628" height="474" alt=""
+      <img ngSrc="/images/auth/authlayout-img.png" width="628" height="474" alt="" priority
         class="absolute bottom-[8%] left-1/2 h-auto w-[min(92%,39.25rem)] -translate-x-1/2 object-contain drop-shadow-[0_28px_45px_rgba(0,0,0,0.55)]" />
     </div>
 
@@ -26,8 +41,9 @@
         <div class="mb-4 flex justify-center">
           <div
             class="grid size-12 place-items-center rounded-full bg-[conic-gradient(var(--color-primary-brand)_var(--auth-progress),rgba(255,255,255,0.22)_0)] shadow-[0_0_24px_rgba(255,65,0,0.18)] [--auth-progress:0%]"
-            role="progressbar" [attr.aria-label]="'Step ' + step.current + ' of ' + step.total" aria-valuemin="1"
-            [attr.aria-valuemax]="step.total" [attr.aria-valuenow]="step.current"
+            role="progressbar"
+            [attr.aria-label]="'AUTH.COMMON.STEP_OF' | translate: { current: step.current, total: step.total }"
+            aria-valuemin="1" [attr.aria-valuemax]="step.total" [attr.aria-valuenow]="step.current"
             [style.--auth-progress]="progressPercentage() + '%'">
             <span class="grid size-10 place-items-center rounded-full bg-[#242426] text-xs font-semibold text-white">
               {{ step.current }}/{{ step.total }}
@@ -40,19 +56,19 @@
         <header class="mb-6 text-center">
           @if (layoutData().eyebrow) {
           <p class="mb-2 text-sm font-medium text-white/70">
-            {{ layoutData().eyebrow }}
+            {{ layoutData().eyebrow | translate }}
           </p>
           }
 
           @if (layoutData().title) {
           <h1 id="auth-page-title" class="text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl">
-            {{ layoutData().title }}
+            {{ layoutData().title | translate }}
           </h1>
           }
 
           @if (layoutData().subtitle) {
           <p class="mt-2 text-sm leading-relaxed text-white/65">
-            {{ layoutData().subtitle }}
+            {{ layoutData().subtitle | translate }}
           </p>
           }
         </header>
@@ -69,13 +85,13 @@
           <header class="mb-6 text-center">
             @if (layoutData().cardTitle) {
             <h2 class="text-lg font-bold text-white">
-              {{ layoutData().cardTitle }}
+              {{ layoutData().cardTitle | translate }}
             </h2>
             }
 
             @if (layoutData().cardDescription) {
             <p class="mt-2 text-sm leading-relaxed text-white/65">
-              {{ layoutData().cardDescription }}
+              {{ layoutData().cardDescription | translate }}
             </p>
             }
           </header>

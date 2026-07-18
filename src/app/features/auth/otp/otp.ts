@@ -1,12 +1,13 @@
 import { Component, inject, signal } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Button } from '../../../shared/components/button/button';
 import { Input } from '../../../shared/components/input/input';
 
 @Component({
   selector: 'app-otp',
-  imports: [ReactiveFormsModule, Button, Input],
+  imports: [ReactiveFormsModule, TranslatePipe, Button, Input],
   templateUrl: './otp.html',
 })
 export class Otp {
@@ -26,13 +27,13 @@ export class Otp {
 
   protected codeError(): string {
     return this.form.controls.code.hasError('required')
-      ? 'Verification code is required.'
-      : 'Enter the complete 4-digit code.';
+      ? 'AUTH.VALIDATION.CODE_REQUIRED'
+      : 'AUTH.VALIDATION.CODE_INCOMPLETE';
   }
 
   protected resend(): void {
     this.form.controls.code.reset();
-    this.resendMessage.set('A new verification code was sent.');
+    this.resendMessage.set('AUTH.OTP.RESENT');
   }
 
   protected submit(): void {

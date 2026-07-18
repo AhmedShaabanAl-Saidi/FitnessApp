@@ -1,27 +1,29 @@
 <form class="mx-auto w-full max-w-sm space-y-4" [formGroup]="form" (ngSubmit)="submit()" novalidate>
-  <app-input id="login-email" type="email" placeholder="Email" autocomplete="email" inputMode="email"
+  <app-input id="login-email" type="email" [placeholder]="'AUTH.COMMON.EMAIL' | translate" autocomplete="email" inputMode="email"
     leadingIcon="pi pi-envelope" formControlName="email" [required]="true" [invalid]="showError(form.controls.email)"
-    [errorMessage]="emailError()" />
+    [errorMessage]="emailError() | translate" />
 
-  <app-input id="login-password" type="password" placeholder="Password" autocomplete="current-password"
+  <app-input id="login-password" type="password" [placeholder]="'AUTH.COMMON.PASSWORD' | translate" autocomplete="current-password"
     leadingIcon="pi pi-lock" formControlName="password" [required]="true" [invalid]="showError(form.controls.password)"
-    [errorMessage]="passwordError()" />
+    [errorMessage]="passwordError() | translate" />
 
   <div class="text-end">
     <a routerLink="/auth/forgot-password"
       class="text-xs font-semibold text-primary-brand underline-offset-2 hover:underline">
-      Forget Password?
+      {{ 'AUTH.LOGIN.FORGOT_PASSWORD' | translate }}
     </a>
   </div>
 
   <app-auth-social-login />
 
-  <app-button type="submit" [fullWidth]="true" [disabled]="form.invalid">Login</app-button>
+  <app-button type="submit" [fullWidth]="true" [disabled]="form.invalid">
+    {{ 'AUTH.COMMON.LOGIN' | translate }}
+  </app-button>
 
   <p class="text-center text-xs text-white/65">
-    Don't Have An Account Yet?
+    {{ 'AUTH.LOGIN.NO_ACCOUNT' | translate }}
     <a routerLink="/auth/register" class="font-semibold text-primary-brand hover:underline">
-      Register
+      {{ 'AUTH.LOGIN.REGISTER_LINK' | translate }}
     </a>
   </p>
 </form>

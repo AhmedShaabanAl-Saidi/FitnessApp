@@ -1,12 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Button } from '../../../shared/components/button/button';
 import { Input } from '../../../shared/components/input/input';
 
 @Component({
   selector: 'app-forgot-password',
-  imports: [ReactiveFormsModule, Button, Input],
+  imports: [ReactiveFormsModule, TranslatePipe, Button, Input],
   templateUrl: './forgot-password.html',
 })
 export class ForgotPassword {
@@ -25,8 +26,8 @@ export class ForgotPassword {
 
   protected emailError(): string {
     return this.form.controls.email.hasError('required')
-      ? 'Email is required.'
-      : 'Enter a valid email address.';
+      ? 'AUTH.VALIDATION.EMAIL_REQUIRED'
+      : 'AUTH.VALIDATION.EMAIL_INVALID';
   }
 
   protected submit(): void {

@@ -1,13 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Button } from '../../../shared/components/button/button';
 import { Input } from '../../../shared/components/input/input';
 import { AuthSocialLogin } from '../components/auth-social-login/auth-social-login';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, RouterLink, Button, Input, AuthSocialLogin],
+  imports: [ReactiveFormsModule, RouterLink, TranslatePipe, Button, Input, AuthSocialLogin],
   templateUrl: './login.html',
 })
 export class Login {
@@ -30,14 +31,14 @@ export class Login {
 
   protected emailError(): string {
     return this.form.controls.email.hasError('required')
-      ? 'Email is required.'
-      : 'Enter a valid email address.';
+      ? 'AUTH.VALIDATION.EMAIL_REQUIRED'
+      : 'AUTH.VALIDATION.EMAIL_INVALID';
   }
 
   protected passwordError(): string {
     return this.form.controls.password.hasError('required')
-      ? 'Password is required.'
-      : 'Password must contain at least 8 characters.';
+      ? 'AUTH.VALIDATION.PASSWORD_REQUIRED'
+      : 'AUTH.VALIDATION.PASSWORD_MIN';
   }
 
   protected submit(): void {

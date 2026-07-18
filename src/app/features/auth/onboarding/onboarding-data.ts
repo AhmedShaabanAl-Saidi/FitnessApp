@@ -2,66 +2,67 @@ export type OnboardingStepId = 'gender' | 'age' | 'weight' | 'height' | 'goal' |
 
 export interface OnboardingStepData {
   id: OnboardingStepId;
-  title: string;
-  subtitle: string;
-  actionLabel: string;
+  titleKey: string;
+  subtitleKey: string;
+  actionLabelKey: string;
 }
 
 export interface OnboardingChoice {
-  label: string;
+  id: string;
+  labelKey: string;
 }
 
 export const ONBOARDING_STEPS: OnboardingStepData[] = [
   {
     id: 'gender',
-    title: 'TELL US ABOUT YOURSELF!',
-    subtitle: 'We Need To Know Your Gender',
-    actionLabel: 'Next',
+    titleKey: 'AUTH.ONBOARDING.GENDER.TITLE',
+    subtitleKey: 'AUTH.ONBOARDING.GENDER.SUBTITLE',
+    actionLabelKey: 'AUTH.COMMON.NEXT',
   },
   {
     id: 'age',
-    title: 'How Old Are You?',
-    subtitle: 'This Helps Us Create Your Personalized Plan',
-    actionLabel: 'Next',
+    titleKey: 'AUTH.ONBOARDING.AGE.TITLE',
+    subtitleKey: 'AUTH.ONBOARDING.PLAN_SUBTITLE',
+    actionLabelKey: 'AUTH.COMMON.NEXT',
   },
   {
     id: 'weight',
-    title: 'What Is Your Weight?',
-    subtitle: 'This Helps Us Create Your Personalized Plan',
-    actionLabel: 'Done',
+    titleKey: 'AUTH.ONBOARDING.WEIGHT.TITLE',
+    subtitleKey: 'AUTH.ONBOARDING.PLAN_SUBTITLE',
+    actionLabelKey: 'AUTH.COMMON.DONE',
   },
   {
     id: 'height',
-    title: 'What Is Your Height?',
-    subtitle: 'This Helps Us Create Your Personalized Plan',
-    actionLabel: 'Next',
+    titleKey: 'AUTH.ONBOARDING.HEIGHT.TITLE',
+    subtitleKey: 'AUTH.ONBOARDING.PLAN_SUBTITLE',
+    actionLabelKey: 'AUTH.COMMON.NEXT',
   },
   {
     id: 'goal',
-    title: 'What Is Your Goal?',
-    subtitle: 'This Helps Us Create Your Personalized Plan',
-    actionLabel: 'Next',
+    titleKey: 'AUTH.ONBOARDING.GOAL.TITLE',
+    subtitleKey: 'AUTH.ONBOARDING.PLAN_SUBTITLE',
+    actionLabelKey: 'AUTH.COMMON.NEXT',
   },
   {
     id: 'activity',
-    title: 'Your Regular Physical Activity Level?',
-    subtitle: 'This Helps Us Create Your Personalized Plan',
-    actionLabel: 'Next',
+    titleKey: 'AUTH.ONBOARDING.ACTIVITY.TITLE',
+    subtitleKey: 'AUTH.ONBOARDING.PLAN_SUBTITLE',
+    actionLabelKey: 'AUTH.COMMON.NEXT',
   },
 ];
 
 export const GOAL_OPTIONS: OnboardingChoice[] = [
-  { label: 'Gain Weight' },
-  { label: 'Lose Weight' },
-  { label: 'Get Fitter' },
-  { label: 'Gain More Flexible' },
-  { label: 'Learn The Basic' },
+  { id: 'gain-weight', labelKey: 'AUTH.ONBOARDING.GOAL.OPTIONS.GAIN_WEIGHT' },
+  { id: 'lose-weight', labelKey: 'AUTH.ONBOARDING.GOAL.OPTIONS.LOSE_WEIGHT' },
+  { id: 'get-fitter', labelKey: 'AUTH.ONBOARDING.GOAL.OPTIONS.GET_FITTER' },
+  { id: 'gain-flexibility', labelKey: 'AUTH.ONBOARDING.GOAL.OPTIONS.GAIN_FLEXIBILITY' },
+  { id: 'learn-basics', labelKey: 'AUTH.ONBOARDING.GOAL.OPTIONS.LEARN_BASICS' },
 ];
 
 export const ACTIVITY_OPTIONS: OnboardingChoice[] = [
-  { label: 'Rookie' },
-  { label: 'Beginner' },
-  { label: 'Intermediate' },
-  { label: 'Advance' },
-  { label: 'True Beast' },
+  { id: 'rookie', labelKey: 'AUTH.ONBOARDING.ACTIVITY.OPTIONS.ROOKIE' },
+  { id: 'beginner', labelKey: 'AUTH.ONBOARDING.ACTIVITY.OPTIONS.BEGINNER' },
+  { id: 'intermediate', labelKey: 'AUTH.ONBOARDING.ACTIVITY.OPTIONS.INTERMEDIATE' },
+  { id: 'advanced', labelKey: 'AUTH.ONBOARDING.ACTIVITY.OPTIONS.ADVANCED' },
+  { id: 'true-beast', labelKey: 'AUTH.ONBOARDING.ACTIVITY.OPTIONS.TRUE_BEAST' },
 ];

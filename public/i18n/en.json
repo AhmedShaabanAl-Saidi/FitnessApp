@@ -69,5 +69,134 @@
     "MOVEMENTS_WITH": "movements with a specialized",
     "TECHNIQUE_STRATEGY": "technique strategy.",
     "STANDARD": "standard"
+  },
+  "AUTH": {
+    "COMMON": {
+      "AUTHENTICATION": "Authentication",
+      "SUPER_FITNESS": "Super Fitness",
+      "HEY_THERE": "Hey There",
+      "EMAIL": "Email",
+      "PASSWORD": "Password",
+      "FIRST_NAME": "First Name",
+      "LAST_NAME": "Last Name",
+      "REENTER_PASSWORD": "Re-enter Password",
+      "LOGIN": "Login",
+      "REGISTER": "Register",
+      "NEXT": "Next",
+      "DONE": "Done",
+      "BACK": "Back",
+      "SEND_OTP": "Send OTP",
+      "CONFIRM": "Confirm",
+      "VERIFICATION_CODE": "Verification code",
+      "OR": "Or",
+      "SHOW_PASSWORD": "Show password",
+      "HIDE_PASSWORD": "Hide password",
+      "OTP_GROUP": "One-time password",
+      "OTP_DIGIT": "OTP digit {{current}} of {{total}}",
+      "STEP_OF": "Step {{current}} of {{total}}",
+      "LANGUAGE": "Language",
+      "ENGLISH": "English",
+      "ARABIC": "Arabic"
+    },
+    "VALIDATION": {
+      "EMAIL_REQUIRED": "Email is required.",
+      "EMAIL_INVALID": "Enter a valid email address.",
+      "PASSWORD_REQUIRED": "Password is required.",
+      "PASSWORD_MIN": "Password must contain at least 8 characters.",
+      "FIRST_NAME_REQUIRED": "First name is required.",
+      "FIRST_NAME_MIN": "First name must contain at least 2 characters.",
+      "LAST_NAME_REQUIRED": "Last name is required.",
+      "LAST_NAME_MIN": "Last name must contain at least 2 characters.",
+      "CODE_REQUIRED": "Verification code is required.",
+      "CODE_INCOMPLETE": "Enter the complete 4-digit code.",
+      "CONFIRM_PASSWORD_REQUIRED": "Please confirm your password.",
+      "PASSWORD_MISMATCH": "Passwords do not match."
+    },
+    "SOCIAL": {
+      "OPTIONS_LABEL": "Social sign in options",
+      "CONTINUE_WITH": "Continue with {{provider}}",
+      "SELECTED": "{{provider}} selected",
+      "FACEBOOK": "Facebook",
+      "GOOGLE": "Google",
+      "APPLE": "Apple"
+    },
+    "LOGIN": {
+      "TITLE": "WELCOME BACK",
+      "CARD_TITLE": "Login",
+      "FORGOT_PASSWORD": "Forget Password?",
+      "NO_ACCOUNT": "Don't Have An Account Yet?",
+      "REGISTER_LINK": "Register"
+    },
+    "REGISTER": {
+      "TITLE": "Create An Account",
+      "CARD_TITLE": "Register",
+      "FORGOT_PASSWORD": "Forget Password?",
+      "ALREADY_HAVE_ACCOUNT": "Already Have An Account?",
+      "LOGIN_LINK": "Login"
+    },
+    "FORGOT_PASSWORD": {
+      "TITLE": "Forget Password",
+      "DESCRIPTION": "Enter Your Email"
+    },
+    "OTP": {
+      "TITLE": "OTP CODE",
+      "DESCRIPTION": "Enter Your OTP, Then Check Your Email",
+      "DID_NOT_RECEIVE": "Didn't Receive Verification Code?",
+      "RESEND": "Resend Code",
+      "RESENT": "A new verification code was sent."
+    },
+    "RESET_PASSWORD": {
+      "TITLE": "Create New Password",
+      "DESCRIPTION": "Make Sure It Is 8 Characters Or More"
+    },
+    "ONBOARDING": {
+      "PLAN_SUBTITLE": "This Helps Us Create Your Personalized Plan",
+      "GENDER": {
+        "TITLE": "TELL US ABOUT YOURSELF!",
+        "SUBTITLE": "We Need To Know Your Gender",
+        "GROUP_LABEL": "Gender",
+        "MALE": "Male",
+        "FEMALE": "Female"
+      },
+      "AGE": {
+        "TITLE": "How Old Are You?",
+        "SELECTED_LABEL": "Selected age"
+      },
+      "WEIGHT": {
+        "TITLE": "What Is Your Weight?",
+        "SELECTED_LABEL": "Selected weight"
+      },
+      "HEIGHT": {
+        "TITLE": "What Is Your Height?",
+        "SELECTED_LABEL": "Selected height"
+      },
+      "GOAL": {
+        "TITLE": "What Is Your Goal?",
+        "GROUP_LABEL": "Fitness goal",
+        "OPTIONS": {
+          "GAIN_WEIGHT": "Gain Weight",
+          "LOSE_WEIGHT": "Lose Weight",
+          "GET_FITTER": "Get Fitter",
+          "GAIN_FLEXIBILITY": "Gain More Flexible",
+          "LEARN_BASICS": "Learn The Basic"
+        }
+      },
+      "ACTIVITY": {
+        "TITLE": "Your Regular Physical Activity Level?",
+        "GROUP_LABEL": "Physical activity level",
+        "OPTIONS": {
+          "ROOKIE": "Rookie",
+          "BEGINNER": "Beginner",
+          "INTERMEDIATE": "Intermediate",
+          "ADVANCED": "Advance",
+          "TRUE_BEAST": "True Beast"
+        }
+      },
+      "UNITS": {
+        "YEAR": "YR",
+        "KILOGRAM": "KG",
+        "CENTIMETER": "CM"
+      }
+    }
   }
 }

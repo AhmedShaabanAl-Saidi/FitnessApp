@@ -13,9 +13,9 @@ export const authRoutes: Routes = [
     data: {
       [AUTH_LAYOUT_ROUTE_DATA_KEY]: {
         variant: 'card',
-        eyebrow: 'Hey There',
-        title: 'WELCOME BACK',
-        cardTitle: 'Login',
+        eyebrow: 'AUTH.COMMON.HEY_THERE',
+        title: 'AUTH.LOGIN.TITLE',
+        cardTitle: 'AUTH.LOGIN.CARD_TITLE',
       },
     },
   },
@@ -25,9 +25,9 @@ export const authRoutes: Routes = [
     data: {
       [AUTH_LAYOUT_ROUTE_DATA_KEY]: {
         variant: 'card',
-        eyebrow: 'Hey There',
-        title: 'Create An Account',
-        cardTitle: 'Register',
+        eyebrow: 'AUTH.COMMON.HEY_THERE',
+        title: 'AUTH.REGISTER.TITLE',
+        cardTitle: 'AUTH.REGISTER.CARD_TITLE',
       },
     },
   },
@@ -37,8 +37,8 @@ export const authRoutes: Routes = [
     data: {
       [AUTH_LAYOUT_ROUTE_DATA_KEY]: {
         variant: 'card',
-        title: 'Forget Password',
-        cardDescription: 'Enter Your Email',
+        title: 'AUTH.FORGOT_PASSWORD.TITLE',
+        cardDescription: 'AUTH.FORGOT_PASSWORD.DESCRIPTION',
       },
     },
   },
@@ -48,8 +48,8 @@ export const authRoutes: Routes = [
     data: {
       [AUTH_LAYOUT_ROUTE_DATA_KEY]: {
         variant: 'card',
-        title: 'OTP CODE',
-        cardDescription: 'Enter Your OTP, Then Check Your Email',
+        title: 'AUTH.OTP.TITLE',
+        cardDescription: 'AUTH.OTP.DESCRIPTION',
       },
     },
   },
@@ -59,8 +59,8 @@ export const authRoutes: Routes = [
     data: {
       [AUTH_LAYOUT_ROUTE_DATA_KEY]: {
         variant: 'card',
-        title: 'Create New Password',
-        cardDescription: 'Make Sure It Is 8 Characters Or More',
+        title: 'AUTH.RESET_PASSWORD.TITLE',
+        cardDescription: 'AUTH.RESET_PASSWORD.DESCRIPTION',
       },
     },
   },

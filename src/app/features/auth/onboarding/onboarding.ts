@@ -1,13 +1,14 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Button } from '../../../shared/components/button/button';
 import { NumberPicker } from '../../../shared/components/number-picker/number-picker';
 import { ACTIVITY_OPTIONS, GOAL_OPTIONS, ONBOARDING_STEPS } from './onboarding-data';
 
 @Component({
   selector: 'app-onboarding',
-  imports: [FormsModule, Button, NumberPicker],
+  imports: [FormsModule, TranslatePipe, Button, NumberPicker],
   templateUrl: './onboarding.html',
 })
 export class Onboarding {
@@ -26,9 +27,9 @@ export class Onboarding {
   protected readonly age = signal(25);
   protected readonly weight = signal(90);
   protected readonly height = signal(167);
-  protected readonly gender = signal<'Male' | 'Female'>('Male');
-  protected readonly goal = signal('Lose Weight');
-  protected readonly activity = signal('Rookie');
+  protected readonly gender = signal<'male' | 'female'>('male');
+  protected readonly goal = signal('lose-weight');
+  protected readonly activity = signal('rookie');
 
   protected next(): void {
     if (this.currentIndex() === this.steps.length - 1) {

@@ -1,5 +1,6 @@
 import { Component, computed, forwardRef, input, signal } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { TranslatePipe } from '@ngx-translate/core';
 import { InputOtp } from 'primeng/inputotp';
 import {
   DEFAULT_OTP_LENGTH,
@@ -14,7 +15,7 @@ export type { InputType, TextInputMode } from './input.interfaces';
 
 @Component({
   selector: 'app-input',
-  imports: [FormsModule, InputOtp],
+  imports: [FormsModule, InputOtp, TranslatePipe],
   templateUrl: './input.html',
   styleUrl: './input.css',
   host: { '[attr.id]': 'null' },
@@ -63,9 +64,11 @@ export class Input implements ControlValueAccessor {
       labelId: `${id}-label`,
       labelFor: isOtp ? null : id,
       inputAriaLabel: this.label() ? null : this.placeholder() || id,
-      otpGroupAriaLabel: this.label() ? null : this.placeholder() || 'One-time password',
+      otpGroupAriaLabel: this.label() ? null : this.placeholder() || 'AUTH.COMMON.OTP_GROUP',
       displayPasswordToggle: isPassword,
-      passwordToggleLabel: this.passwordVisible() ? 'Hide password' : 'Show password',
+      passwordToggleLabel: this.passwordVisible()
+        ? 'AUTH.COMMON.HIDE_PASSWORD'
+        : 'AUTH.COMMON.SHOW_PASSWORD',
       passwordIconClasses: this.passwordVisible() ? 'pi pi-eye-slash' : 'pi pi-eye',
       leadingIconClasses: `${this.leadingIcon()} text-sm opacity-70`,
       fieldClasses: `${FIELD_CLASSES} ${this.borderClass()}${this.disabled() ? ' opacity-60' : ''}`,

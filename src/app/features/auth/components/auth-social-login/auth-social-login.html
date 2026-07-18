@@ -1,27 +1,24 @@
 <div class="space-y-4">
   <div class="flex items-center gap-4 text-[11px] text-white/55" aria-hidden="true">
     <span class="h-px flex-1 bg-white/35"></span>
-    <span>Or</span>
+    <span>{{ 'AUTH.COMMON.OR' | translate }}</span>
     <span class="h-px flex-1 bg-white/35"></span>
   </div>
 
-  <div class="flex items-center justify-center gap-4" aria-label="Social sign in options">
+  <div class="flex items-center justify-center gap-4" [attr.aria-label]="'AUTH.SOCIAL.OPTIONS_LABEL' | translate">
     @for (provider of providers; track provider.id) {
-      <button
-        type="button"
-        class="grid size-9 cursor-pointer place-items-center rounded-full bg-black/30 text-sm text-white transition-colors hover:bg-primary-brand focus-visible:outline-2 focus-visible:outline-primary-brand"
-        [attr.aria-label]="'Continue with ' + provider.id"
-        [attr.aria-pressed]="selectedProvider() === provider.id"
-        (click)="selectProvider(provider.id)"
-      >
-        <i [class]="provider.icon" aria-hidden="true"></i>
-      </button>
+    <button type="button"
+      class="grid size-9 cursor-pointer place-items-center rounded-full bg-black/30 text-sm text-white transition-colors hover:bg-primary-brand focus-visible:outline-2 focus-visible:outline-primary-brand"
+      [attr.aria-label]="'AUTH.SOCIAL.CONTINUE_WITH' | translate: { provider: (provider.labelKey | translate) }"
+      [attr.aria-pressed]="selectedProviderKey() === provider.labelKey" (click)="selectProvider(provider.labelKey)">
+      <i [class]="provider.icon" aria-hidden="true"></i>
+    </button>
     }
   </div>
 
   <p class="sr-only" aria-live="polite">
-    @if (selectedProvider()) {
-      {{ selectedProvider() }} selected
+    @if (selectedProviderKey()) {
+    {{ 'AUTH.SOCIAL.SELECTED' | translate: { provider: (selectedProviderKey() | translate) } }}
     }
   </p>
 </div>

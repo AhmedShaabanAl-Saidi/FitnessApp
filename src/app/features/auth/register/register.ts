@@ -1,13 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Button } from '../../../shared/components/button/button';
 import { Input } from '../../../shared/components/input/input';
 import { AuthSocialLogin } from '../components/auth-social-login/auth-social-login';
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule, RouterLink, Button, Input, AuthSocialLogin],
+  imports: [ReactiveFormsModule, RouterLink, TranslatePipe, Button, Input, AuthSocialLogin],
   templateUrl: './register.html',
 })
 export class Register {
@@ -36,22 +37,28 @@ export class Register {
     return control.invalid && (control.dirty || control.touched);
   }
 
-  protected nameError(control: AbstractControl, label: string): string {
-    return control.hasError('required')
-      ? `${label} is required.`
-      : `${label} must contain at least 2 characters.`;
+  protected firstNameError(): string {
+    return this.form.controls.firstName.hasError('required')
+      ? 'AUTH.VALIDATION.FIRST_NAME_REQUIRED'
+      : 'AUTH.VALIDATION.FIRST_NAME_MIN';
+  }
+
+  protected lastNameError(): string {
+    return this.form.controls.lastName.hasError('required')
+      ? 'AUTH.VALIDATION.LAST_NAME_REQUIRED'
+      : 'AUTH.VALIDATION.LAST_NAME_MIN';
   }
 
   protected emailError(): string {
     return this.form.controls.email.hasError('required')
-      ? 'Email is required.'
-      : 'Enter a valid email address.';
+      ? 'AUTH.VALIDATION.EMAIL_REQUIRED'
+      : 'AUTH.VALIDATION.EMAIL_INVALID';
   }
 
   protected passwordError(): string {
     return this.form.controls.password.hasError('required')
-      ? 'Password is required.'
-      : 'Password must contain at least 8 characters.';
+      ? 'AUTH.VALIDATION.PASSWORD_REQUIRED'
+      : 'AUTH.VALIDATION.PASSWORD_MIN';
   }
 
   protected submit(): void {

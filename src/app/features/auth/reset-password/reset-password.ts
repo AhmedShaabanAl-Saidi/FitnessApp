@@ -7,13 +7,14 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Button } from '../../../shared/components/button/button';
 import { Input } from '../../../shared/components/input/input';
 import { passwordsMatchValidator } from '../../../shared/utils/form-validators';
 
 @Component({
   selector: 'app-reset-password',
-  imports: [ReactiveFormsModule, Button, Input],
+  imports: [ReactiveFormsModule, TranslatePipe, Button, Input],
   templateUrl: './reset-password.html',
 })
 export class ResetPassword {
@@ -39,8 +40,8 @@ export class ResetPassword {
 
   protected passwordError(): string {
     return this.form.controls.password.hasError('required')
-      ? 'Password is required.'
-      : 'Password must contain at least 8 characters.';
+      ? 'AUTH.VALIDATION.PASSWORD_REQUIRED'
+      : 'AUTH.VALIDATION.PASSWORD_MIN';
   }
 
   protected confirmationInvalid(): boolean {
@@ -54,8 +55,8 @@ export class ResetPassword {
 
   protected confirmationError(): string {
     return this.form.controls.confirmation.hasError('required')
-      ? 'Please confirm your password.'
-      : 'Passwords do not match.';
+      ? 'AUTH.VALIDATION.CONFIRM_PASSWORD_REQUIRED'
+      : 'AUTH.VALIDATION.PASSWORD_MISMATCH';
   }
 
   protected submit(): void {
