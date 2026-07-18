@@ -1,0 +1,50 @@
+<div class="w-full text-inherit">
+  @if (label()) {
+  <label [id]="view().labelId" [attr.for]="view().labelFor" class="mb-2 block text-sm font-medium opacity-85">
+    {{ label() }}
+    @if (required()) {
+    <span class="text-[#FF4100]" aria-hidden="true">*</span>
+    }
+  </label>
+  }
+
+  @if (view().isOtp) {
+  <div [id]="id()" role="group" [class]="view().otpGroupClasses"
+    [attr.aria-labelledby]="label() ? view().labelId : null" [attr.aria-label]="view().otpGroupAriaLabel"
+    [attr.aria-describedby]="view().supportingTextId" [attr.aria-invalid]="invalid()" [attr.aria-required]="required()"
+    (paste)="otp.paste($event)" (focusout)="otp.focusOut($event)">
+    @for (index of otp.indexes(); track index) {
+    <input #otpInput type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" [class]="view().otpInputClasses"
+      [value]="otp.digit(index)" [disabled]="disabled()" [readOnly]="readOnly()" [required]="required()"
+      [attr.data-otp-index]="index" [attr.autocomplete]="index === 0 ? autocomplete() || 'one-time-code' : 'off'"
+      [attr.aria-label]="'OTP digit ' + (index + 1) + ' of ' + otp.length()" (focus)="otp.select($event)"
+      (input)="otp.input(index, $event)" (keydown)="otp.keydown(index, $event)" />
+    }
+  </div>
+  } @else {
+  <div [class]="view().fieldClasses">
+    @if (leadingIcon()) {
+    <i [class]="view().leadingIconClasses" aria-hidden="true"></i>
+    }
+
+    <input [id]="id()" [type]="view().nativeType" [class]="nativeInputClasses" [value]="value()"
+      [placeholder]="placeholder()" [disabled]="disabled()" [readOnly]="readOnly()" [required]="required()"
+      [attr.autocomplete]="autocomplete()" [attr.inputmode]="inputMode()"
+      [attr.aria-describedby]="view().supportingTextId" [attr.aria-invalid]="invalid()"
+      [attr.aria-label]="view().inputAriaLabel" (input)="handleInput($event)" (blur)="markAsTouched()" />
+
+    @if (view().displayPasswordToggle) {
+    <button type="button" [class]="passwordToggleClasses" [disabled]="disabled()"
+      [attr.aria-label]="view().passwordToggleLabel" [attr.aria-controls]="id()" (click)="togglePasswordVisibility()">
+      <i [class]="view().passwordIconClasses" aria-hidden="true"></i>
+    </button>
+    }
+  </div>
+  }
+
+  @if (view().supportingText; as supportingText) {
+  <p [id]="view().supportingTextId" [class]="view().supportingTextClasses" [attr.role]="view().supportingTextRole">
+    {{ supportingText }}
+  </p>
+  }
+</div>
