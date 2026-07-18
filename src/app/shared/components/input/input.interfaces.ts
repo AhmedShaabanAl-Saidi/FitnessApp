@@ -4,10 +4,16 @@ export type TextInputMode = 'text' | 'email' | 'numeric' | 'search' | 'tel' | 'u
 export const DEFAULT_OTP_LENGTH = 4;
 export const MAX_OTP_LENGTH = 12;
 
+export function normalizeOtpLength(value: unknown): number {
+  const length = Number(value);
+
+  return Number.isInteger(length) && length > 0
+    ? Math.min(length, MAX_OTP_LENGTH)
+    : DEFAULT_OTP_LENGTH;
+}
+
 export const FIELD_CLASSES =
   'flex min-h-11 items-center gap-3 rounded-full border bg-transparent px-4 transition-colors focus-within:border-[#FF4100]';
-
-export const OTP_GROUP_CLASSES = 'flex items-center justify-center gap-3';
 
 export const OTP_INPUT_CLASSES =
   'h-10 w-12 border-0 border-b-2 bg-transparent text-center text-lg font-semibold text-[#FF4100] caret-[#FF4100] outline-none transition-colors focus:border-[#FF4100] disabled:cursor-not-allowed';

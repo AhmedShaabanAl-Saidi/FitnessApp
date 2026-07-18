@@ -1,12 +1,13 @@
-import {Component,ElementRef,computed,forwardRef,input,numberAttribute,signal,viewChildren} from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { OtpInputController } from './input-otp.controller';
-import {DEFAULT_OTP_LENGTH,FIELD_CLASSES,NATIVE_INPUT_CLASSES,OTP_GROUP_CLASSES,OTP_INPUT_CLASSES,PASSWORD_TOGGLE_CLASSES} from './input.interfaces';
+import { Component, computed, forwardRef, input, signal } from '@angular/core';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { InputOtp } from 'primeng/inputotp';
+import { DEFAULT_OTP_LENGTH, FIELD_CLASSES, NATIVE_INPUT_CLASSES, OTP_INPUT_CLASSES, PASSWORD_TOGGLE_CLASSES, normalizeOtpLength } from './input.interfaces';
 import type { InputType, TextInputMode } from './input.interfaces';
 export type { InputType, TextInputMode } from './input.interfaces';
 
 @Component({
   selector: 'app-input',
+  imports: [FormsModule, InputOtp],
   templateUrl: './input.html',
   styleUrl: './input.css',
   providers: [
@@ -30,7 +31,7 @@ export class Input implements ControlValueAccessor {
   readonly hint = input('');
   readonly invalid = input(false);
   readonly errorMessage = input('');
-  readonly otpLength = input(DEFAULT_OTP_LENGTH, { transform: numberAttribute });
+  readonly otpLength = input(DEFAULT_OTP_LENGTH, { transform: normalizeOtpLength });
 
   protected readonly value = signal('');
   protected readonly disabled = signal(false);
@@ -38,25 +39,12 @@ export class Input implements ControlValueAccessor {
   protected readonly nativeInputClasses = NATIVE_INPUT_CLASSES;
   protected readonly passwordToggleClasses = PASSWORD_TOGGLE_CLASSES;
 
-  private readonly otpMode = computed(() => this.type() === 'otp');
-  private readonly otpInputs = viewChildren<ElementRef<HTMLInputElement>>('otpInput');
   private onChange: (value: string) => void = () => undefined;
   private onTouched: () => void = () => undefined;
 
-  protected readonly otp = new OtpInputController({
-    length: this.otpLength,
-    active: this.otpMode,
-    disabled: this.disabled,
-    readOnly: this.readOnly,
-    value: this.value,
-    inputs: () => this.otpInputs(),
-    change: (value) => this.onChange(value),
-    touched: () => this.onTouched(),
-  });
-
   protected readonly view = computed(() => {
     const id = this.id();
-    const isOtp = this.otpMode();
+    const isOtp = this.type() === 'otp';
     const isPassword = this.type() === 'password';
     const showError = this.invalid() && Boolean(this.errorMessage());
     const supportingText = showError ? this.errorMessage() : this.hint();
@@ -73,8 +61,8 @@ export class Input implements ControlValueAccessor {
       passwordIconClasses: this.passwordVisible() ? 'pi pi-eye-slash' : 'pi pi-eye',
       leadingIconClasses: `${this.leadingIcon()} text-sm opacity-70`,
       fieldClasses: `${FIELD_CLASSES} ${this.borderClass()}${this.disabled() ? ' opacity-60' : ''}`,
-      otpGroupClasses: `${OTP_GROUP_CLASSES}${this.disabled() ? ' opacity-60' : ''}`,
       otpInputClasses: `${OTP_INPUT_CLASSES} ${this.borderClass()}`,
+      otpLength: this.otpLength(),
       supportingText,
       supportingTextId: supportingText ? `${id}-${showError ? 'error' : 'hint'}` : null,
       supportingTextClasses: showError
@@ -85,8 +73,7 @@ export class Input implements ControlValueAccessor {
   });
 
   writeValue(value: unknown): void {
-    const normalized = value == null ? '' : String(value);
-    this.otpMode() ? this.otp.writeValue(normalized) : this.value.set(normalized);
+    this.value.set(value == null ? '' : String(value));
   }
 
   registerOnChange(fn: (value: string) => void): void {
@@ -102,9 +89,19 @@ export class Input implements ControlValueAccessor {
   }
 
   protected handleInput(event: Event): void {
-    const value = (event.target as HTMLInputElement).value;
-    this.value.set(value);
-    this.onChange(value);
+    this.updateValue((event.target as HTMLInputElement).value);
+  }
+
+  protected handleOtpChange(value: unknown): void {
+    this.updateValue(Array.isArray(value) ? value.join('') : String(value ?? ''));
+  }
+
+  protected handleOtpFocusOut(event: FocusEvent): void {
+    const group = event.currentTarget as HTMLElement;
+
+    if (!group.contains(event.relatedTarget as Node | null)) {
+      this.onTouched();
+    }
   }
 
   protected markAsTouched(): void {
@@ -119,5 +116,10 @@ export class Input implements ControlValueAccessor {
 
   private borderClass(): string {
     return this.invalid() ? 'border-red-500' : 'border-neutral-400';
+  }
+
+  private updateValue(value: string): void {
+    this.value.set(value);
+    this.onChange(value);
   }
 }
