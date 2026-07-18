@@ -1,0 +1,89 @@
+<main class="relative min-h-dvh overflow-hidden bg-[#171719] text-white"
+  [attr.aria-labelledby]="layoutData().title ? 'auth-page-title' : null"
+  [attr.aria-label]="layoutData().title ? null : 'Authentication'">
+  <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+    <img ngSrc="/images/auth/authlayout-bg.png" fill priority sizes="100vw" alt=""
+      class="scale-110 object-cover object-center blur-2xl brightness-[0.18] saturate-50" />
+    <div class="absolute inset-0 bg-[#171719]/70"></div>
+    <div
+      class="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.14),transparent_34%),linear-gradient(115deg,rgba(255,65,0,0.08),transparent_42%)]">
+    </div>
+  </div>
+
+  <div class="relative z-10 grid min-h-dvh grid-cols-1 lg:grid-cols-2">
+    <div class="relative hidden min-h-dvh overflow-hidden border-e border-primary-brand/25 lg:block">
+      <img ngSrc="/images/auth/auth-logo.png" width="243" height="151" alt="Super Fitness"
+        class="absolute left-1/2 top-[11%] h-auto w-[clamp(10rem,14vw,15.25rem)] -translate-x-1/2 object-contain drop-shadow-2xl" />
+
+      <img ngSrc="/images/auth/authlayout-img.png" width="628" height="474" alt=""
+        class="absolute bottom-[8%] left-1/2 h-auto w-[min(92%,39.25rem)] -translate-x-1/2 object-contain drop-shadow-[0_28px_45px_rgba(0,0,0,0.55)]" />
+    </div>
+
+    <section
+      class="relative flex min-h-dvh items-center justify-center overflow-y-auto px-4 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-16">
+      <div class="w-full max-w-136">
+        @if (layoutData().variant === 'step' && layoutData().step; as step) {
+        <div class="mb-4 flex justify-center">
+          <div
+            class="grid size-12 place-items-center rounded-full bg-[conic-gradient(var(--color-primary-brand)_var(--auth-progress),rgba(255,255,255,0.22)_0)] shadow-[0_0_24px_rgba(255,65,0,0.18)] [--auth-progress:0%]"
+            role="progressbar" [attr.aria-label]="'Step ' + step.current + ' of ' + step.total" aria-valuemin="1"
+            [attr.aria-valuemax]="step.total" [attr.aria-valuenow]="step.current"
+            [style.--auth-progress]="progressPercentage() + '%'">
+            <span class="grid size-10 place-items-center rounded-full bg-[#242426] text-xs font-semibold text-white">
+              {{ step.current }}/{{ step.total }}
+            </span>
+          </div>
+        </div>
+        }
+
+        @if (layoutData().eyebrow || layoutData().title || layoutData().subtitle) {
+        <header class="mb-6 text-center">
+          @if (layoutData().eyebrow) {
+          <p class="mb-2 text-sm font-medium text-white/70">
+            {{ layoutData().eyebrow }}
+          </p>
+          }
+
+          @if (layoutData().title) {
+          <h1 id="auth-page-title" class="text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl">
+            {{ layoutData().title }}
+          </h1>
+          }
+
+          @if (layoutData().subtitle) {
+          <p class="mt-2 text-sm leading-relaxed text-white/65">
+            {{ layoutData().subtitle }}
+          </p>
+          }
+        </header>
+        }
+
+        <div
+          class="w-full transition-[background-color,border-color,box-shadow] duration-200 ease-out motion-reduce:transition-none"
+          [ngClass]="{
+            'rounded-4xl border border-white/55 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.01))] p-[clamp(1.5rem,4vw,2.5rem)] shadow-[0_28px_80px_rgba(0,0,0,0.28)] backdrop-blur-[10px]':
+              isCardVariant(),
+            'py-2': !isCardVariant(),
+          }" [attr.data-auth-surface]="layoutData().variant">
+          @if (isCardVariant() && (layoutData().cardTitle || layoutData().cardDescription)) {
+          <header class="mb-6 text-center">
+            @if (layoutData().cardTitle) {
+            <h2 class="text-lg font-bold text-white">
+              {{ layoutData().cardTitle }}
+            </h2>
+            }
+
+            @if (layoutData().cardDescription) {
+            <p class="mt-2 text-sm leading-relaxed text-white/65">
+              {{ layoutData().cardDescription }}
+            </p>
+            }
+          </header>
+          }
+
+          <router-outlet (activate)="syncLayoutData()" (deactivate)="resetLayoutData()" />
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
