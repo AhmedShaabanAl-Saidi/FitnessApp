@@ -2,6 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-otp',
-  template: '',
+  templateUrl: './otp.html',
 })
 export class Otp {}
