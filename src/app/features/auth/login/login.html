@@ -1,9 +1,11 @@
-<div class="mx-auto w-full max-w-sm space-y-4">
+<form class="mx-auto w-full max-w-sm space-y-4" [formGroup]="form" (ngSubmit)="submit()" novalidate>
   <app-input id="login-email" type="email" placeholder="Email" autocomplete="email" inputMode="email"
-    leadingIcon="pi pi-envelope" [readonly]="true" />
+    leadingIcon="pi pi-envelope" formControlName="email" [required]="true" [invalid]="showError(form.controls.email)"
+    [errorMessage]="emailError()" />
 
   <app-input id="login-password" type="password" placeholder="Password" autocomplete="current-password"
-    leadingIcon="pi pi-lock" [readonly]="true" />
+    leadingIcon="pi pi-lock" formControlName="password" [required]="true" [invalid]="showError(form.controls.password)"
+    [errorMessage]="passwordError()" />
 
   <div class="text-end">
     <a routerLink="/auth/forgot-password"
@@ -14,7 +16,7 @@
 
   <app-auth-social-login />
 
-  <app-button routerLink="/auth/login" [fullWidth]="true">Login</app-button>
+  <app-button type="submit" [fullWidth]="true" [disabled]="form.invalid">Login</app-button>
 
   <p class="text-center text-xs text-white/65">
     Don't Have An Account Yet?
@@ -22,4 +24,4 @@
       Register
     </a>
   </p>
-</div>
+</form>

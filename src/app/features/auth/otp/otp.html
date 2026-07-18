@@ -1,13 +1,17 @@
-<div class="mx-auto w-full max-w-sm space-y-4">
-  <app-input id="otp-code" type="otp" aria-label="One-time password" [otpLength]="4" [readonly]="true" [ngModel]="code"
-    [ngModelOptions]="{ standalone: true }" />
+<form class="mx-auto w-full max-w-sm space-y-4" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+  <app-input id="otp-code" type="otp" label="Verification code" autocomplete="one-time-code" formControlName="code"
+    [otpLength]="4" [required]="true" [invalid]="showError(form.controls.code)" [errorMessage]="codeError()" />
 
-  <app-button routerLink="/auth/login" [fullWidth]="true">Confirm</app-button>
+  <app-button type="submit" [fullWidth]="true" [disabled]="form.invalid">Confirm</app-button>
 
   <p class="text-center text-xs text-white/60">
     Didn't Receive Verification Code?
-    <button type="button" class="font-semibold text-primary-brand hover:underline">
+    <button type="button" class="font-semibold text-primary-brand hover:underline" (click)="resend()">
       Resend Code
     </button>
   </p>
-</div>
+
+  <p class="min-h-4 text-center text-xs text-primary-brand" aria-live="polite">
+    {{ resendMessage() }}
+  </p>
+</form>

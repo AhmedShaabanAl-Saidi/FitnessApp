@@ -1,7 +1,14 @@
 import { Component, computed, forwardRef, input, signal } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { InputOtp } from 'primeng/inputotp';
-import { DEFAULT_OTP_LENGTH, FIELD_CLASSES, NATIVE_INPUT_CLASSES, OTP_INPUT_CLASSES, PASSWORD_TOGGLE_CLASSES, normalizeOtpLength } from './input.interfaces';
+import {
+  DEFAULT_OTP_LENGTH,
+  FIELD_CLASSES,
+  NATIVE_INPUT_CLASSES,
+  OTP_INPUT_CLASSES,
+  PASSWORD_TOGGLE_CLASSES,
+  normalizeOtpLength,
+} from './input.interfaces';
 import type { InputType, TextInputMode } from './input.interfaces';
 export type { InputType, TextInputMode } from './input.interfaces';
 
@@ -10,6 +17,7 @@ export type { InputType, TextInputMode } from './input.interfaces';
   imports: [FormsModule, InputOtp],
   templateUrl: './input.html',
   styleUrl: './input.css',
+  host: { '[attr.id]': 'null' },
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

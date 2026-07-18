@@ -6,17 +6,20 @@
   </div>
 
   <div class="flex items-center justify-center gap-4" aria-label="Social sign in options">
-    <button type="button" aria-label="Continue with Facebook"
-      class="grid size-9 place-items-center rounded-full bg-black/30 text-sm text-white transition-colors hover:bg-primary-brand focus-visible:outline-2 focus-visible:outline-primary-brand">
-      <i class="pi pi-facebook" aria-hidden="true"></i>
+    @for (provider of providers; track provider.id) {
+    <button type="button"
+      class="grid size-9 place-items-center rounded-full text-sm text-white transition-colors hover:bg-primary-brand focus-visible:outline-2 focus-visible:outline-primary-brand"
+      [class.bg-primary-brand]="selectedProvider() === provider.id"
+      [class.bg-black/30]="selectedProvider() !== provider.id" [attr.aria-label]="'Continue with ' + provider.id"
+      [attr.aria-pressed]="selectedProvider() === provider.id" (click)="selectProvider(provider.id)">
+      <i [class]="provider.icon" aria-hidden="true"></i>
     </button>
-    <button type="button" aria-label="Continue with Google"
-      class="grid size-9 place-items-center rounded-full bg-black/30 text-sm text-white transition-colors hover:bg-primary-brand focus-visible:outline-2 focus-visible:outline-primary-brand">
-      <i class="pi pi-google" aria-hidden="true"></i>
-    </button>
-    <button type="button" aria-label="Continue with Apple"
-      class="grid size-9 place-items-center rounded-full bg-black/30 text-sm text-white transition-colors hover:bg-primary-brand focus-visible:outline-2 focus-visible:outline-primary-brand">
-      <i class="pi pi-apple" aria-hidden="true"></i>
-    </button>
+    }
   </div>
+
+  <p class="sr-only" aria-live="polite">
+    @if (selectedProvider()) {
+    {{ selectedProvider() }} selected
+    }
+  </p>
 </div>
