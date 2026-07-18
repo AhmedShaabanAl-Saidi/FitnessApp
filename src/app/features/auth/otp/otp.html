@@ -1,0 +1,13 @@
+<div class="mx-auto w-full max-w-sm space-y-4">
+  <app-input id="otp-code" type="otp" aria-label="One-time password" [otpLength]="4" [readonly]="true" [ngModel]="code"
+    [ngModelOptions]="{ standalone: true }" />
+
+  <app-button routerLink="/auth/login" [fullWidth]="true">Confirm</app-button>
+
+  <p class="text-center text-xs text-white/60">
+    Didn't Receive Verification Code?
+    <button type="button" class="font-semibold text-primary-brand hover:underline">
+      Resend Code
+    </button>
+  </p>
+</div>

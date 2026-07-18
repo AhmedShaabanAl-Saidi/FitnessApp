@@ -1,6 +1,9 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
+  ElementRef,
+  afterNextRender,
   computed,
   effect,
   forwardRef,
@@ -8,8 +11,10 @@ import {
   numberAttribute,
   signal,
   untracked,
+  viewChild,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import type { SwiperContainer } from 'swiper/element';
 import type { Swiper } from 'swiper/types';
 
 import {
@@ -26,6 +31,7 @@ export type { NumberPickerFormatter } from './number-picker.interfaces';
   selector: 'app-number-picker',
   templateUrl: './number-picker.html',
   styleUrl: './number-picker.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     {
@@ -73,6 +79,7 @@ export class NumberPicker implements ControlValueAccessor {
   });
 
   private readonly swiper = signal<Swiper | null>(null);
+  private readonly swiperElement = viewChild<ElementRef<SwiperContainer>>('swiperElement');
   private onChange: (value: number) => void = () => undefined;
   private onTouched: () => void = () => undefined;
 
@@ -84,11 +91,50 @@ export class NumberPicker implements ControlValueAccessor {
     if (!swiper) return;
 
     untracked(() => {
+      swiper.enable();
       swiper.update();
-      unavailable ? swiper.disable() : swiper.enable();
       swiper.slideTo(index, 0, false);
+
+      if (unavailable) swiper.disable();
     });
   });
+
+  constructor() {
+    afterNextRender(() => {
+      const element = this.swiperElement()?.nativeElement;
+
+      if (!element?.initialize) return;
+
+      const slidesPerView = this.slidesPerView();
+
+      Object.assign(element, {
+        slidesPerView: Math.min(5, slidesPerView),
+        slidesPerGroup: 1,
+        spaceBetween: 36,
+        initialSlide: this.selectedIndex(),
+        centeredSlides: true,
+        centerInsufficientSlides: true,
+        slideToClickedSlide: true,
+        allowTouchMove: true,
+        simulateTouch: true,
+        grabCursor: true,
+        threshold: 3,
+        speed: 220,
+        keyboard: { enabled: true, onlyInViewport: true },
+        mousewheel: { forceToAxis: true, releaseOnEdges: true },
+        a11y: { enabled: true },
+        breakpointsBase: 'container',
+        breakpoints: {
+          480: { slidesPerView, spaceBetween: 48 },
+        },
+      });
+      element.initialize();
+
+      const swiper = element.swiper;
+
+      if (swiper) this.swiper.set(swiper);
+    });
+  }
 
   writeValue(value: unknown): void {
     if (value === null || value === undefined || value === '') {
@@ -118,7 +164,7 @@ export class NumberPicker implements ControlValueAccessor {
   }
 
   protected handleSlideChange(event: Event): void {
-    if (!this.swiper() || this.unavailable()) return;
+    if (this.unavailable()) return;
 
     const swiper = this.getSwiper(event);
     const value = this.values()[swiper.activeIndex];

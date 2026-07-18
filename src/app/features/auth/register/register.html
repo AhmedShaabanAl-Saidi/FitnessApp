@@ -1,0 +1,29 @@
+<div class="mx-auto w-full max-w-sm space-y-3">
+  <app-input id="register-first-name" placeholder="First Name" autocomplete="given-name" leadingIcon="pi pi-user"
+    [readonly]="true" />
+
+  <app-input id="register-last-name" placeholder="Last Name" autocomplete="family-name" leadingIcon="pi pi-user"
+    [readonly]="true" />
+
+  <app-input id="register-email" type="email" placeholder="Email" autocomplete="email" inputMode="email"
+    leadingIcon="pi pi-envelope" [readonly]="true" />
+
+  <app-input id="register-password" type="password" placeholder="Password" autocomplete="new-password"
+    leadingIcon="pi pi-lock" [readonly]="true" />
+
+  <div class="text-end">
+    <a routerLink="/auth/forgot-password"
+      class="text-xs font-semibold text-primary-brand underline-offset-2 hover:underline">
+      Forget Password?
+    </a>
+  </div>
+
+  <app-auth-social-login />
+
+  <app-button routerLink="/auth/login" [fullWidth]="true">Register</app-button>
+
+  <p class="text-center text-xs text-white/65">
+    Already Have An Account?
+    <a routerLink="/auth/login" class="font-semibold text-primary-brand hover:underline">Login</a>
+  </p>
+</div>

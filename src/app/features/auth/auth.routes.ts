@@ -70,9 +70,7 @@ export const authRoutes: Routes = [
     data: {
       [AUTH_LAYOUT_ROUTE_DATA_KEY]: {
         variant: 'step',
-        title: 'TELL US ABOUT YOURSELF!',
-        subtitle: 'We Need To Know Your Gender',
-        step: { current: 1, total: 6 },
+        title: '',
       },
     },
   },

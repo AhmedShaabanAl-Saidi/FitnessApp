@@ -9,6 +9,8 @@ export type { ButtonSize, ButtonType, ButtonVariant } from './button.interfaces'
   styleUrl: './button.css',
   host: {
     '[class.w-full]': 'fullWidth()',
+    '[class.block]': 'fullWidth()',
+    '[class.inline-block]': '!fullWidth()',
   },
 })
 export class Button {
@@ -27,7 +29,8 @@ export class Button {
   protected readonly buttonClasses = computed(() =>
     [
       BASE_CLASSES,
-      this.fullWidth() ? 'w-full justify-center rounded-xl' : 'justify-between rounded-full',
+      'rounded-full',
+      this.fullWidth() ? 'w-full justify-center' : 'justify-between',
       SIZE_CLASSES[this.size()],
       this.unavailable()
         ? 'cursor-not-allowed border-transparent bg-[#D3D3D3] text-[#8C8C8C]'
@@ -39,9 +42,7 @@ export class Button {
     [
       'relative flex size-9 shrink-0 items-center justify-center rounded-full bg-[#FF4100] transition-all duration-300',
       this.fullWidth() ? 'ms-2' : '-me-12',
-      this.variant() === 'ghost'
-        ? 'border-0 text-black'
-        : 'border-2 border-white text-white',
+      this.variant() === 'ghost' ? 'border-0 text-black' : 'border-2 border-white text-white',
     ].join(' '),
   );
 

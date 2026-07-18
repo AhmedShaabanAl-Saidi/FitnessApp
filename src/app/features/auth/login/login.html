@@ -1,0 +1,25 @@
+<div class="mx-auto w-full max-w-sm space-y-4">
+  <app-input id="login-email" type="email" placeholder="Email" autocomplete="email" inputMode="email"
+    leadingIcon="pi pi-envelope" [readonly]="true" />
+
+  <app-input id="login-password" type="password" placeholder="Password" autocomplete="current-password"
+    leadingIcon="pi pi-lock" [readonly]="true" />
+
+  <div class="text-end">
+    <a routerLink="/auth/forgot-password"
+      class="text-xs font-semibold text-primary-brand underline-offset-2 hover:underline">
+      Forget Password?
+    </a>
+  </div>
+
+  <app-auth-social-login />
+
+  <app-button routerLink="/auth/login" [fullWidth]="true">Login</app-button>
+
+  <p class="text-center text-xs text-white/65">
+    Don't Have An Account Yet?
+    <a routerLink="/auth/register" class="font-semibold text-primary-brand hover:underline">
+      Register
+    </a>
+  </p>
+</div>
