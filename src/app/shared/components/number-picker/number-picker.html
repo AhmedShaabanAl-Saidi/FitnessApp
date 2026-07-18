@@ -1,0 +1,26 @@
+<div [id]="id()" role="spinbutton" dir="ltr" class="w-full text-center" [class.pointer-events-none]="unavailable()"
+  [class.opacity-60]="unavailable()" [attr.aria-label]="ariaLabel()" [attr.aria-valuemin]="min()"
+  [attr.aria-valuemax]="max()" [attr.aria-valuenow]="selectedValue()" [attr.aria-valuetext]="ariaValueText()"
+  [attr.aria-disabled]="disabled()" [attr.aria-readonly]="readOnly()">
+  @if (unit()) {
+  <p class="mb-1 text-[10px] font-semibold text-primary-brand">{{ unit() }}</p>
+  }
+
+  <swiper-container class="block w-full" centered-slides="true" center-insufficient-slides="true"
+    slide-to-clicked-slide="true" grab-cursor="true" keyboard-enabled="true" mousewheel-force-to-axis="true"
+    mousewheel-release-on-edges="true" a11y="true" speed="220" [slidesPerView]="slidesPerView()"
+    [initialSlide]="selectedIndex()" (swiperinit)="handleInit($event)" (swiperslidechange)="handleSlideChange($event)">
+    @for (option of values(); track option) {
+    <swiper-slide class="relative flex h-10 items-start justify-center pt-1 text-xs transition-all duration-200"
+      [class.scale-125]="selectedValue() === option" [class.font-bold]="selectedValue() === option"
+      [class.text-primary-brand]="selectedValue() === option" [class.text-neutral-400]="selectedValue() !== option"
+      [attr.aria-current]="selectedValue() === option ? 'true' : null">
+      <span>{{ formatter()(option) }}</span>
+
+      @if (selectedValue() === option) {
+      <i class="pi pi-caret-up absolute bottom-0 text-[8px]" aria-hidden="true"></i>
+      }
+    </swiper-slide>
+    }
+  </swiper-container>
+</div>
