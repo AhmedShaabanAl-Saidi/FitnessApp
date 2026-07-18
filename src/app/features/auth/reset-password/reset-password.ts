@@ -1,15 +1,15 @@
 import { Component, inject } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { Button } from '../../../shared/components/button/button';
 import { Input } from '../../../shared/components/input/input';
-
-const passwordsMatch: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-  const password = control.get('password')?.value;
-  const confirmation = control.get('confirmation')?.value;
-
-  return password === confirmation ? null : { passwordMismatch: true };
-};
+import { passwordsMatchValidator } from '../../../shared/utils/form-validators';
 
 @Component({
   selector: 'app-reset-password',
@@ -30,7 +30,7 @@ export class ResetPassword {
         validators: Validators.required,
       }),
     },
-    { validators: passwordsMatch },
+    { validators: passwordsMatchValidator() },
   );
 
   protected showError(control: AbstractControl): boolean {
