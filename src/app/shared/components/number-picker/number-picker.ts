@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
   ElementRef,
@@ -31,7 +30,6 @@ export type { NumberPickerFormatter } from './number-picker.interfaces';
   selector: 'app-number-picker',
   templateUrl: './number-picker.html',
   styleUrl: './number-picker.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     {

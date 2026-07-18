@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-auth-social-login',
   templateUrl: './auth-social-login.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: { class: 'block' },
 })
 export class AuthSocialLogin {
