@@ -1,0 +1,49 @@
+@reference "../../../../../styles.css";
+
+.message-card {
+  @apply flex flex-col gap-1 max-w-[78%];
+}
+
+.message-card.user {
+  @apply items-end;
+}
+
+.message-card.model {
+  @apply items-start;
+}
+
+.message-card-body {
+  @apply rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed shadow-lg;
+}
+
+.message-card.model .message-card-body {
+  @apply bg-neutral-900/80 backdrop-blur-md border border-white/10 text-white rounded-tl-xs;
+}
+
+.message-card.user .message-card-body {
+  @apply bg-primary-brand text-white rounded-tr-xs shadow-primary-brand/10;
+}
+
+.message-timestamp {
+  @apply text-[9px] text-gray-500;
+}
+
+.message-card.model .message-timestamp {
+  @apply self-start ml-1;
+}
+
+.message-card.user .message-timestamp {
+  @apply self-end mr-1;
+}
+
+.message-text {
+  @apply whitespace-pre-wrap select-text font-normal font-sans;
+}
+
+.typing-indicator {
+  @apply flex gap-1 items-center py-1;
+}
+
+.typing-indicator .dot {
+  @apply w-1.5 h-1.5 bg-primary-brand rounded-full;
+}

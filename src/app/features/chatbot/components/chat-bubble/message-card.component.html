@@ -1,0 +1,22 @@
+<div class="message-card" [class.user]="role === 'user'" [class.model]="role === 'model'">
+  <div class="message-card-body">
+    @if (role === 'model' && text === '') {
+      <div class="typing-indicator">
+        <span class="dot animate-bounce"></span>
+        <span class="dot animate-bounce" style="animation-delay: 0.2s"></span>
+        <span class="dot animate-bounce" style="animation-delay: 0.4s"></span>
+      </div>
+    } @else if (role === 'model') {
+      <p class="message-text" [innerHTML]="text"></p>
+    } @else {
+      <p class="message-text">{{ text }}</p>
+    }
+  </div>
+  <span
+    class="message-timestamp cursor-pointer hover:text-gray-300 transition-colors"
+    [pTooltip]="(timestamp | date:'medium') ?? ''"
+    [tooltipPosition]="role === 'user' ? 'left' : 'right'"
+  >
+    {{ timestamp | date:'shortTime' }}
+  </span>
+</div>
