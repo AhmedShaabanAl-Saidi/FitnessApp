@@ -1,0 +1,67 @@
+<footer
+  class="bg-[#F3F3F4] dark:bg-[#232424] text-neutral-900 dark:text-neutral-100 transition-colors duration-300"
+>
+  <div class="md:px-20 md:py-12 px-4.5 py-2">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-start gap-10">
+      <div class="space-y-2">
+        <img src="images/logo.png" alt="Logo" class="w-20" />
+        @for (line of 'footer.description' | translate; track line) {
+          <p class="text-sm text-neutral-500 dark:text-neutral-400 leading-7">
+            {{ line }}
+          </p>
+        }
+      </div>
+
+      <div>
+        <h4 class="uppercase font-bold text-sm mb-6 tracking-wider">
+          {{ 'footer.contact.title' | translate }}
+        </h4>
+        <div class="space-y-5">
+          <div class="flex items-center gap-3">
+            <div
+              class="w-8 h-8 flex items-center justify-center rounded-full bg-[#E9E9EA] dark:bg-[#2B2B2B]"
+            >
+              <i-lucide [img]="phoneIcon" class="w-4 h-4"></i-lucide>
+            </div>
+            <span class="text-sm text-neutral-600 dark:text-neutral-300">
+              {{ 'footer.contact.phone' | translate }}
+            </span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div
+              class="w-8 h-8 flex items-center justify-center rounded-full bg-[#E9E9EA] dark:bg-[#2B2B2B]"
+            >
+              <i-lucide [img]="mailIcon" class="w-4 h-4"></i-lucide>
+            </div>
+            <span class="text-sm text-neutral-600 dark:text-neutral-300">
+              {{ 'footer.contact.email' | translate }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="uppercase font-bold text-sm mb-6 tracking-wider">
+          {{ 'footer.timing.title' | translate }}
+        </h4>
+        @for (item of 'footer.timing.items' | translate; track item.day) {
+          <div class="mb-3 text-sm text-neutral-600 dark:text-neutral-300">
+            <span class="font-medium">{{ item.day }}</span> : {{ item.time }}
+          </div>
+        }
+      </div>
+
+      <div>
+        <h4 class="uppercase font-bold text-sm mb-6 tracking-wider">
+          {{ 'footer.location.title' | translate }}
+        </h4>
+        @for (address of 'footer.location.address' | translate; track address) {
+          <p class="text-sm text-neutral-600 dark:text-neutral-300 leading-7">
+            {{ address }}
+          </p>
+        }
+      </div>
+    </div>
+  </div>
+</footer>
