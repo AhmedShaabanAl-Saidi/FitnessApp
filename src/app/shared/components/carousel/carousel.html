@@ -3,13 +3,14 @@
   pagination="true"
   pagination-clickable="true"
   dynamic-bullets="true"
+  grid="true"
   [attr.dir]="direction()"
   [breakpoints]="breakpoints()"
   class="block overflow-visible pb-7 md:pb-10 [--swiper-pagination-bullet-inactive-color:#1f2937] [--swiper-pagination-bullet-inactive-opacity:0.55] [--swiper-pagination-bullet-size:8px] [--swiper-pagination-color:var(--color-primary-brand)] [&::part(bullet-active)]:h-2 [&::part(bullet-active)]:w-6 [&::part(bullet-active)]:rounded-full [&::part(bullet-active)]:bg-primary-brand [&::part(bullet-active)]:opacity-100 [&::part(bullet)]:bg-[#262626] [&::part(bullet)]:opacity-55 [&::part(bullet)]:transition-all [&::part(bullet)]:duration-300 [&::part(pagination)]:bottom-0"
 >
   @for (item of items(); track item.id) {
     <swiper-slide class="pb-5 max-sm:pb-5" (click)="onNavigateTo(item.id)">
-      <app-card [title]="item.title" [image]="item.image" [fallbackImage]="fallbackImage()" />
+      <app-card [title]="item.title" [image]="item.image" [fallbackImage]="fallbackImage()" [actionLabel]="actionLabel()" />
     </swiper-slide>
   }
 </swiper-container>

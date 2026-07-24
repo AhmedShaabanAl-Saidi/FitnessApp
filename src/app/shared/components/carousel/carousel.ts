@@ -20,6 +20,7 @@ export class Carousel {
 
   items = input<CarouselItem[]>([]);
   rows = input<1 | 2>(1);
+  actionLabel = input<string>('Explore');
   navigateTo = output<string>();
   onNavigateTo(id: string) {
     this.navigateTo.emit(id);
@@ -29,8 +30,8 @@ export class Carousel {
   direction = computed(() => (this.langService.isRTL() ? 'rtl' : 'ltr'));
 
   breakpoints = computed(() => ({
-    0: { slidesPerView: 1, grid: { rows: 1 } },
-    640: { slidesPerView: 2, grid: { rows: 1 } },
+    0: { slidesPerView: 1, grid: { rows: this.rows(), fill: 'row' } },
+    640: { slidesPerView: 2, grid: { rows: this.rows(), fill: 'row' } },
     1024: { slidesPerView: 3, grid: { rows: this.rows(), fill: 'row' } },
   }));
 }
