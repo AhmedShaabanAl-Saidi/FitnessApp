@@ -1,0 +1,72 @@
+<section class="relative w-full pb-10 min-h-screen pt-12 dark:bg-neutral-900 bg-neutral-200">
+  <div class="relative w-full">
+    <h2
+      class="text-[40px] md:text-[60px] text-center font-bold uppercase text-transparent [-webkit-text-stroke:2px_#d8d8d8] opacity-50 pointer-events-none select-none"
+    >
+      {{ 'HEALTHY.TITLE' | translate }}
+    </h2>
+    <span
+      class="absolute left-1/2 top-1/2 -translate-x-1/2 z-10 flex items-center gap-2 text-primary-brand font-semibold"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" />
+        <path d="M7 2v20" />
+        <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" />
+      </svg>
+      <span>{{ 'HEALTHY.SUBTITLE' | translate }}</span>
+    </span>
+  </div>
+
+  <div
+    class="relative bg-[linear-gradient(to_bottom,#a3a3a3_0_30px,transparent_360px_100%)] dark:bg-[linear-gradient(to_bottom,#242424_0_30px,transparent_360px_100%)] md:bg-[linear-gradient(to_bottom,#a3a3a3_0_450px,transparent_450px_100%)] dark:md:bg-[linear-gradient(to_bottom,#242424_0_450px,transparent_450px_100%)]"
+  >
+    <h2
+      class="text-2xl py-5 md:text-[40px] 2xl:w-1/2 dark:text-[#F3F3F4] text-center mx-auto font-bold text-neutral-800"
+    >
+      {{ 'HEALTHY.HEADER' | translate }}
+      <span class="text-primary-brand">{{ 'HEALTHY.HEADER_HIGHLIGHT' | translate }}</span>
+    </h2>
+
+    @if (!loading()) {
+      <app-tabs [tabs]="tabs()" [activeTabId]="selectedTab()" (tabChange)="clickTab($event)" />
+    }
+
+    <div class="mx-auto mt-4 flex w-[calc(100%-2rem)] flex-col px-0 md:mt-8 md:w-3/4 md:px-4">
+      @if (mealsLoading()) {
+        <div class="text-center py-12 dark:text-[#F3F3F4] text-neutral-500">
+          <p class="animate-pulse">{{ 'HEALTHY.LOADING' | translate }}</p>
+        </div>
+      } @else if (meals().length > 0) {
+        <app-carousel
+          [items]="meals()"
+          [rows]="rows()"
+          [actionLabel]="exploreLabel()"
+          [fallbackImage]="'/images/home/workouts-bg.jpg'"
+          (navigateTo)="navigateTo($event)"
+        />
+      } @else if (!loading()) {
+        <div class="text-center py-12 dark:text-[#F3F3F4] text-neutral-500">
+          <p>{{ 'HEALTHY.NO_MEALS' | translate }}</p>
+        </div>
+      } @else {
+        <div class="text-center py-12 dark:text-[#F3F3F4] text-neutral-500">
+          <p class="animate-pulse">{{ 'HEALTHY.LOADING' | translate }}</p>
+        </div>
+      }
+    </div>
+  </div>
+
+  @if (showMarquee()) {
+    <app-marquee-tricker />
+  }
+</section>
