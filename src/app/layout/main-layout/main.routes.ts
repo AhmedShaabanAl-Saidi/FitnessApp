@@ -23,4 +23,15 @@ export const mainRoutes: Routes = [
     loadComponent: () =>
       import('../../features/classes/class-details/class-details').then((m) => m.ClassDetails),
   },
+  {
+    path: 'healthy',
+    loadComponent: () => import('../../features/healthy/healthy').then((m) => m.Healthy),
+  },
+  {
+    path: 'healthy/:id',
+    loadComponent: () =>
+      import('../../features/healthy/healthy-details/healthy-details').then(
+        (m) => m.HealthyDetails,
+      ),
+  },
 ];
