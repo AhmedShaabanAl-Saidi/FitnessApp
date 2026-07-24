@@ -241,5 +241,18 @@
         "DESC": "We provide the latest in gym equipment, from cardio machines to free weights, designed to support every type."
       }
     }
+  },
+  "HEALTHY": {
+    "TITLE": "Healthy",
+    "SUBTITLE": "Healthy Nutritions",
+    "HEADER": "Fuel Your Fitness Journey With Customized",
+    "HEADER_HIGHLIGHT": "Meal Plans For You",
+    "LOADING": "Loading meal plans...",
+    "NO_MEALS": "No meals available at the moment.",
+    "EXPLORE": "Read More",
+    "BACK": "Back to Healthy",
+    "INGREDIENTS": "Ingredients",
+    "INSTRUCTIONS": "Instructions",
+    "WATCH_VIDEO": "Watch on YouTube"
   }
 }
