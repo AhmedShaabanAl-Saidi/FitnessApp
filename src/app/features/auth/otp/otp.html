@@ -1,0 +1,20 @@
+<form class="mx-auto w-full max-w-sm space-y-4" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+  <app-input id="otp-code" type="otp" [label]="'AUTH.COMMON.VERIFICATION_CODE' | translate" autocomplete="one-time-code" formControlName="code"
+    [otpLength]="4" [required]="true" [invalid]="showError(form.controls.code)"
+    [errorMessage]="codeError() | translate" />
+
+  <app-button type="submit" [fullWidth]="true" [disabled]="form.invalid">
+    {{ 'AUTH.COMMON.CONFIRM' | translate }}
+  </app-button>
+
+  <p class="text-center text-xs text-white/60">
+    {{ 'AUTH.OTP.DID_NOT_RECEIVE' | translate }}
+    <button type="button" class="font-semibold text-primary-brand hover:underline" (click)="resend()">
+      {{ 'AUTH.OTP.RESEND' | translate }}
+    </button>
+  </p>
+
+  <p class="min-h-4 text-center text-xs text-primary-brand" aria-live="polite">
+    {{ resendMessage() | translate }}
+  </p>
+</form>

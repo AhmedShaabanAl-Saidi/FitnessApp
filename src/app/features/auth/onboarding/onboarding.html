@@ -1,0 +1,124 @@
+<section class="mx-auto w-full max-w-xl text-center" aria-live="polite">
+  <div class="mb-4 flex justify-center">
+    <div
+      class="grid size-12 place-items-center rounded-full bg-[conic-gradient(var(--color-primary-brand)_var(--onboarding-progress),rgba(255,255,255,0.2)_0)] shadow-[0_0_22px_rgba(255,65,0,0.2)]"
+      role="progressbar" aria-valuemin="1" [attr.aria-valuemax]="steps.length" [attr.aria-valuenow]="stepNumber()"
+      [attr.aria-label]="'AUTH.COMMON.STEP_OF' | translate: { current: stepNumber(), total: steps.length }"
+      [style.--onboarding-progress]="progressPercentage() + '%'">
+      <span class="grid size-10 place-items-center rounded-full bg-[#242426] text-xs font-semibold">
+        {{ stepNumber() }}/{{ steps.length }}
+      </span>
+    </div>
+  </div>
+
+  <header class="mb-7">
+    <h1 class="text-2xl font-extrabold leading-tight text-white sm:text-3xl">
+      {{ currentStep().titleKey | translate }}
+    </h1>
+    <p class="mt-1 text-xs text-white/65 sm:text-sm">{{ currentStep().subtitleKey | translate }}</p>
+  </header>
+
+  <div class="mx-auto w-full max-w-lg">
+    @switch (currentStep().id) {
+    @case ('gender') {
+    <div class="flex items-center justify-center gap-6" role="radiogroup"
+      [attr.aria-label]="'AUTH.ONBOARDING.GENDER.GROUP_LABEL' | translate">
+      <button type="button" role="radio" [attr.aria-checked]="gender() === 'male'"
+        class="grid size-20 place-items-center rounded-full border text-white transition-colors"
+        [class.border-primary-brand]="gender() === 'male'" [class.bg-primary-brand]="gender() === 'male'"
+        [class.shadow-[0_10px_28px_rgba(255,65,0,0.28)]]="gender() === 'male'"
+        [class.border-white/65]="gender() !== 'male'" [class.bg-white/3]="gender() !== 'male'"
+        (click)="gender.set('male')">
+        <span>
+          <i class="pi pi-mars block text-2xl" aria-hidden="true"></i>
+          <span class="mt-1 block text-[10px] font-semibold">{{ 'AUTH.ONBOARDING.GENDER.MALE' | translate }}</span>
+        </span>
+      </button>
+      <button type="button" role="radio" [attr.aria-checked]="gender() === 'female'"
+        class="grid size-20 place-items-center rounded-full border text-white transition-colors"
+        [class.border-primary-brand]="gender() === 'female'" [class.bg-primary-brand]="gender() === 'female'"
+        [class.shadow-[0_10px_28px_rgba(255,65,0,0.28)]]="gender() === 'female'"
+        [class.border-white/65]="gender() !== 'female'" [class.bg-white/3]="gender() !== 'female'"
+        (click)="gender.set('female')">
+        <span>
+          <i class="pi pi-venus block text-2xl" aria-hidden="true"></i>
+          <span class="mt-1 block text-[10px] font-semibold">{{ 'AUTH.ONBOARDING.GENDER.FEMALE' | translate }}</span>
+        </span>
+      </button>
+    </div>
+    }
+
+    @case ('age') {
+    <app-number-picker id="onboarding-age" [ariaLabel]="'AUTH.ONBOARDING.AGE.SELECTED_LABEL' | translate" [min]="18"
+      [max]="80" [unit]="'AUTH.ONBOARDING.UNITS.YEAR' | translate" [ngModel]="age()" (ngModelChange)="age.set($event)"
+      [ngModelOptions]="{ standalone: true }" />
+    }
+
+    @case ('weight') {
+    <app-number-picker id="onboarding-weight" [ariaLabel]="'AUTH.ONBOARDING.WEIGHT.SELECTED_LABEL' | translate"
+      [min]="40" [max]="180" [unit]="'AUTH.ONBOARDING.UNITS.KILOGRAM' | translate" [ngModel]="weight()"
+      (ngModelChange)="weight.set($event)" [ngModelOptions]="{ standalone: true }" />
+    }
+
+    @case ('height') {
+    <app-number-picker id="onboarding-height" [ariaLabel]="'AUTH.ONBOARDING.HEIGHT.SELECTED_LABEL' | translate"
+      [min]="120" [max]="220" [unit]="'AUTH.ONBOARDING.UNITS.CENTIMETER' | translate" [ngModel]="height()"
+      (ngModelChange)="height.set($event)" [ngModelOptions]="{ standalone: true }" />
+    }
+
+    @case ('goal') {
+    <div class="mx-auto max-w-100 space-y-5" role="radiogroup"
+      [attr.aria-label]="'AUTH.ONBOARDING.GOAL.GROUP_LABEL' | translate">
+      @for (option of goalOptions; track option.id) {
+      <button type="button" role="radio" [attr.aria-checked]="goal() === option.id"
+        class="flex min-h-15 w-full items-center justify-between rounded-[1.75rem] border-2 bg-white/10 px-6 text-start text-lg font-bold backdrop-blur-md transition-[border-color,color,background-color] duration-200"
+        [class.border-primary-brand]="goal() === option.id" [class.text-primary-brand]="goal() === option.id"
+        [class.border-white/75]="goal() !== option.id" [class.text-white]="goal() !== option.id"
+        (click)="goal.set(option.id)">
+        <span>{{ option.labelKey | translate }}</span>
+        <span class="grid size-6 shrink-0 place-items-center rounded-full border-2 border-white/75" aria-hidden="true">
+          @if (goal() === option.id) {
+          <span class="size-3 rounded-full bg-primary-brand"></span>
+          }
+        </span>
+      </button>
+      }
+    </div>
+    }
+
+    @case ('activity') {
+    <div class="mx-auto max-w-100 space-y-5" role="radiogroup"
+      [attr.aria-label]="'AUTH.ONBOARDING.ACTIVITY.GROUP_LABEL' | translate">
+      @for (option of activityOptions; track option.id) {
+      <button type="button" role="radio" [attr.aria-checked]="activity() === option.id"
+        class="flex min-h-15 w-full items-center justify-between rounded-[1.75rem] border-2 bg-white/10 px-6 text-start text-lg font-bold backdrop-blur-md transition-[border-color,color,background-color] duration-200"
+        [class.border-primary-brand]="activity() === option.id" [class.text-primary-brand]="activity() === option.id"
+        [class.border-white/75]="activity() !== option.id" [class.text-white]="activity() !== option.id"
+        (click)="activity.set(option.id)">
+        <span>{{ option.labelKey | translate }}</span>
+        <span class="grid size-6 shrink-0 place-items-center rounded-full border-2 border-white/75" aria-hidden="true">
+          @if (activity() === option.id) {
+          <span class="size-3 rounded-full bg-primary-brand"></span>
+          }
+        </span>
+      </button>
+      }
+    </div>
+    }
+    }
+  </div>
+
+  <div class="mx-auto mt-8 w-full max-w-110">
+    <app-button size="lg" [fullWidth]="true" (onClick)="next()">
+      {{ currentStep().actionLabelKey | translate }}
+    </app-button>
+
+    @if (!isFirstStep()) {
+    <button type="button" dir="ltr"
+      class="mt-3 inline-flex items-center gap-1 text-xs text-white/55 hover:text-primary-brand" (click)="previous()">
+      <i class="pi pi-arrow-left text-[10px]" aria-hidden="true"></i>
+      <span dir="auto">{{ 'AUTH.COMMON.BACK' | translate }}</span>
+    </button>
+    }
+  </div>
+</section>

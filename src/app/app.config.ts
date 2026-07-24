@@ -1,6 +1,7 @@
 import {
   ApplicationConfig,
-  importProvidersFrom,
+  inject,
+  provideAppInitializer,
   provideBrowserGlobalErrorListeners,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
@@ -11,18 +12,7 @@ import Aura from '@primeuix/themes/aura';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideHttpClient } from '@angular/common/http';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
-import {
-  LucideAngularModule,
-  Mail,
-  Lock,
-  Eye,
-  EyeOff,
-  User,
-  Search,
-  MapPin,
-  Check,
-  X,
-} from 'lucide-angular';
+import { languageService } from './core/services/language-service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -34,10 +24,9 @@ export const appConfig: ApplicationConfig = {
       loader: provideTranslateHttpLoader({ prefix: '/i18n/', suffix: '.json' }),
       fallbackLang: 'en',
     }),
-    importProvidersFrom(
-      LucideAngularModule.pick({ Mail, Lock, Eye, EyeOff, User, Search, MapPin, Check, X }),
-    ),
-
+    provideAppInitializer(() => {
+      inject(languageService);
+    }),
     // PrimeNG configuration
     providePrimeNG({
       theme: {

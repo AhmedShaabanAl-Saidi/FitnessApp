@@ -1,67 +1,58 @@
-import { NgClass, NgStyle } from '@angular/common';
 import { Component, computed, input, output } from '@angular/core';
+import { BASE_CLASSES, SIZE_CLASSES, VARIANT_CLASSES } from './button.interfaces';
+import type { ButtonSize, ButtonType, ButtonVariant } from './button.interfaces';
+export type { ButtonSize, ButtonType, ButtonVariant } from './button.interfaces';
+
 @Component({
   selector: 'app-button',
-  imports: [NgClass, NgStyle],
   templateUrl: './button.html',
   styleUrl: './button.css',
+  host: {
+    '[class.w-full]': 'fullWidth()',
+    '[class.block]': 'fullWidth()',
+    '[class.inline-block]': '!fullWidth()',
+  },
 })
 export class Button {
-  variant = input<'solid' | 'outline' | 'ghost'>('solid');
-  type = input<'button' | 'submit' | 'reset'>('button');
-  disabled = input<boolean>(false);
-  showArrow = input<boolean>(false);
-  fullWidth = input<boolean>(false);
+  readonly variant = input<ButtonVariant>('solid');
+  readonly type = input<ButtonType>('button');
+  readonly size = input<ButtonSize>('md');
+  readonly disabled = input(false);
+  readonly loading = input(false);
+  readonly showArrow = input(false);
+  readonly fullWidth = input(false);
 
-  onClick = output<MouseEvent>();
-  buttonClasses = computed(() => {
-    const baseClasses =
-      'inline-flex relative items-center font-semibold tracking-wide transition-all duration-300 select-none';
+  readonly onClick = output<MouseEvent>();
 
-    const sizeClass = this.fullWidth()
-      ? 'w-full py-3.5 px-6 rounded-xl justify-center'
-      : 'py-2.5 px-8 rounded-full justify-between';
+  protected readonly unavailable = computed(() => this.disabled() || this.loading());
+  protected readonly displayArrow = computed(() => this.showArrow() && !this.unavailable());
+  protected readonly buttonClasses = computed(() =>
+    [
+      BASE_CLASSES,
+      'rounded-full',
+      this.fullWidth() ? 'w-full justify-center' : 'justify-between',
+      SIZE_CLASSES[this.size()],
+      this.unavailable()
+        ? 'cursor-not-allowed border-transparent bg-[#D3D3D3] text-[#8C8C8C]'
+        : `cursor-pointer active:scale-[0.98] ${VARIANT_CLASSES[this.variant()]}`,
+    ].join(' '),
+  );
 
-    let interactiveClass = '';
-    if (this.disabled()) {
-      interactiveClass = 'cursor-not-allowed';
-    } else {
-      interactiveClass = 'cursor-pointer active:scale-[0.98]';
-      if (this.variant() === 'solid') interactiveClass += ' hover:opacity-90';
-      if (this.variant() === 'outline')
-        interactiveClass += ' hover:bg-[var(--color-primary-brand)] hover:text-white';
-      if (this.variant() === 'ghost') interactiveClass += ' hover:bg-gray-100';
+  protected readonly arrowClasses = computed(() =>
+    [
+      'relative flex size-9 shrink-0 items-center justify-center rounded-full bg-[#FF4100] transition-all duration-300',
+      this.fullWidth() ? 'ms-2' : '-me-12',
+      this.variant() === 'ghost' ? 'border-0 text-black' : 'border-2 border-white text-white',
+    ].join(' '),
+  );
+
+  protected handleClick(event: MouseEvent): void {
+    if (this.unavailable()) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      return;
     }
 
-    return `${baseClasses} ${sizeClass} ${interactiveClass}`;
-  });
-
-  buttonStyles = computed(() => {
-    if (this.disabled()) {
-      return {
-        'background-color': '#D3D3D3',
-        color: '#8C8C8C',
-        border: '1px solid transparent',
-      };
-    }
-
-    const isSolid = this.variant() === 'solid';
-    const isOutline = this.variant() === 'outline';
-
-    return {
-      'background-color': isSolid ? 'var(--color-primary-brand)' : 'transparent',
-      color: isSolid ? '#FFFFFF' : 'var(--color-primary-brand)',
-      border: isOutline ? '1px solid var(--color-primary-brand)' : '1px solid transparent',
-    };
-  });
-
-  arrowClasses = computed(() => {
-    const baseArrow =
-      'flex shrink-0 items-center justify-center w-9 h-9 rounded-full border-2 transition-all duration-300 bg-primary-brand';
-    const positionClass = this.fullWidth() ? 'mx-2' : 'absolute -right-4';
-    const variantClass =
-      this.variant() === 'ghost' ? 'text-black border-none' : 'text-white border-white';
-
-    return `${baseArrow} ${positionClass} ${variantClass}`;
-  });
+    this.onClick.emit(event);
+  }
 }

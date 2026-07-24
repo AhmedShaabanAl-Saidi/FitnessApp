@@ -1,0 +1,40 @@
+<div
+  [id]="id()"
+  role="spinbutton"
+  dir="ltr"
+  class="w-full text-center"
+  [class.pointer-events-none]="unavailable()"
+  [class.opacity-60]="disabled()"
+  [attr.aria-label]="ariaLabel()"
+  [attr.aria-valuemin]="min()"
+  [attr.aria-valuemax]="max()"
+  [attr.aria-valuenow]="selectedValue()"
+  [attr.aria-valuetext]="ariaValueText()"
+  [attr.aria-disabled]="disabled()"
+  [attr.aria-readonly]="readOnly()"
+>
+  @if (unit()) {
+    <p class="number-picker__unit">{{ unit() }}</p>
+  }
+
+  <swiper-container
+    #swiperElement
+    init="false"
+    class="number-picker__track"
+    (swiperinit)="handleInit($event)"
+    (swiperslidechange)="handleSlideChange($event)"
+  >
+    @for (option of values(); track option) {
+      <swiper-slide
+        class="number-picker__slide"
+        [attr.aria-current]="selectedValue() === option ? 'true' : null"
+      >
+        <span>{{ formatter()(option) }}</span>
+
+        @if (selectedValue() === option) {
+          <i class="pi pi-caret-up number-picker__caret" aria-hidden="true"></i>
+        }
+      </swiper-slide>
+    }
+  </swiper-container>
+</div>

@@ -4,6 +4,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslateService } from '@ngx-translate/core';
 import { SsrCookieService } from 'ngx-cookie-service-ssr';
 
+export type AppLanguage = 'en' | 'ar';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -15,9 +17,7 @@ export class languageService {
   private readonly destroyRef = inject(DestroyRef);
   private readonly renderer: Renderer2;
 
-  private currentLangSignal = signal<string>(
-    this.translateService.getCurrentLang() || 'en'
-  );
+  private readonly currentLangSignal = signal<AppLanguage>('en');
 
   readonly currentLang = this.currentLangSignal.asReadonly();
   readonly isRTL = computed(() => this.currentLangSignal() === 'ar');
@@ -28,9 +28,19 @@ export class languageService {
     this.translateService.onLangChange
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((event) => {
-        this.currentLangSignal.set(event.lang);
-        this.updateDocumentDirection(event.lang);
+        const language = this.normalizeLanguage(event.lang);
+
+        this.currentLangSignal.set(language);
+        this.updateDocumentDirection(language);
       });
+
+    const initialLanguage = this.normalizeLanguage(
+      this.cookieService.get('lang') || this.translateService.getCurrentLang(),
+    );
+
+    this.currentLangSignal.set(initialLanguage);
+    this.updateDocumentDirection(initialLanguage);
+    this.translateService.use(initialLanguage);
   }
 
   private updateDocumentDirection(language: string): void {
@@ -41,8 +51,12 @@ export class languageService {
     this.renderer.setAttribute(htmlElement, 'lang', language);
   }
 
-  changeLanguage(language: string): void {
+  changeLanguage(language: AppLanguage): void {
     this.translateService.use(language);
     this.cookieService.set('lang', language, { path: '/' });
+  }
+
+  private normalizeLanguage(language: string | null | undefined): AppLanguage {
+    return language === 'ar' ? 'ar' : 'en';
   }
 }

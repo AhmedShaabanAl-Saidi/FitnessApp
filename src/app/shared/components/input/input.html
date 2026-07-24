@@ -1,0 +1,56 @@
+<div class="w-full text-inherit">
+  @if (label()) {
+  <label [id]="view().labelId" [attr.for]="view().labelFor" class="mb-2 block text-sm font-medium opacity-85">
+    {{ label() }}
+    @if (required()) {
+    <span class="text-[#FF4100]" aria-hidden="true">*</span>
+    }
+  </label>
+  }
+
+  @if (view().isOtp) {
+  <div [id]="id()" role="group" [class.opacity-60]="disabled()" [attr.aria-labelledby]="label() ? view().labelId : null"
+    [attr.aria-label]="view().otpGroupAriaLabel | translate" [attr.aria-describedby]="view().supportingTextId"
+    [attr.aria-invalid]="invalid()" [attr.aria-required]="required()" (focusout)="handleOtpFocusOut($event)">
+    <p-inputotp class="flex items-center justify-center gap-3" [ngModel]="value()"
+      [ngModelOptions]="{ standalone: true }" [length]="view().otpLength" [disabled]="disabled()"
+      [readonly]="readOnly()" [required]="required()" [invalid]="invalid()" [integerOnly]="true"
+      (ngModelChange)="handleOtpChange($event)">
+      <ng-template #input let-token let-events="events" let-index="index">
+        <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" [class]="view().otpInputClasses"
+          [value]="token || ''" [disabled]="disabled()" [readOnly]="readOnly()" [required]="required()"
+          [attr.autocomplete]="index === 1 ? autocomplete() || 'one-time-code' : 'off'"
+          [attr.aria-label]="'AUTH.COMMON.OTP_DIGIT' | translate: { current: index, total: view().otpLength }"
+          (input)="events.input($event)" (keydown)="events.keydown($event)" (focus)="events.focus($event)"
+          (blur)="events.blur($event)" (paste)="events.paste($event)" />
+      </ng-template>
+    </p-inputotp>
+  </div>
+  } @else {
+  <div [class]="view().fieldClasses">
+    @if (leadingIcon()) {
+    <i [class]="view().leadingIconClasses" aria-hidden="true"></i>
+    }
+
+    <input [id]="id()" [type]="view().nativeType" [class]="nativeInputClasses" [value]="value()"
+      [placeholder]="placeholder()" [disabled]="disabled()" [readOnly]="readOnly()" [required]="required()"
+      [attr.autocomplete]="autocomplete()" [attr.inputmode]="inputMode()"
+      [attr.aria-describedby]="view().supportingTextId" [attr.aria-invalid]="invalid()"
+      [attr.aria-label]="view().inputAriaLabel" (input)="handleInput($event)" (blur)="markAsTouched()" />
+
+    @if (view().displayPasswordToggle) {
+    <button type="button" [class]="passwordToggleClasses" [disabled]="disabled()"
+      [attr.aria-label]="view().passwordToggleLabel | translate" [attr.aria-controls]="id()"
+      (click)="togglePasswordVisibility()">
+      <i [class]="view().passwordIconClasses" aria-hidden="true"></i>
+    </button>
+    }
+  </div>
+  }
+
+  @if (view().supportingText; as supportingText) {
+  <p [id]="view().supportingTextId" [class]="view().supportingTextClasses" [attr.role]="view().supportingTextRole">
+    {{ supportingText }}
+  </p>
+  }
+</div>
