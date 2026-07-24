@@ -220,5 +220,26 @@
         "CENTIMETER": "CM"
       }
     }
+  },
+  "WHY_US": {
+    "SECTION_TITLE": "Why Us",
+    "HEADING": "ELEVATE FITNESS WITH THE",
+    "HIGHLIGHT": "BEST WAY",
+    "HEADING_END": "POSSIBLE",
+    "DESCRIPTION": "We offer a fitness journey that's tailored to your goals, supported by professional trainers and a welcoming community. Whether it's weight loss, strength building, or overall wellness, our proven methods.",
+    "BENEFITS": {
+      "BENEFIT_1": {
+        "TITLE": "Personalized Fitness Plans",
+        "DESC": "We tailor every workout to fit your unique goals and fitness level ensuring that you make the most progress."
+      },
+      "BENEFIT_2": {
+        "TITLE": "Results-Driven Focus",
+        "DESC": "Everything we do is designed to help you achieve measurable results, whether you're aiming for weight loss."
+      },
+      "BENEFIT_3": {
+        "TITLE": "State-Of-The-Art Equipment",
+        "DESC": "We provide the latest in gym equipment, from cardio machines to free weights, designed to support every type."
+      }
+    }
   }
 }

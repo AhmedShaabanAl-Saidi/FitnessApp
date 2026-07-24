@@ -1,0 +1,121 @@
+<section class="relative overflow-hidden py-24 bg-white dark:bg-[#18181b]">
+  <div class="px-6 sm:px-12 lg:px-20">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      <div class="relative">
+        <h2
+          class="absolute -top-7 md:-top-12 inset-s-0 text-[64px] md:text-[82px] font-bold uppercase text-transparent [-webkit-text-stroke:2px_#d8d8d8] opacity-40 pointer-events-none select-none"
+        >
+          {{ 'WHY_US.SECTION_TITLE' | translate }}
+        </h2>
+
+        <div
+          class="relative z-10 flex items-center gap-2 text-primary-brand font-semibold uppercase tracking-wide"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M6.5 6.5v11" />
+            <path d="M17.5 6.5v11" />
+            <path d="M4 9v6" />
+            <path d="M20 9v6" />
+            <path d="M9 4v16" />
+            <path d="M15 4v16" />
+            <line x1="9" y1="12" x2="15" y2="12" />
+          </svg>
+
+          <span>{{ 'WHY_US.SECTION_TITLE' | translate }}</span>
+        </div>
+
+        <h1
+          class="mt-8 text-[52px] leading-tight font-black uppercase text-neutral-900 dark:text-white"
+        >
+          {{ 'WHY_US.HEADING' | translate }}
+
+          <br />
+
+          <span class="text-primary-brand">
+            {{ 'WHY_US.HIGHLIGHT' | translate }}
+          </span>
+
+          {{ 'WHY_US.HEADING_END' | translate }}
+        </h1>
+
+        <p class="mt-6 text-lg leading-9 text-neutral-600 dark:text-neutral-300 max-w-xl">
+          {{ 'WHY_US.DESCRIPTION' | translate }}
+        </p>
+
+        <div class="mt-12 space-y-10">
+          @for (item of benefits; track item.number) {
+            <div class="flex gap-6">
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-14 h-14 rounded-full bg-primary-brand text-white font-bold flex items-center justify-center"
+                >
+                  {{ item.number }}
+                </div>
+
+                @if (!$last) {
+                  <div class="w-px flex-1 bg-neutral-300 mt-3"></div>
+                }
+              </div>
+
+              <div class="pb-6">
+                <h3 class="text-2xl font-bold text-neutral-900 dark:text-white mb-3">
+                  {{ item.titleKey | translate }}
+                </h3>
+
+                <p class="text-neutral-600 dark:text-neutral-300 leading-8 max-w-lg">
+                  {{ item.descKey | translate }}
+                </p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-5">
+        <div class="space-y-5">
+          <div class="overflow-hidden rounded-3xl h-[360px] shadow-xl">
+            <img
+              src="/images/WhyUs/fit1.jpg"
+              class="w-full h-full object-cover hover:scale-105 transition duration-500"
+              alt=""
+            />
+          </div>
+
+          <div class="overflow-hidden rounded-3xl h-[300px] shadow-xl">
+            <img
+              src="/images/WhyUs/fit2.png"
+              class="w-full h-full object-cover hover:scale-105 transition duration-500"
+              alt=""
+            />
+          </div>
+        </div>
+
+        <div class="space-y-5 pt-12">
+          <div class="overflow-hidden rounded-3xl h-[300px] shadow-xl">
+            <img
+              src="/images/WhyUs/fit3.png"
+              class="w-full h-full object-cover hover:scale-105 transition duration-500"
+              alt=""
+            />
+          </div>
+
+          <div class="overflow-hidden rounded-3xl h-[360px] shadow-xl">
+            <img
+              src=" /images/WhyUs/fit4.jpg"
+              class="w-full h-full object-cover hover:scale-105 transition duration-500"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
