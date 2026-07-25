@@ -255,5 +255,32 @@
     "INGREDIENTS": "المكونات",
     "INSTRUCTIONS": "طريقة التحضير",
     "WATCH_VIDEO": "شاهد على يوتيوب"
+  },
+  "PROFILE": {
+    "TITLE": "الملف الشخصي",
+    "YOUR_GOAL": "هدفُك",
+    "LEVEL": "المستوى",
+    "WEIGHT": "الوزن",
+    "TAP_TO_CHANGE": "اضغط للتغيير",
+    "CHANGE_PASSWORD": "تغيير كلمة المرور",
+    "SELECT_LANGUAGE": "اختر اللغة",
+    "MOOD": "المظهر",
+    "DARK": "داكن",
+    "LIGHT": "فاتح",
+    "SECURITY": "الأمان",
+    "PRIVACY_POLICY": "سياسة الخصوصية",
+    "HELP": "المساعدة",
+    "LOGOUT": "تسجيل الخروج",
+    "UPDATE": "تحديث",
+    "SAVE": "حفظ",
+    "CANCEL": "إلغاء",
+    "CLOSE": "إغلاق",
+    "SELECT_YOUR_GOAL": "اختر هدفك",
+    "SELECT_YOUR_LEVEL": "اختر مستوى نشاطك البدني",
+    "UPDATE_YOUR_WEIGHT": "تحديث الوزن",
+    "CURRENT_PASSWORD": "كلمة المرور الحالية",
+    "NEW_PASSWORD": "كلمة المرور الجديدة",
+    "CONFIRM_NEW_PASSWORD": "تأكيد كلمة المرور الجديدة",
+    "PASSWORD_CHANGED_SUCCESS": "تم تغيير كلمة المرور بنجاح"
   }
 }

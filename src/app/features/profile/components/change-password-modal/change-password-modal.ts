@@ -1,29 +1,32 @@
-import { Component, DestroyRef, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, DestroyRef, EventEmitter, inject, Output } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { Button } from '../../../shared/components/button/button';
-import { Input as InputComponent } from '../../../shared/components/input/input';
-import { getConfirmPasswordError, passwordsMatchValidator } from '../../../shared/utils/form-validators';
-import { AuthService } from '../services/auth.service';
+import { Button } from '../../../../shared/components/button/button';
+import { Input as InputComponent } from '../../../../shared/components/input/input';
+import { getConfirmPasswordError, passwordsMatchValidator } from '../../../../shared/utils/form-validators';
+import { AuthService } from '../../../auth/services/auth.service';
+import { TokenService } from '../../../auth/services/token.service';
 
 @Component({
-  selector: 'app-reset-password',
+  selector: 'app-change-password-modal',
   imports: [ReactiveFormsModule, TranslatePipe, Button, InputComponent],
-  templateUrl: './reset-password.html',
+  templateUrl: './change-password-modal.html',
 })
-export class ResetPassword {
-  @Input() email?: string;
-  @Output() success = new EventEmitter<void>();
+export class ChangePasswordModal {
+  @Output() closeModal = new EventEmitter<void>();
 
   private readonly authService = inject(AuthService);
-  private readonly router = inject(Router);
+  private readonly tokenService = inject(TokenService);
   private readonly destroyRef = inject(DestroyRef);
 
-  protected readonly form = new FormGroup(
+  readonly form = new FormGroup(
     {
       password: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required],
+      }),
+      newPassword: new FormControl('', {
         nonNullable: true,
         validators: [Validators.required, Validators.minLength(8)],
       }),
@@ -32,22 +35,25 @@ export class ResetPassword {
         validators: Validators.required,
       }),
     },
-    { validators: passwordsMatchValidator() },
+    { validators: passwordsMatchValidator('newPassword', 'confirmation') },
   );
 
   protected showError(control: AbstractControl): boolean {
     return control.invalid && (control.dirty || control.touched);
   }
 
-  protected passwordError(): string {
-    return this.form.controls.password.hasError('required')
+  protected currentPasswordError(): string {
+    return 'AUTH.VALIDATION.PASSWORD_REQUIRED';
+  }
+
+  protected newPasswordError(): string {
+    return this.form.controls.newPassword.hasError('required')
       ? 'AUTH.VALIDATION.PASSWORD_REQUIRED'
       : 'AUTH.VALIDATION.PASSWORD_MIN';
   }
 
   protected confirmationInvalid(): boolean {
     const control = this.form.controls.confirmation;
-
     return (
       (control.touched || control.dirty) &&
       (control.hasError('required') || this.form.hasError('passwordMismatch'))
@@ -58,26 +64,28 @@ export class ResetPassword {
     return getConfirmPasswordError(this.form.controls.confirmation);
   }
 
-  protected submit(): void {
+  submitChangePassword(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
 
-    const { password } = this.form.getRawValue();
-    const targetEmail = this.email || history.state?.email || '';
+    const { password, newPassword } = this.form.getRawValue();
 
     this.authService
-      .resetPassword(targetEmail, password)
+      .changePassword({ password, newPassword })
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
-        next: () => {
-          if (this.success.observed) {
-            this.success.emit();
-          } else {
-            void this.router.navigateByUrl('/auth/login');
+        next: (res) => {
+          if (res?.token) {
+            this.tokenService.setToken(res.token);
           }
+          this.closeModal.emit();
         },
       });
+  }
+
+  onClose(): void {
+    this.closeModal.emit();
   }
 }

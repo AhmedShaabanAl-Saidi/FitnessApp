@@ -1,0 +1,75 @@
+<div
+  class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md transition-opacity duration-300"
+  (click)="onClose()">
+  <div
+    class="relative w-full max-w-md overflow-hidden rounded-3xl bg-neutral-900 border border-neutral-800 shadow-2xl text-white p-6 md:p-8 space-y-6"
+    (click)="$event.stopPropagation()">
+    <button type="button" (click)="onClose()"
+      class="absolute top-4 right-4 z-20 grid size-9 place-items-center rounded-full bg-neutral-800/80 text-neutral-400 hover:text-white hover:bg-neutral-700 transition-colors"
+      aria-label="Close modal">
+      <i class="pi pi-times text-lg"></i>
+    </button>
+
+    <div class="text-center space-y-2">
+      <h2 class="text-xl font-bold tracking-tight text-white">
+        @if (type === 'goal') {
+        {{ 'PROFILE.SELECT_YOUR_GOAL' | translate }}
+        } @else if (type === 'level') {
+        {{ 'PROFILE.SELECT_YOUR_LEVEL' | translate }}
+        } @else {
+        {{ 'PROFILE.UPDATE_YOUR_WEIGHT' | translate }}
+        }
+      </h2>
+    </div>
+
+    @if (type === 'goal') {
+    <div class="space-y-3 max-h-[300px] overflow-y-auto pr-1">
+      @for (opt of goalOptions; track opt.id) {
+      <button type="button" (click)="selectedValue.set(opt.id)"
+        [class.border-primary-brand]="selectedValue() === opt.id"
+        [class.bg-primary-brand/10]="selectedValue() === opt.id" [class.text-primary-brand]="selectedValue() === opt.id"
+        class="w-full text-left p-4 rounded-xl border border-neutral-800 bg-neutral-950/60 hover:border-neutral-700 transition-all font-medium flex items-center justify-between">
+        <span>{{ opt.labelKey | translate }}</span>
+        @if (selectedValue() === opt.id) {
+        <i class="pi pi-check text-primary-brand"></i>
+        }
+      </button>
+      }
+    </div>
+    }
+
+    @if (type === 'level') {
+    <div class="space-y-3 max-h-[300px] overflow-y-auto pr-1">
+      @for (level of activityLevels(); track level._id) {
+      <button type="button" (click)="selectedValue.set(level.name)"
+        [class.border-primary-brand]="selectedValue() === level.name"
+        [class.bg-primary-brand/10]="selectedValue() === level.name"
+        [class.text-primary-brand]="selectedValue() === level.name"
+        class="w-full text-left p-4 rounded-xl border border-neutral-800 bg-neutral-950/60 hover:border-neutral-700 transition-all font-medium flex items-center justify-between">
+        <span>{{ level.name }}</span>
+        @if (selectedValue() === level.name) {
+        <i class="pi pi-check text-primary-brand"></i>
+        }
+      </button>
+      }
+    </div>
+    }
+
+    @if (type === 'weight') {
+    <div class="py-6 flex flex-col items-center justify-center">
+      <app-number-picker id="profile-weight-picker" [ariaLabel]="'AUTH.ONBOARDING.WEIGHT.SELECTED_LABEL' | translate"
+        [min]="30" [max]="200" [unit]="'AUTH.ONBOARDING.UNITS.KILOGRAM' | translate" [ngModel]="selectedValue()"
+        (ngModelChange)="selectedValue.set($event)" [ngModelOptions]="{ standalone: true }" />
+    </div>
+    }
+
+    <div class="flex gap-3 pt-2">
+      <app-button variant="outline" [fullWidth]="true" (click)="onClose()">
+        {{ 'PROFILE.CANCEL' | translate }}
+      </app-button>
+      <app-button variant="solid" [fullWidth]="true" (click)="onSave()">
+        {{ 'PROFILE.SAVE' | translate }}
+      </app-button>
+    </div>
+  </div>
+</div>

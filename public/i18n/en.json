@@ -255,5 +255,32 @@
     "INGREDIENTS": "Ingredients",
     "INSTRUCTIONS": "Instructions",
     "WATCH_VIDEO": "Watch on YouTube"
+  },
+  "PROFILE": {
+    "TITLE": "Profile",
+    "YOUR_GOAL": "Your Goal",
+    "LEVEL": "Level",
+    "WEIGHT": "Weight",
+    "TAP_TO_CHANGE": "TAP TO CHANGE",
+    "CHANGE_PASSWORD": "Change Password",
+    "SELECT_LANGUAGE": "Select Language",
+    "MOOD": "Mood",
+    "DARK": "Dark",
+    "LIGHT": "Light",
+    "SECURITY": "Security",
+    "PRIVACY_POLICY": "Privacy Policy",
+    "HELP": "Help",
+    "LOGOUT": "Logout",
+    "UPDATE": "Update",
+    "SAVE": "Save",
+    "CANCEL": "Cancel",
+    "CLOSE": "Close",
+    "SELECT_YOUR_GOAL": "Select Your Goal",
+    "SELECT_YOUR_LEVEL": "Select Your Activity Level",
+    "UPDATE_YOUR_WEIGHT": "Update Your Weight",
+    "CURRENT_PASSWORD": "Current Password",
+    "NEW_PASSWORD": "New Password",
+    "CONFIRM_NEW_PASSWORD": "Confirm New Password",
+    "PASSWORD_CHANGED_SUCCESS": "Password changed successfully"
   }
 }

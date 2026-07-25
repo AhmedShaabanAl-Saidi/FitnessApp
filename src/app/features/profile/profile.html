@@ -1,0 +1,171 @@
+<main
+  class="relative min-h-screen overflow-x-hidden bg-[#121214] text-white pt-28 pb-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
+  <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+    <img src="images/auth/authlayout-bg.png" alt=""
+      class="scale-110 object-cover object-center blur-2xl brightness-[0.22] saturate-50 w-full h-full" />
+    <div class="absolute inset-0 bg-[#121214]/65"></div>
+    <div
+      class="absolute inset-0 bg-[radial-gradient(circle_at_50%_25%,rgba(255,255,255,0.08),transparent_40%),linear-gradient(115deg,rgba(255,65,0,0.12),transparent_50%)]">
+    </div>
+  </div>
+
+  <div class="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center space-y-12">
+
+    <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 justify-items-center">
+
+      <div class="flex flex-col items-center text-center space-y-3 w-full max-w-[260px]">
+        <div>
+          <h2 class="text-3xl font-extrabold tracking-tight text-white">
+            {{ 'PROFILE.YOUR_GOAL' | translate }}
+          </h2>
+          <button type="button" (click)="openEditPreference('goal')"
+            class="mt-1 text-[11px] font-bold tracking-widest text-white/80 uppercase underline underline-offset-4 hover:text-primary-brand transition-colors cursor-pointer block mx-auto">
+            {{ 'PROFILE.TAP_TO_CHANGE' | translate }}
+          </button>
+        </div>
+
+        <button type="button" (click)="openEditPreference('goal')"
+          class="w-full py-3 px-6 rounded-full bg-primary-brand hover:bg-primary-brand-hover text-white font-bold text-sm flex items-center justify-between shadow-[0_4px_20px_rgba(255,65,0,0.35)] transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer">
+          <span class="truncate">{{ goal() }}</span>
+          <i class="pi pi-sync text-base ml-2"></i>
+        </button>
+      </div>
+
+      <div class="flex flex-col items-center text-center space-y-3 w-full max-w-[260px]">
+        <div>
+          <h2 class="text-3xl font-extrabold tracking-tight text-white">
+            {{ 'PROFILE.LEVEL' | translate }}
+          </h2>
+          <button type="button" (click)="openEditPreference('level')"
+            class="mt-1 text-[11px] font-bold tracking-widest text-white/80 uppercase underline underline-offset-4 hover:text-primary-brand transition-colors cursor-pointer block mx-auto">
+            {{ 'PROFILE.TAP_TO_CHANGE' | translate }}
+          </button>
+        </div>
+
+        <button type="button" (click)="openEditPreference('level')"
+          class="w-full py-3 px-6 rounded-full bg-primary-brand hover:bg-primary-brand-hover text-white font-bold text-sm flex items-center justify-between shadow-[0_4px_20px_rgba(255,65,0,0.35)] transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer">
+          <span class="truncate">{{ level() }}</span>
+          <i class="pi pi-sync text-base ml-2"></i>
+        </button>
+      </div>
+
+      <div class="flex flex-col items-center text-center space-y-3 w-full max-w-[260px]">
+        <div>
+          <h2 class="text-3xl font-extrabold tracking-tight text-white">
+            {{ 'PROFILE.WEIGHT' | translate }}
+          </h2>
+          <button type="button" (click)="openEditPreference('weight')"
+            class="mt-1 text-[11px] font-bold tracking-widest text-white/80 uppercase underline underline-offset-4 hover:text-primary-brand transition-colors cursor-pointer block mx-auto">
+            {{ 'PROFILE.TAP_TO_CHANGE' | translate }}
+          </button>
+        </div>
+
+        <button type="button" (click)="openEditPreference('weight')"
+          class="w-full py-3 px-6 rounded-full bg-primary-brand hover:bg-primary-brand-hover text-white font-bold text-sm flex items-center justify-between shadow-[0_4px_20px_rgba(255,65,0,0.35)] transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer">
+          <span>{{ weight() }} Kg</span>
+          <i class="pi pi-sync text-base ml-2"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <div class="w-full max-w-3xl flex flex-col items-center space-y-6">
+
+      <div class="w-full grid grid-cols-1 sm:grid-cols-3 gap-6 justify-items-center">
+
+        <div (click)="openChangePassword()"
+          class="w-full max-w-[240px] aspect-square rounded-[24px] border border-white/20 bg-[#1c1c1e]/60 backdrop-blur-xl p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary-brand hover:bg-[#252528]/80 transition-all duration-300 group shadow-xl">
+          <i
+            class="pi pi-sync !text-[28px] text-primary-brand mb-5 group-hover:rotate-180 transition-transform duration-500"></i>
+          <span class="font-bold text-white text-base leading-snug group-hover:text-primary-brand transition-colors">
+            {{ 'PROFILE.CHANGE_PASSWORD' | translate }}
+          </span>
+        </div>
+
+        <div (click)="toggleLanguage()"
+          class="w-full max-w-[240px] aspect-square rounded-[24px] border border-white/20 bg-[#1c1c1e]/60 backdrop-blur-xl p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary-brand hover:bg-[#252528]/80 transition-all duration-300 group shadow-xl">
+          <i
+            class="pi pi-globe !text-[28px] text-primary-brand mb-5 group-hover:scale-110 transition-transform duration-200"></i>
+          <div class="font-bold text-white text-base leading-snug">
+            {{ 'PROFILE.SELECT_LANGUAGE' | translate }}
+          </div>
+          <div class="text-sm font-bold text-primary-brand mt-1">
+            ({{ currentLangLabel() }})
+          </div>
+        </div>
+
+        <div (click)="toggleTheme()"
+          class="w-full max-w-[240px] aspect-square rounded-[24px] border border-white/20 bg-[#1c1c1e]/60 backdrop-blur-xl p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary-brand hover:bg-[#252528]/80 transition-all duration-300 group shadow-xl">
+          <i
+            class="pi pi-moon !text-[28px] text-primary-brand mb-4 group-hover:scale-110 transition-transform duration-200"></i>
+          <div class="font-bold text-white text-base leading-snug mb-3">
+            {{ 'PROFILE.MOOD' | translate }}
+            (<span class="text-primary-brand">{{ isDarkMode() ? ('PROFILE.DARK' | translate) : ('PROFILE.LIGHT' |
+              translate) }}</span>)
+          </div>
+
+          <div class="w-12 h-6 rounded-full transition-colors duration-200 relative p-1 flex items-center"
+            [class.bg-primary-brand]="isDarkMode()" [class.bg-neutral-600]="!isDarkMode()">
+            <div class="w-4 h-4 rounded-full bg-white transition-transform duration-200 transform"
+              [class.translate-x-6]="isDarkMode()" [class.translate-x-0]="!isDarkMode()"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="w-full grid grid-cols-1 sm:grid-cols-3 gap-6 justify-items-center">
+
+        <div
+          class="w-full max-w-[240px] aspect-square rounded-[24px] border border-white/20 bg-[#1c1c1e]/60 backdrop-blur-xl p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary-brand hover:bg-[#252528]/80 transition-all duration-300 group shadow-xl">
+          <i
+            class="pi pi-cog !text-[28px] text-primary-brand mb-5 group-hover:rotate-90 transition-transform duration-300"></i>
+          <span class="font-bold text-white text-base leading-snug group-hover:text-primary-brand transition-colors">
+            {{ 'PROFILE.SECURITY' | translate }}
+          </span>
+        </div>
+
+        <div
+          class="w-full max-w-[240px] aspect-square rounded-[24px] border border-white/20 bg-[#1c1c1e]/60 backdrop-blur-xl p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary-brand hover:bg-[#252528]/80 transition-all duration-300 group shadow-xl">
+          <i
+            class="pi pi-shield !text-[28px] text-primary-brand mb-5 group-hover:scale-110 transition-transform duration-200"></i>
+          <span class="font-bold text-white text-base leading-snug group-hover:text-primary-brand transition-colors">
+            {{ 'PROFILE.PRIVACY_POLICY' | translate }}
+          </span>
+        </div>
+
+        <div
+          class="w-full max-w-[240px] aspect-square rounded-[24px] border border-white/20 bg-[#1c1c1e]/60 backdrop-blur-xl p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary-brand hover:bg-[#252528]/80 transition-all duration-300 group shadow-xl">
+          <i
+            class="pi pi-compass !text-[28px] text-primary-brand mb-5 group-hover:scale-110 transition-transform duration-200"></i>
+          <span class="font-bold text-white text-base leading-snug group-hover:text-primary-brand transition-colors">
+            {{ 'PROFILE.HELP' | translate }}
+          </span>
+        </div>
+
+      </div>
+
+      <div class="w-full flex justify-center pt-2">
+        <div (click)="logout()"
+          class="w-full max-w-[240px] aspect-square rounded-[24px] border border-white/20 bg-[#1c1c1e]/60 backdrop-blur-xl p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary-brand hover:bg-[#252528]/80 transition-all duration-300 group shadow-xl">
+          <i
+            class="pi pi-sign-out !text-[28px] text-primary-brand mb-5 group-hover:scale-110 transition-transform duration-200"></i>
+          <span class="font-bold text-primary-brand text-base leading-snug">
+            {{ 'PROFILE.LOGOUT' | translate }}
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+@if (isChangePasswordOpen()) {
+<app-change-password-modal (closeModal)="closeChangePassword()" />
+}
+
+@if (editPreferenceType()) {
+<app-edit-preference-modal [type]="editPreferenceType()!"
+  [currentValue]="editPreferenceType() === 'goal' ? goal() : editPreferenceType() === 'level' ? level() : weight()"
+  (savePreference)="handleSavePreference($event)" (closeModal)="closeEditPreference()" />
+}

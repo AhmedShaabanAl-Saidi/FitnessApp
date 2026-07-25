@@ -1,9 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, EventEmitter, inject, Output } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Button } from '../../../shared/components/button/button';
 import { Input } from '../../../shared/components/input/input';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -11,7 +13,11 @@ import { Input } from '../../../shared/components/input/input';
   templateUrl: './forgot-password.html',
 })
 export class ForgotPassword {
+  @Output() success = new EventEmitter<string>();
+
+  private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly destroyRef = inject(DestroyRef);
 
   protected readonly form = new FormGroup({
     email: new FormControl('', {
@@ -36,6 +42,19 @@ export class ForgotPassword {
       return;
     }
 
-    void this.router.navigateByUrl('/auth/otp');
+    const email = this.form.controls.email.value;
+
+    this.authService
+      .forgotPassword(email)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: () => {
+          if (this.success.observed) {
+            this.success.emit(email);
+          } else {
+            void this.router.navigate(['/auth/otp'], { state: { email } });
+          }
+        },
+      });
   }
 }
