@@ -1,5 +1,6 @@
 import { Component, computed, DestroyRef, inject, OnInit, signal } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
+import { switchMap } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -8,6 +9,7 @@ import { NumberPicker } from '../../../shared/components/number-picker/number-pi
 import { GOAL_OPTIONS, ONBOARDING_STEPS } from './onboarding-data';
 import { AuthService } from '../../../core/services/auth.service';
 import { TokenService } from '../../../core/services/token.service';
+import { languageService } from '../../../core/services/language-service';
 import { SignupRequest, ActivityLevel } from '../../../shared/interfaces/auth.interface';
 
 @Component({
@@ -19,6 +21,7 @@ export class Onboarding implements OnInit {
   private readonly router = inject(Router);
   private readonly authService = inject(AuthService);
   private readonly tokenService = inject(TokenService);
+  private readonly langService = inject(languageService);
   private readonly destroyRef = inject(DestroyRef);
 
   protected readonly steps = ONBOARDING_STEPS;
@@ -37,12 +40,16 @@ export class Onboarding implements OnInit {
   protected readonly goal = signal('Lose weight');
   protected readonly activity = signal('level1');
 
+  private readonly lang$ = toObservable(this.langService.currentLang);
+
   protected readonly activityLevels = signal<ActivityLevel[]>([]);
 
   ngOnInit(): void {
-    this.authService
-      .getActivityLevels()
-      .pipe(takeUntilDestroyed(this.destroyRef))
+    this.lang$
+      .pipe(
+        switchMap(() => this.authService.getActivityLevels()),
+        takeUntilDestroyed(this.destroyRef),
+      )
       .subscribe({
         next: (res) => {
           this.activityLevels.set(res.levels.slice(0, 5));
