@@ -2,57 +2,53 @@
   class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md transition-opacity duration-300"
   (click)="onClose()">
   <div
-    class="relative w-full max-w-3xl overflow-hidden rounded-3xl bg-neutral-900 border border-neutral-800 shadow-2xl text-white p-6 sm:p-8 space-y-6 max-h-[85vh] overflow-y-auto"
+    class="relative w-full max-w-3xl overflow-hidden rounded-3xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 shadow-2xl text-neutral-900 dark:text-white p-6 sm:p-8 space-y-6 max-h-[85vh] overflow-y-auto"
     (click)="$event.stopPropagation()">
     <button type="button" (click)="onClose()"
-      class="absolute top-4 right-4 z-20 grid size-9 place-items-center rounded-full bg-neutral-800/80 text-neutral-400 hover:text-white hover:bg-neutral-700 transition-colors"
+      class="absolute top-4 right-4 z-20 grid size-9 place-items-center rounded-full bg-neutral-200 dark:bg-neutral-800/80 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
       aria-label="Close modal">
       <i class="pi pi-times text-lg"></i>
     </button>
 
     <div class="text-center space-y-2 pt-2">
-      <div
-        class="inline-grid size-14 place-items-center rounded-2xl bg-primary-brand/15 border border-primary-brand/30 shadow-[0_0_25px_rgba(255,65,0,0.2)] mx-auto">
+      <div class="inline-grid size-14 place-items-center rounded-2xl bg-primary-brand/15 border border-primary-brand/30 shadow-[0_0_25px_rgba(255,65,0,0.2)] mx-auto">
         <i class="pi pi-shield text-2xl text-primary-brand"></i>
       </div>
-      <h2 class="text-2xl font-bold tracking-tight text-white">
+      <h2 class="text-2xl font-bold tracking-tight text-neutral-900 dark:text-white">
         {{ 'PRIVACY_PAGE.TITLE' | translate }}
       </h2>
-      <p class="text-neutral-400 text-xs sm:text-sm max-w-md mx-auto">
+      <p class="text-neutral-600 dark:text-neutral-400 text-xs sm:text-sm max-w-md mx-auto">
         {{ 'PRIVACY_PAGE.SUBTITLE' | translate }}
       </p>
     </div>
 
     <div class="space-y-4 pt-2">
-      <section class="rounded-2xl border border-neutral-800 bg-neutral-950/60 p-5 space-y-2">
-        <h3 class="font-bold text-white text-base flex items-center gap-3">
-          <span
-            class="size-6 rounded-md bg-primary-brand/20 text-primary-brand text-xs font-black grid place-items-center">01</span>
+      <section class="rounded-2xl border border-neutral-300 dark:border-neutral-800 bg-neutral-200/70 dark:bg-neutral-950/60 p-5 space-y-2">
+        <h3 class="font-bold text-neutral-900 dark:text-white text-base flex items-center gap-3">
+          <span class="size-6 rounded-md bg-primary-brand/20 text-primary-brand text-xs font-black grid place-items-center">01</span>
           {{ 'PRIVACY_PAGE.SEC1_TITLE' | translate }}
         </h3>
-        <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed">
           {{ 'PRIVACY_PAGE.SEC1_DESC' | translate }}
         </p>
       </section>
 
-      <section class="rounded-2xl border border-neutral-800 bg-neutral-950/60 p-5 space-y-2">
-        <h3 class="font-bold text-white text-base flex items-center gap-3">
-          <span
-            class="size-6 rounded-md bg-primary-brand/20 text-primary-brand text-xs font-black grid place-items-center">02</span>
+      <section class="rounded-2xl border border-neutral-300 dark:border-neutral-800 bg-neutral-200/70 dark:bg-neutral-950/60 p-5 space-y-2">
+        <h3 class="font-bold text-neutral-900 dark:text-white text-base flex items-center gap-3">
+          <span class="size-6 rounded-md bg-primary-brand/20 text-primary-brand text-xs font-black grid place-items-center">02</span>
           {{ 'PRIVACY_PAGE.SEC2_TITLE' | translate }}
         </h3>
-        <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed">
           {{ 'PRIVACY_PAGE.SEC2_DESC' | translate }}
         </p>
       </section>
 
-      <section class="rounded-2xl border border-neutral-800 bg-neutral-950/60 p-5 space-y-2">
-        <h3 class="font-bold text-white text-base flex items-center gap-3">
-          <span
-            class="size-6 rounded-md bg-primary-brand/20 text-primary-brand text-xs font-black grid place-items-center">03</span>
+      <section class="rounded-2xl border border-neutral-300 dark:border-neutral-800 bg-neutral-200/70 dark:bg-neutral-950/60 p-5 space-y-2">
+        <h3 class="font-bold text-neutral-900 dark:text-white text-base flex items-center gap-3">
+          <span class="size-6 rounded-md bg-primary-brand/20 text-primary-brand text-xs font-black grid place-items-center">03</span>
           {{ 'PRIVACY_PAGE.SEC3_TITLE' | translate }}
         </h3>
-        <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed">
           {{ 'PRIVACY_PAGE.SEC3_DESC' | translate }}
         </p>
       </section>

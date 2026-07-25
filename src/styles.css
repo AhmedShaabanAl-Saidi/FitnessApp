@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 @import 'primeicons/primeicons.css';
 @custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-primary-brand: #ff4100;
   --color-primary-brand-hover: var(--color-orange-700);
@@ -10,8 +11,20 @@
     from {
       transform: translateX(0%);
     }
+
     to {
       transform: translateX(-100%);
     }
   }
+}
+
+body {
+  background-color: #d0d3d7;
+  color: #171717;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark body {
+  background-color: #121214;
+  color: #ffffff;
 }

@@ -1,11 +1,11 @@
 <main
-  class="relative min-h-screen overflow-x-hidden bg-[#121214] text-white pt-28 pb-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
+  class="relative min-h-screen overflow-x-hidden bg-[#d0d3d7] dark:bg-[#121214] text-neutral-900 dark:text-white pt-28 pb-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center transition-colors duration-300">
   <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
     <img src="images/auth/authlayout-bg.png" alt=""
-      class="scale-110 object-cover object-center blur-2xl brightness-[0.22] saturate-50 w-full h-full" />
-    <div class="absolute inset-0 bg-[#121214]/65"></div>
+      class="scale-110 object-cover object-center blur-2xl opacity-20 dark:opacity-100 dark:brightness-[0.22] dark:saturate-50 w-full h-full" />
+    <div class="absolute inset-0 bg-neutral-200/40 dark:bg-[#121214]/65"></div>
     <div
-      class="absolute inset-0 bg-[radial-gradient(circle_at_50%_25%,rgba(255,255,255,0.08),transparent_40%),linear-gradient(115deg,rgba(255,65,0,0.12),transparent_50%)]">
+      class="absolute inset-0 bg-[radial-gradient(circle_at_50%_25%,rgba(255,255,255,0.6),transparent_50%)] dark:bg-[radial-gradient(circle_at_50%_25%,rgba(255,255,255,0.08),transparent_40%),linear-gradient(115deg,rgba(255,65,0,0.12),transparent_50%)]">
     </div>
   </div>
 
@@ -15,11 +15,11 @@
 
       <div class="flex flex-col items-center text-center space-y-3 w-full max-w-[260px]">
         <div>
-          <h2 class="text-3xl font-extrabold tracking-tight text-white">
+          <h2 class="text-3xl font-extrabold tracking-tight text-neutral-900 dark:text-white">
             {{ 'PROFILE.YOUR_GOAL' | translate }}
           </h2>
           <button type="button" (click)="openEditPreference('goal')"
-            class="mt-1 text-[11px] font-bold tracking-widest text-white/80 uppercase underline underline-offset-4 hover:text-primary-brand transition-colors cursor-pointer block mx-auto">
+            class="mt-1 text-[11px] font-bold tracking-widest text-neutral-600 dark:text-white/80 uppercase underline underline-offset-4 hover:text-primary-brand transition-colors cursor-pointer block mx-auto">
             {{ 'PROFILE.TAP_TO_CHANGE' | translate }}
           </button>
         </div>
@@ -33,11 +33,11 @@
 
       <div class="flex flex-col items-center text-center space-y-3 w-full max-w-[260px]">
         <div>
-          <h2 class="text-3xl font-extrabold tracking-tight text-white">
+          <h2 class="text-3xl font-extrabold tracking-tight text-neutral-900 dark:text-white">
             {{ 'PROFILE.LEVEL' | translate }}
           </h2>
           <button type="button" (click)="openEditPreference('level')"
-            class="mt-1 text-[11px] font-bold tracking-widest text-white/80 uppercase underline underline-offset-4 hover:text-primary-brand transition-colors cursor-pointer block mx-auto">
+            class="mt-1 text-[11px] font-bold tracking-widest text-neutral-600 dark:text-white/80 uppercase underline underline-offset-4 hover:text-primary-brand transition-colors cursor-pointer block mx-auto">
             {{ 'PROFILE.TAP_TO_CHANGE' | translate }}
           </button>
         </div>
@@ -51,11 +51,11 @@
 
       <div class="flex flex-col items-center text-center space-y-3 w-full max-w-[260px]">
         <div>
-          <h2 class="text-3xl font-extrabold tracking-tight text-white">
+          <h2 class="text-3xl font-extrabold tracking-tight text-neutral-900 dark:text-white">
             {{ 'PROFILE.WEIGHT' | translate }}
           </h2>
           <button type="button" (click)="openEditPreference('weight')"
-            class="mt-1 text-[11px] font-bold tracking-widest text-white/80 uppercase underline underline-offset-4 hover:text-primary-brand transition-colors cursor-pointer block mx-auto">
+            class="mt-1 text-[11px] font-bold tracking-widest text-neutral-600 dark:text-white/80 uppercase underline underline-offset-4 hover:text-primary-brand transition-colors cursor-pointer block mx-auto">
             {{ 'PROFILE.TAP_TO_CHANGE' | translate }}
           </button>
         </div>
@@ -74,19 +74,19 @@
       <div class="w-full grid grid-cols-1 sm:grid-cols-3 gap-6 justify-items-center">
 
         <div (click)="openChangePassword()"
-          class="w-full max-w-[240px] aspect-square rounded-[24px] border border-white/20 bg-[#1c1c1e]/60 backdrop-blur-xl p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary-brand hover:bg-[#252528]/80 transition-all duration-300 group shadow-xl">
+          class="w-full max-w-[240px] aspect-square rounded-[24px] border border-neutral-700/50 bg-[#b8bcbf]/70 hover:bg-[#c3c7cb]/80 backdrop-blur-xl dark:border-white/20 dark:bg-[#1c1c1e]/60 dark:hover:bg-[#252528]/80 p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary-brand transition-all duration-300 group shadow-lg">
           <i
             class="pi pi-sync !text-[28px] text-primary-brand mb-5 group-hover:rotate-180 transition-transform duration-500"></i>
-          <span class="font-bold text-white text-base leading-snug group-hover:text-primary-brand transition-colors">
+          <span class="font-bold text-neutral-900 dark:text-white text-base leading-snug group-hover:text-primary-brand transition-colors">
             {{ 'PROFILE.CHANGE_PASSWORD' | translate }}
           </span>
         </div>
 
         <div (click)="toggleLanguage()"
-          class="w-full max-w-[240px] aspect-square rounded-[24px] border border-white/20 bg-[#1c1c1e]/60 backdrop-blur-xl p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary-brand hover:bg-[#252528]/80 transition-all duration-300 group shadow-xl">
+          class="w-full max-w-[240px] aspect-square rounded-[24px] border border-neutral-700/50 bg-[#b8bcbf]/70 hover:bg-[#c3c7cb]/80 backdrop-blur-xl dark:border-white/20 dark:bg-[#1c1c1e]/60 dark:hover:bg-[#252528]/80 p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary-brand transition-all duration-300 group shadow-lg">
           <i
             class="pi pi-globe !text-[28px] text-primary-brand mb-5 group-hover:scale-110 transition-transform duration-200"></i>
-          <div class="font-bold text-white text-base leading-snug">
+          <div class="font-bold text-neutral-900 dark:text-white text-base leading-snug">
             {{ 'PROFILE.SELECT_LANGUAGE' | translate }}
           </div>
           <div class="text-sm font-bold text-primary-brand mt-1">
@@ -95,17 +95,17 @@
         </div>
 
         <div (click)="toggleTheme()"
-          class="w-full max-w-[240px] aspect-square rounded-[24px] border border-white/20 bg-[#1c1c1e]/60 backdrop-blur-xl p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary-brand hover:bg-[#252528]/80 transition-all duration-300 group shadow-xl">
+          class="w-full max-w-[240px] aspect-square rounded-[24px] border border-neutral-700/50 bg-[#b8bcbf]/70 hover:bg-[#c3c7cb]/80 backdrop-blur-xl dark:border-white/20 dark:bg-[#1c1c1e]/60 dark:hover:bg-[#252528]/80 p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary-brand transition-all duration-300 group shadow-lg">
           <i
             class="pi pi-moon !text-[28px] text-primary-brand mb-4 group-hover:scale-110 transition-transform duration-200"></i>
-          <div class="font-bold text-white text-base leading-snug mb-3">
+          <div class="font-bold text-neutral-900 dark:text-white text-base leading-snug mb-3">
             {{ 'PROFILE.MOOD' | translate }}
             (<span class="text-primary-brand">{{ isDarkMode() ? ('PROFILE.DARK' | translate) : ('PROFILE.LIGHT' |
               translate) }}</span>)
           </div>
 
-          <div class="w-12 h-6 rounded-full transition-colors duration-200 relative p-1 flex items-center"
-            [class.bg-primary-brand]="isDarkMode()" [class.bg-neutral-600]="!isDarkMode()">
+          <div class="w-12 h-6 rounded-full transition-colors duration-200 relative p-1 flex items-center bg-neutral-800 dark:bg-neutral-600"
+            [class.!bg-primary-brand]="isDarkMode()">
             <div class="w-4 h-4 rounded-full bg-white transition-transform duration-200 transform"
               [class.translate-x-6]="isDarkMode()" [class.translate-x-0]="!isDarkMode()"></div>
           </div>
@@ -116,28 +116,28 @@
       <div class="w-full grid grid-cols-1 sm:grid-cols-3 gap-6 justify-items-center">
 
         <div (click)="openSecurity()"
-          class="w-full max-w-[240px] aspect-square rounded-[24px] border border-white/20 bg-[#1c1c1e]/60 backdrop-blur-xl p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary-brand hover:bg-[#252528]/80 transition-all duration-300 group shadow-xl">
+          class="w-full max-w-[240px] aspect-square rounded-[24px] border border-neutral-700/50 bg-[#b8bcbf]/70 hover:bg-[#c3c7cb]/80 backdrop-blur-xl dark:border-white/20 dark:bg-[#1c1c1e]/60 dark:hover:bg-[#252528]/80 p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary-brand transition-all duration-300 group shadow-lg">
           <i
             class="pi pi-cog !text-[28px] text-primary-brand mb-5 group-hover:rotate-90 transition-transform duration-300"></i>
-          <span class="font-bold text-white text-base leading-snug group-hover:text-primary-brand transition-colors">
+          <span class="font-bold text-neutral-900 dark:text-white text-base leading-snug group-hover:text-primary-brand transition-colors">
             {{ 'PROFILE.SECURITY' | translate }}
           </span>
         </div>
 
         <div (click)="openPrivacy()"
-          class="w-full max-w-[240px] aspect-square rounded-[24px] border border-white/20 bg-[#1c1c1e]/60 backdrop-blur-xl p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary-brand hover:bg-[#252528]/80 transition-all duration-300 group shadow-xl">
+          class="w-full max-w-[240px] aspect-square rounded-[24px] border border-neutral-700/50 bg-[#b8bcbf]/70 hover:bg-[#c3c7cb]/80 backdrop-blur-xl dark:border-white/20 dark:bg-[#1c1c1e]/60 dark:hover:bg-[#252528]/80 p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary-brand transition-all duration-300 group shadow-lg">
           <i
             class="pi pi-shield !text-[28px] text-primary-brand mb-5 group-hover:scale-110 transition-transform duration-200"></i>
-          <span class="font-bold text-white text-base leading-snug group-hover:text-primary-brand transition-colors">
+          <span class="font-bold text-neutral-900 dark:text-white text-base leading-snug group-hover:text-primary-brand transition-colors">
             {{ 'PROFILE.PRIVACY_POLICY' | translate }}
           </span>
         </div>
 
         <div (click)="openHelp()"
-          class="w-full max-w-[240px] aspect-square rounded-[24px] border border-white/20 bg-[#1c1c1e]/60 backdrop-blur-xl p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary-brand hover:bg-[#252528]/80 transition-all duration-300 group shadow-xl">
+          class="w-full max-w-[240px] aspect-square rounded-[24px] border border-neutral-700/50 bg-[#b8bcbf]/70 hover:bg-[#c3c7cb]/80 backdrop-blur-xl dark:border-white/20 dark:bg-[#1c1c1e]/60 dark:hover:bg-[#252528]/80 p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary-brand transition-all duration-300 group shadow-lg">
           <i
             class="pi pi-compass !text-[28px] text-primary-brand mb-5 group-hover:scale-110 transition-transform duration-200"></i>
-          <span class="font-bold text-white text-base leading-snug group-hover:text-primary-brand transition-colors">
+          <span class="font-bold text-neutral-900 dark:text-white text-base leading-snug group-hover:text-primary-brand transition-colors">
             {{ 'PROFILE.HELP' | translate }}
           </span>
         </div>
@@ -146,7 +146,7 @@
 
       <div class="w-full flex justify-center pt-2">
         <div (click)="logout()"
-          class="w-full max-w-[240px] aspect-square rounded-[24px] border border-white/20 bg-[#1c1c1e]/60 backdrop-blur-xl p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary-brand hover:bg-[#252528]/80 transition-all duration-300 group shadow-xl">
+          class="w-full max-w-[240px] aspect-square rounded-[24px] border border-neutral-700/50 bg-[#b8bcbf]/70 hover:bg-[#c3c7cb]/80 backdrop-blur-xl dark:border-white/20 dark:bg-[#1c1c1e]/60 dark:hover:bg-[#252528]/80 p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary-brand transition-all duration-300 group shadow-lg">
           <i
             class="pi pi-sign-out !text-[28px] text-primary-brand mb-5 group-hover:scale-110 transition-transform duration-200"></i>
           <span class="font-bold text-primary-brand text-base leading-snug">
