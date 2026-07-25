@@ -115,7 +115,7 @@
 
       <div class="w-full grid grid-cols-1 sm:grid-cols-3 gap-6 justify-items-center">
 
-        <div
+        <div (click)="openSecurity()"
           class="w-full max-w-[240px] aspect-square rounded-[24px] border border-white/20 bg-[#1c1c1e]/60 backdrop-blur-xl p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary-brand hover:bg-[#252528]/80 transition-all duration-300 group shadow-xl">
           <i
             class="pi pi-cog !text-[28px] text-primary-brand mb-5 group-hover:rotate-90 transition-transform duration-300"></i>
@@ -124,7 +124,7 @@
           </span>
         </div>
 
-        <div
+        <div (click)="openPrivacy()"
           class="w-full max-w-[240px] aspect-square rounded-[24px] border border-white/20 bg-[#1c1c1e]/60 backdrop-blur-xl p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary-brand hover:bg-[#252528]/80 transition-all duration-300 group shadow-xl">
           <i
             class="pi pi-shield !text-[28px] text-primary-brand mb-5 group-hover:scale-110 transition-transform duration-200"></i>
@@ -133,7 +133,7 @@
           </span>
         </div>
 
-        <div
+        <div (click)="openHelp()"
           class="w-full max-w-[240px] aspect-square rounded-[24px] border border-white/20 bg-[#1c1c1e]/60 backdrop-blur-xl p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary-brand hover:bg-[#252528]/80 transition-all duration-300 group shadow-xl">
           <i
             class="pi pi-compass !text-[28px] text-primary-brand mb-5 group-hover:scale-110 transition-transform duration-200"></i>
@@ -168,4 +168,16 @@
 <app-edit-preference-modal [type]="editPreferenceType()!"
   [currentValue]="editPreferenceType() === 'goal' ? goal() : editPreferenceType() === 'level' ? level() : weight()"
   (savePreference)="handleSavePreference($event)" (closeModal)="closeEditPreference()" />
+}
+
+@if (isSecurityOpen()) {
+<app-security-modal (closeModal)="closeSecurity()" />
+}
+
+@if (isPrivacyOpen()) {
+<app-privacy-policy-modal (closeModal)="closePrivacy()" />
+}
+
+@if (isHelpOpen()) {
+<app-help-modal (closeModal)="closeHelp()" />
 }

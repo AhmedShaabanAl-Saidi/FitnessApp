@@ -282,5 +282,50 @@
     "NEW_PASSWORD": "New Password",
     "CONFIRM_NEW_PASSWORD": "Confirm New Password",
     "PASSWORD_CHANGED_SUCCESS": "Password changed successfully"
+  },
+  "SECURITY_PAGE": {
+    "BACK_TO_PROFILE": "Back to Profile",
+    "PROTECTED": "PROTECTED",
+    "TITLE": "Security & Protection",
+    "SUBTITLE": "Learn how your fitness account and personal data are safeguarded.",
+    "ENCRYPTION_TITLE": "256-bit SSL Encryption",
+    "ENCRYPTION_TAG": "Data Transmission",
+    "ENCRYPTION_DESC": "All communication between your device and our servers is secured using state-of-the-art 256-bit SSL/TLS encryption.",
+    "PASSWORD_TITLE": "Strong Password Storage",
+    "PASSWORD_TAG": "Account Credentials",
+    "PASSWORD_DESC": "Your passwords are space-hashed using salt-fortified algorithms, ensuring nobody can access your raw password.",
+    "SESSION_TITLE": "Active Session Control",
+    "SESSION_TAG": "Authentication Tokens",
+    "SESSION_DESC": "Your authentication tokens are securely handled and validated on every request to prevent unauthorized access.",
+    "ISOLATION_TITLE": "Isolated Data Storage",
+    "ISOLATION_TAG": "User Isolation",
+    "ISOLATION_DESC": "Your physical metrics, workouts, and personal preferences remain privately isolated to your account."
+  },
+  "PRIVACY_PAGE": {
+    "BACK_TO_PROFILE": "Back to Profile",
+    "LAST_UPDATED": "Last Updated: 2026",
+    "TITLE": "Privacy Policy",
+    "SUBTITLE": "We value your trust and are committed to protecting your personal information.",
+    "SEC1_TITLE": "Information We Collect",
+    "SEC1_DESC": "We collect details such as your name, email, age, weight, and fitness goals to deliver a personalized workout experience.",
+    "SEC2_TITLE": "How We Use Your Data",
+    "SEC2_DESC": "Your data is strictly utilized to calculate health recommendations, track progress, and customize workout routines.",
+    "SEC3_TITLE": "Cookies & Preferences",
+    "SEC3_DESC": "We use lightweight cookies to remember your theme (dark/light) and language preferences across sessions."
+  },
+  "HELP_PAGE": {
+    "BACK_TO_PROFILE": "Back to Profile",
+    "SUPPORT_247": "24/7 Support",
+    "TITLE": "Help & Support",
+    "SUBTITLE": "Find quick answers or get in touch with our team.",
+    "NEED_MORE_HELP": "Have more questions?",
+    "SUPPORT_EMAIL_DESC": "Our support team is available round the clock.",
+    "CONTACT_US": "Contact Support",
+    "FAQ1_Q": "How do I update my workout goals and weight?",
+    "FAQ1_A": "Navigate to your Profile page, tap on 'Your Goal' or 'Weight' cards, select your updated numbers or level, and hit Save.",
+    "FAQ2_Q": "How can I change my password?",
+    "FAQ2_A": "In your Profile page, tap the 'Change Password' card to open the password update modal.",
+    "FAQ3_Q": "Is my physical data stored securely?",
+    "FAQ3_A": "Yes, all user data is encrypted and safely managed in our database according to international data protection standards."
   }
 }

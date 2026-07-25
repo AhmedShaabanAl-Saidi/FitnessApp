@@ -11,10 +11,21 @@ import { AuthService } from '../auth/services/auth.service';
 import { TokenService } from '../auth/services/token.service';
 import { ChangePasswordModal } from './components/change-password-modal/change-password-modal';
 import { EditPreferenceModal } from './components/edit-preference-modal/edit-preference-modal';
+import { SecurityModal } from './components/security-modal/security-modal';
+import { PrivacyPolicyModal } from './components/privacy-policy-modal/privacy-policy-modal';
+import { HelpModal } from './components/help-modal/help-modal';
 
 @Component({
   selector: 'app-profile',
-  imports: [CommonModule, TranslatePipe, ChangePasswordModal, EditPreferenceModal],
+  imports: [
+    CommonModule,
+    TranslatePipe,
+    ChangePasswordModal,
+    EditPreferenceModal,
+    SecurityModal,
+    PrivacyPolicyModal,
+    HelpModal,
+  ],
   templateUrl: './profile.html',
 })
 export class Profile {
@@ -32,6 +43,9 @@ export class Profile {
 
   readonly isChangePasswordOpen = signal<boolean>(false);
   readonly editPreferenceType = signal<'goal' | 'level' | 'weight' | null>(null);
+  readonly isSecurityOpen = signal<boolean>(false);
+  readonly isPrivacyOpen = signal<boolean>(false);
+  readonly isHelpOpen = signal<boolean>(false);
 
   readonly currentLang = this.langService.currentLang;
   readonly isDarkMode = this.themeService.isDarkMode;
@@ -54,6 +68,30 @@ export class Profile {
 
   closeEditPreference(): void {
     this.editPreferenceType.set(null);
+  }
+
+  openSecurity(): void {
+    this.isSecurityOpen.set(true);
+  }
+
+  closeSecurity(): void {
+    this.isSecurityOpen.set(false);
+  }
+
+  openPrivacy(): void {
+    this.isPrivacyOpen.set(true);
+  }
+
+  closePrivacy(): void {
+    this.isPrivacyOpen.set(false);
+  }
+
+  openHelp(): void {
+    this.isHelpOpen.set(true);
+  }
+
+  closeHelp(): void {
+    this.isHelpOpen.set(false);
   }
 
   handleSavePreference(event: { type: 'goal' | 'level' | 'weight'; value: string | number }): void {
