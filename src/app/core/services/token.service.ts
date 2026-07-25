@@ -1,19 +1,21 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { SsrCookieService } from 'ngx-cookie-service-ssr';
 
 @Injectable({ providedIn: 'root' })
 export class TokenService {
+  private readonly cookieService = inject(SsrCookieService);
   private readonly TOKEN_KEY = 'token';
 
   setToken(token: string): void {
-    localStorage.setItem(this.TOKEN_KEY, token);
+    this.cookieService.set(this.TOKEN_KEY, token, { path: '/' });
   }
 
   getToken(): string | null {
-    return localStorage.getItem(this.TOKEN_KEY);
+    return this.cookieService.get(this.TOKEN_KEY) || null;
   }
 
   removeToken(): void {
-    localStorage.removeItem(this.TOKEN_KEY);
+    this.cookieService.delete(this.TOKEN_KEY, '/');
   }
 
   isLoggedIn(): boolean {
