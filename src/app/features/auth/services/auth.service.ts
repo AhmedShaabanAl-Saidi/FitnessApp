@@ -1,8 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
-import { ActivityLevelsResponse, SigninRequest, SignupRequest, SignupResponse } from '../../shared/interfaces/auth.interface';
+import { environment } from '../../../../environments/environment';
+import {
+  ActivityLevelsResponse,
+  SigninRequest,
+  SignupRequest,
+  SignupResponse,
+} from '../interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

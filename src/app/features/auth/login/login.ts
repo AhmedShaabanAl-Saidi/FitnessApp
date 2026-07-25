@@ -6,8 +6,8 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { Button } from '../../../shared/components/button/button';
 import { Input } from '../../../shared/components/input/input';
 import { AuthSocialLogin } from '../components/auth-social-login/auth-social-login';
-import { AuthService } from '../../../core/services/auth.service';
-import { TokenService } from '../../../core/services/token.service';
+import { AuthService } from '../services/auth.service';
+import { TokenService } from '../services/token.service';
 
 @Component({
   selector: 'app-login',

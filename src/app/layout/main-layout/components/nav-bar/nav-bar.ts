@@ -5,7 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { DrawerModule } from 'primeng/drawer';
 import { Button } from '../../../../shared/components/button/button';
 import { TranslatePipe } from '@ngx-translate/core';
-import { TokenService } from '../../../../core/services/token.service';
+import { TokenService } from '../../../../features/auth/services/token.service';
 
 @Component({
   selector: 'app-nav-bar',

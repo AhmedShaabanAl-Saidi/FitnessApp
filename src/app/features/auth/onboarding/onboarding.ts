@@ -7,11 +7,11 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { Button } from '../../../shared/components/button/button';
 import { NumberPicker } from '../../../shared/components/number-picker/number-picker';
 import { GOAL_OPTIONS, ONBOARDING_STEPS } from './onboarding-data';
-import { AuthService } from '../../../core/services/auth.service';
-import { TokenService } from '../../../core/services/token.service';
+import { AuthService } from '../services/auth.service';
+import { TokenService } from '../services/token.service';
 import { languageService } from '../../../core/services/language-service';
-import { SignupRequest, ActivityLevel } from '../../../shared/interfaces/auth.interface';
-import { Gender } from '../../../shared/enums/gender.enum';
+import { SignupRequest, ActivityLevel } from '../interfaces';
+import { Gender } from '../enums/gender.enum';
 
 @Component({
   selector: 'app-onboarding',
