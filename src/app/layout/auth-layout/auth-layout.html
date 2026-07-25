@@ -10,21 +10,6 @@
     </div>
   </div>
 
-  <nav
-    class="absolute inset-e-4 top-4 z-30 flex gap-1 rounded-full border border-white/25 bg-black/30 p-1 backdrop-blur-md"
-    dir="ltr" [attr.aria-label]="'AUTH.COMMON.LANGUAGE' | translate">
-    @for (language of languages; track language.code) {
-    <button type="button"
-      class="min-w-9 cursor-pointer rounded-full px-2 py-1 text-xs font-bold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-brand"
-      [class.bg-primary-brand]="currentLanguage() === language.code"
-      [class.text-white]="currentLanguage() === language.code"
-      [class.text-white/65]="currentLanguage() !== language.code" [attr.aria-label]="language.nameKey | translate"
-      [attr.aria-pressed]="currentLanguage() === language.code" (click)="changeLanguage(language.code)">
-      {{ language.label }}
-    </button>
-    }
-  </nav>
-
   <div class="relative z-10 grid min-h-dvh grid-cols-1 lg:grid-cols-2">
     <div class="relative hidden min-h-dvh overflow-hidden border-e border-primary-brand/25 lg:block">
       <a routerLink="/home" class="cursor-pointer">
@@ -104,4 +89,6 @@
       </div>
     </section>
   </div>
+
+  <app-floating-controls />
 </main>
