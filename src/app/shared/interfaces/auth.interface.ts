@@ -12,6 +12,11 @@ export interface SignupRequest {
   activityLevel: string;
 }
 
+export interface SigninRequest {
+  email: string;
+  password: string;
+}
+
 export interface User {
   firstName: string;
   lastName: string;
