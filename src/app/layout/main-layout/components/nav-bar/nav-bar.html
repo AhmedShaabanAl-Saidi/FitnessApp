@@ -6,7 +6,9 @@
   [class.shadow-lg]="isScrolled()"
 >
   <div class="flex items-center">
-    <img src="images/logo.png" alt="Super Fitness Logo" class="h-13.75 w-auto" />
+    <a routerLink="/home" class="cursor-pointer">
+      <img src="images/logo.png" alt="Super Fitness Logo" class="h-13.75 w-auto" />
+    </a>
   </div>
 
   <ul class="hidden md:flex items-center gap-6 font-bold text-neutral-800 dark:text-neutral-100">
@@ -71,7 +73,9 @@
 >
   <ng-template #header>
     <div class="flex items-center py-2">
-      <img src="images/logo.png" alt="Super Fitness Logo" class="h-15 w-auto" />
+      <a routerLink="/home" (click)="mobileMenuVisible.set(false)" class="cursor-pointer">
+        <img src="images/logo.png" alt="Super Fitness Logo" class="h-15 w-auto" />
+      </a>
     </div>
   </ng-template>
 

@@ -7,10 +7,11 @@ import { Input as InputComponent } from '../../../../shared/components/input/inp
 import { getConfirmPasswordError, passwordsMatchValidator } from '../../../../shared/utils/form-validators';
 import { AuthService } from '../../../auth/services/auth.service';
 import { TokenService } from '../../../auth/services/token.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-change-password-modal',
-  imports: [ReactiveFormsModule, TranslatePipe, Button, InputComponent],
+  imports: [ReactiveFormsModule, TranslatePipe, Button, InputComponent, RouterLink],
   templateUrl: './change-password-modal.html',
 })
 export class ChangePasswordModal {
