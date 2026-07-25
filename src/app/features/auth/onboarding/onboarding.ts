@@ -11,6 +11,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { TokenService } from '../../../core/services/token.service';
 import { languageService } from '../../../core/services/language-service';
 import { SignupRequest, ActivityLevel } from '../../../shared/interfaces/auth.interface';
+import { Gender } from '../../../shared/enums/gender.enum';
 
 @Component({
   selector: 'app-onboarding',
@@ -36,7 +37,8 @@ export class Onboarding implements OnInit {
   protected readonly age = signal(25);
   protected readonly weight = signal(90);
   protected readonly height = signal(167);
-  protected readonly gender = signal<'male' | 'female'>('male');
+  protected readonly Gender = Gender;
+  protected readonly gender = signal<Gender>(Gender.MALE);
   protected readonly goal = signal('Lose weight');
   protected readonly activity = signal('level1');
 

@@ -1,10 +1,12 @@
+import { Gender } from '../enums/gender.enum';
+
 export interface SignupRequest {
   firstName: string;
   lastName: string;
   email: string;
   password: string;
   rePassword: string;
-  gender: 'male' | 'female';
+  gender: Gender;
   height: number;
   weight: number;
   age: number;
@@ -21,7 +23,7 @@ export interface User {
   firstName: string;
   lastName: string;
   email: string;
-  gender: string;
+  gender: Gender | string;
   age: number;
   weight: number;
   height: number;

@@ -23,23 +23,23 @@
     @case ('gender') {
     <div class="flex items-center justify-center gap-6" role="radiogroup"
       [attr.aria-label]="'AUTH.ONBOARDING.GENDER.GROUP_LABEL' | translate">
-      <button type="button" role="radio" [attr.aria-checked]="gender() === 'male'"
+      <button type="button" role="radio" [attr.aria-checked]="gender() === Gender.MALE"
         class="grid size-20 place-items-center rounded-full border text-white transition-colors"
-        [class.border-primary-brand]="gender() === 'male'" [class.bg-primary-brand]="gender() === 'male'"
-        [class.shadow-[0_10px_28px_rgba(255,65,0,0.28)]]="gender() === 'male'"
-        [class.border-white/65]="gender() !== 'male'" [class.bg-white/3]="gender() !== 'male'"
-        (click)="gender.set('male')">
+        [class.border-primary-brand]="gender() === Gender.MALE" [class.bg-primary-brand]="gender() === Gender.MALE"
+        [class.shadow-[0_10px_28px_rgba(255,65,0,0.28)]]="gender() === Gender.MALE"
+        [class.border-white/65]="gender() !== Gender.MALE" [class.bg-white/3]="gender() !== Gender.MALE"
+        (click)="gender.set(Gender.MALE)">
         <span>
           <i class="pi pi-mars block text-2xl" aria-hidden="true"></i>
           <span class="mt-1 block text-[10px] font-semibold">{{ 'AUTH.ONBOARDING.GENDER.MALE' | translate }}</span>
         </span>
       </button>
-      <button type="button" role="radio" [attr.aria-checked]="gender() === 'female'"
+      <button type="button" role="radio" [attr.aria-checked]="gender() === Gender.FEMALE"
         class="grid size-20 place-items-center rounded-full border text-white transition-colors"
-        [class.border-primary-brand]="gender() === 'female'" [class.bg-primary-brand]="gender() === 'female'"
-        [class.shadow-[0_10px_28px_rgba(255,65,0,0.28)]]="gender() === 'female'"
-        [class.border-white/65]="gender() !== 'female'" [class.bg-white/3]="gender() !== 'female'"
-        (click)="gender.set('female')">
+        [class.border-primary-brand]="gender() === Gender.FEMALE" [class.bg-primary-brand]="gender() === Gender.FEMALE"
+        [class.shadow-[0_10px_28px_rgba(255,65,0,0.28)]]="gender() === Gender.FEMALE"
+        [class.border-white/65]="gender() !== Gender.FEMALE" [class.bg-white/3]="gender() !== Gender.FEMALE"
+        (click)="gender.set(Gender.FEMALE)">
         <span>
           <i class="pi pi-venus block text-2xl" aria-hidden="true"></i>
           <span class="mt-1 block text-[10px] font-semibold">{{ 'AUTH.ONBOARDING.GENDER.FEMALE' | translate }}</span>
