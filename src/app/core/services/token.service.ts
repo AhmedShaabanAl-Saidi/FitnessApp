@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { SsrCookieService } from 'ngx-cookie-service-ssr';
 
 @Injectable({ providedIn: 'root' })
@@ -6,8 +6,12 @@ export class TokenService {
   private readonly cookieService = inject(SsrCookieService);
   private readonly TOKEN_KEY = 'token';
 
+  private readonly isLoggedInSignal = signal<boolean>(!!this.getToken());
+  readonly isLoggedIn = this.isLoggedInSignal.asReadonly();
+
   setToken(token: string): void {
     this.cookieService.set(this.TOKEN_KEY, token, { path: '/' });
+    this.isLoggedInSignal.set(true);
   }
 
   getToken(): string | null {
@@ -16,9 +20,6 @@ export class TokenService {
 
   removeToken(): void {
     this.cookieService.delete(this.TOKEN_KEY, '/');
-  }
-
-  isLoggedIn(): boolean {
-    return !!this.getToken();
+    this.isLoggedInSignal.set(false);
   }
 }

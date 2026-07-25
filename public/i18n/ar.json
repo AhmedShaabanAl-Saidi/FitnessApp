@@ -5,7 +5,8 @@
     "CLASSES": "الفصول",
     "HEALTHY": "صحة",
     "LOGIN": "تسجيل الدخول",
-    "SIGN_UP": "إنشاء حساب"
+    "SIGN_UP": "إنشاء حساب",
+    "PROFILE": "الملف الشخصي"
   },
   "footer": {
     "description": [
