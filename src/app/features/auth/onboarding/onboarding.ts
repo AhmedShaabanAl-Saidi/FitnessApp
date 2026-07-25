@@ -1,22 +1,28 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Button } from '../../../shared/components/button/button';
 import { NumberPicker } from '../../../shared/components/number-picker/number-picker';
-import { ACTIVITY_OPTIONS, GOAL_OPTIONS, ONBOARDING_STEPS } from './onboarding-data';
+import { GOAL_OPTIONS, ONBOARDING_STEPS } from './onboarding-data';
+import { AuthService } from '../../../core/services/auth.service';
+import { TokenService } from '../../../core/services/token.service';
+import { SignupRequest, ActivityLevel } from '../../../shared/interfaces/auth.interface';
 
 @Component({
   selector: 'app-onboarding',
   imports: [FormsModule, TranslatePipe, Button, NumberPicker],
   templateUrl: './onboarding.html',
 })
-export class Onboarding {
+export class Onboarding implements OnInit {
   private readonly router = inject(Router);
+  private readonly authService = inject(AuthService);
+  private readonly tokenService = inject(TokenService);
+  private readonly destroyRef = inject(DestroyRef);
 
   protected readonly steps = ONBOARDING_STEPS;
   protected readonly goalOptions = GOAL_OPTIONS;
-  protected readonly activityOptions = ACTIVITY_OPTIONS;
   protected readonly currentIndex = signal(0);
   protected readonly currentStep = computed(() => this.steps[this.currentIndex()]);
   protected readonly stepNumber = computed(() => this.currentIndex() + 1);
@@ -28,12 +34,25 @@ export class Onboarding {
   protected readonly weight = signal(90);
   protected readonly height = signal(167);
   protected readonly gender = signal<'male' | 'female'>('male');
-  protected readonly goal = signal('lose-weight');
-  protected readonly activity = signal('rookie');
+  protected readonly goal = signal('Lose weight');
+  protected readonly activity = signal('level1');
+
+  protected readonly activityLevels = signal<ActivityLevel[]>([]);
+
+  ngOnInit(): void {
+    this.authService
+      .getActivityLevels()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (res) => {
+          this.activityLevels.set(res.levels.slice(0, 5));
+        },
+      });
+  }
 
   protected next(): void {
     if (this.currentIndex() === this.steps.length - 1) {
-      void this.router.navigateByUrl('/auth/login');
+      this.submitSignup();
       return;
     }
 
@@ -42,5 +61,38 @@ export class Onboarding {
 
   protected previous(): void {
     this.currentIndex.update((index) => Math.max(0, index - 1));
+  }
+
+  private submitSignup(): void {
+    const registrationData = history.state?.registrationData;
+
+    if (!registrationData?.email) {
+      void this.router.navigateByUrl('/auth/register');
+      return;
+    }
+
+    const signupData: SignupRequest = {
+      firstName: registrationData.firstName,
+      lastName: registrationData.lastName,
+      email: registrationData.email,
+      password: registrationData.password,
+      rePassword: registrationData.rePassword,
+      gender: this.gender(),
+      age: this.age(),
+      weight: this.weight(),
+      height: this.height(),
+      goal: this.goal(),
+      activityLevel: this.activity(),
+    };
+
+    this.authService
+      .signup(signupData)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (res) => {
+          this.tokenService.setToken(res.token);
+          void this.router.navigateByUrl('/home');
+        },
+      });
   }
 }

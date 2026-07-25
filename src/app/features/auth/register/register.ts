@@ -5,6 +5,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { Button } from '../../../shared/components/button/button';
 import { Input } from '../../../shared/components/input/input';
 import { AuthSocialLogin } from '../components/auth-social-login/auth-social-login';
+import { getConfirmPasswordError, passwordsMatchValidator } from '../../../shared/utils/form-validators';
 
 @Component({
   selector: 'app-register',
@@ -14,24 +15,31 @@ import { AuthSocialLogin } from '../components/auth-social-login/auth-social-log
 export class Register {
   private readonly router = inject(Router);
 
-  protected readonly form = new FormGroup({
-    firstName: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required, Validators.minLength(2)],
-    }),
-    lastName: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required, Validators.minLength(2)],
-    }),
-    email: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required, Validators.email],
-    }),
-    password: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required, Validators.minLength(8)],
-    }),
-  });
+  protected readonly form = new FormGroup(
+    {
+      firstName: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(2)],
+      }),
+      lastName: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(2)],
+      }),
+      email: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.email],
+      }),
+      password: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(8)],
+      }),
+      rePassword: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required],
+      }),
+    },
+    { validators: passwordsMatchValidator('password', 'rePassword') },
+  );
 
   protected showError(control: AbstractControl): boolean {
     return control.invalid && (control.dirty || control.touched);
@@ -61,12 +69,26 @@ export class Register {
       : 'AUTH.VALIDATION.PASSWORD_MIN';
   }
 
+  protected rePasswordError(): string {
+    return getConfirmPasswordError(this.form.controls.rePassword);
+  }
+
+  protected showRePasswordError(): boolean {
+    const control = this.form.controls.rePassword;
+    return (
+      (control.invalid || this.form.hasError('passwordMismatch')) && (control.dirty || control.touched)
+    );
+  }
+
   protected submit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
 
-    void this.router.navigateByUrl('/auth/onboarding');
+    const { firstName, lastName, email, password, rePassword } = this.form.getRawValue();
+    void this.router.navigateByUrl('/auth/onboarding', {
+      state: { registrationData: { firstName, lastName, email, password, rePassword } },
+    });
   }
 }
