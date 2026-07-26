@@ -30,6 +30,11 @@ export class EditPreferenceModal implements OnInit {
   readonly selectedValue = signal<string | number>('');
 
   ngOnInit(): void {
+    this.initSelectedValue();
+    this.loadActivityLevelsIfNeeded();
+  }
+
+  private initSelectedValue(): void {
     if (this.type === 'weight') {
       const parsed = parseInt(String(this.currentValue || this.userPrefService.weight()), 10);
       this.selectedValue.set(isNaN(parsed) ? 90 : parsed);
@@ -37,7 +42,9 @@ export class EditPreferenceModal implements OnInit {
       const fallback = this.type === 'goal' ? this.userPrefService.goal() : this.userPrefService.level();
       this.selectedValue.set(String(this.currentValue || fallback));
     }
+  }
 
+  private loadActivityLevelsIfNeeded(): void {
     if (this.type === 'level') {
       this.authService
         .getActivityLevels()
