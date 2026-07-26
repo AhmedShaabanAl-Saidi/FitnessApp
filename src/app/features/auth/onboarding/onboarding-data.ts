@@ -52,17 +52,9 @@ export const ONBOARDING_STEPS: OnboardingStepData[] = [
 ];
 
 export const GOAL_OPTIONS: OnboardingChoice[] = [
-  { id: 'gain-weight', labelKey: 'AUTH.ONBOARDING.GOAL.OPTIONS.GAIN_WEIGHT' },
-  { id: 'lose-weight', labelKey: 'AUTH.ONBOARDING.GOAL.OPTIONS.LOSE_WEIGHT' },
-  { id: 'get-fitter', labelKey: 'AUTH.ONBOARDING.GOAL.OPTIONS.GET_FITTER' },
-  { id: 'gain-flexibility', labelKey: 'AUTH.ONBOARDING.GOAL.OPTIONS.GAIN_FLEXIBILITY' },
-  { id: 'learn-basics', labelKey: 'AUTH.ONBOARDING.GOAL.OPTIONS.LEARN_BASICS' },
-];
-
-export const ACTIVITY_OPTIONS: OnboardingChoice[] = [
-  { id: 'rookie', labelKey: 'AUTH.ONBOARDING.ACTIVITY.OPTIONS.ROOKIE' },
-  { id: 'beginner', labelKey: 'AUTH.ONBOARDING.ACTIVITY.OPTIONS.BEGINNER' },
-  { id: 'intermediate', labelKey: 'AUTH.ONBOARDING.ACTIVITY.OPTIONS.INTERMEDIATE' },
-  { id: 'advanced', labelKey: 'AUTH.ONBOARDING.ACTIVITY.OPTIONS.ADVANCED' },
-  { id: 'true-beast', labelKey: 'AUTH.ONBOARDING.ACTIVITY.OPTIONS.TRUE_BEAST' },
+  { id: 'Gain weight', labelKey: 'AUTH.ONBOARDING.GOAL.OPTIONS.GAIN_WEIGHT' },
+  { id: 'Lose weight', labelKey: 'AUTH.ONBOARDING.GOAL.OPTIONS.LOSE_WEIGHT' },
+  { id: 'Get fitter', labelKey: 'AUTH.ONBOARDING.GOAL.OPTIONS.GET_FITTER' },
+  { id: 'Gain flexibility', labelKey: 'AUTH.ONBOARDING.GOAL.OPTIONS.GAIN_FLEXIBILITY' },
+  { id: 'Learn basics', labelKey: 'AUTH.ONBOARDING.GOAL.OPTIONS.LEARN_BASICS' },
 ];

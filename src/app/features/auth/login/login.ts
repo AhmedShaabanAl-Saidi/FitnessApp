@@ -1,10 +1,13 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Button } from '../../../shared/components/button/button';
 import { Input } from '../../../shared/components/input/input';
 import { AuthSocialLogin } from '../components/auth-social-login/auth-social-login';
+import { AuthService } from '../services/auth.service';
+import { TokenService } from '../services/token.service';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +16,9 @@ import { AuthSocialLogin } from '../components/auth-social-login/auth-social-log
 })
 export class Login {
   private readonly router = inject(Router);
+  private readonly authService = inject(AuthService);
+  private readonly tokenService = inject(TokenService);
+  private readonly destroyRef = inject(DestroyRef);
 
   protected readonly form = new FormGroup({
     email: new FormControl('', {
@@ -47,6 +53,16 @@ export class Login {
       return;
     }
 
-    void this.router.navigateByUrl('/auth/onboarding');
+    const { email, password } = this.form.getRawValue();
+
+    this.authService
+      .signin({ email, password })
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (res) => {
+          this.tokenService.setToken(res.token);
+          void this.router.navigateByUrl('/home');
+        },
+      });
   }
 }

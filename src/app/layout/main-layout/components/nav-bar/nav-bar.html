@@ -25,22 +25,34 @@
   </ul>
 
   <div class="hidden md:flex items-center gap-5">
-    <app-button variant="solid" [showArrow]="true" routerLink="/auth/login">
-      {{ 'NAVBAR.LOGIN' | translate }}
-    </app-button>
-    <app-button variant="outline" [showArrow]="true" routerLink="/auth/register">
-      {{ 'NAVBAR.SIGN_UP' | translate }}
-    </app-button>
+    @if (isLoggedIn()) {
+      <a
+        routerLink="/profile"
+        class="grid size-11 place-items-center rounded-full bg-primary-brand text-white transition-transform duration-200 hover:scale-105 active:scale-95 shadow-[0_4px_14px_rgba(255,65,0,0.35)]"
+        [attr.aria-label]="'NAVBAR.PROFILE' | translate"
+      >
+        <i class="pi pi-user text-xl"></i>
+      </a>
+    } @else {
+      <app-button variant="solid" [showArrow]="true" routerLink="/auth/login">
+        {{ 'NAVBAR.LOGIN' | translate }}
+      </app-button>
+      <app-button variant="outline" [showArrow]="true" routerLink="/auth/register">
+        {{ 'NAVBAR.SIGN_UP' | translate }}
+      </app-button>
+    }
   </div>
 
   <div class="flex md:hidden items-center gap-3">
-    <p-button
-      routerLink="/profile"
-      icon="pi pi-user"
-      [rounded]="true"
-      severity="danger"
-      styleClass="bg-primary-brand border-none w-10 h-10"
-    />
+    @if (isLoggedIn()) {
+      <a
+        routerLink="/profile"
+        class="grid size-10 place-items-center rounded-full bg-primary-brand text-white transition-transform duration-200 hover:scale-105 active:scale-95"
+        [attr.aria-label]="'NAVBAR.PROFILE' | translate"
+      >
+        <i class="pi pi-user text-lg"></i>
+      </a>
+    }
 
     <p-button
       icon="pi pi-bars"
@@ -74,6 +86,17 @@
       >
         {{ item.label | translate }}
       </a>
+    }
+
+    @if (!isLoggedIn()) {
+      <div class="mt-4 flex flex-col gap-3">
+        <app-button variant="solid" [fullWidth]="true" routerLink="/auth/login" (click)="mobileMenuVisible.set(false)">
+          {{ 'NAVBAR.LOGIN' | translate }}
+        </app-button>
+        <app-button variant="outline" [fullWidth]="true" routerLink="/auth/register" (click)="mobileMenuVisible.set(false)">
+          {{ 'NAVBAR.SIGN_UP' | translate }}
+        </app-button>
+      </div>
     }
   </div>
 </p-drawer>

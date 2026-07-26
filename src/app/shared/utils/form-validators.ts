@@ -13,3 +13,10 @@ export function passwordsMatchValidator(
     return passwordControl.value === confirmationControl.value ? null : { passwordMismatch: true };
   };
 }
+
+export function getConfirmPasswordError(control: AbstractControl): string {
+  if (control.hasError('required')) {
+    return 'AUTH.VALIDATION.CONFIRM_PASSWORD_REQUIRED';
+  }
+  return 'AUTH.VALIDATION.PASSWORD_MISMATCH';
+}

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Button } from '../../../shared/components/button/button';
 import { Input } from '../../../shared/components/input/input';
-import { passwordsMatchValidator } from '../../../shared/utils/form-validators';
+import { getConfirmPasswordError, passwordsMatchValidator } from '../../../shared/utils/form-validators';
 
 @Component({
   selector: 'app-reset-password',
@@ -54,9 +54,7 @@ export class ResetPassword {
   }
 
   protected confirmationError(): string {
-    return this.form.controls.confirmation.hasError('required')
-      ? 'AUTH.VALIDATION.CONFIRM_PASSWORD_REQUIRED'
-      : 'AUTH.VALIDATION.PASSWORD_MISMATCH';
+    return getConfirmPasswordError(this.form.controls.confirmation);
   }
 
   protected submit(): void {

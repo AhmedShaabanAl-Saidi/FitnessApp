@@ -1,10 +1,12 @@
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, HostListener, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { DrawerModule } from 'primeng/drawer';
 import { Button } from '../../../../shared/components/button/button';
-import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
+import { TokenService } from '../../../../features/auth/services/token.service';
+
 @Component({
   selector: 'app-nav-bar',
   imports: [
@@ -20,8 +22,11 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
   styleUrl: './nav-bar.css',
 })
 export class NavBar {
+  private readonly tokenService = inject(TokenService);
+
   mobileMenuVisible = signal(false);
   isScrolled = signal(false);
+  isLoggedIn = this.tokenService.isLoggedIn;
 
   @HostListener('window:scroll', [])
   onWindowScroll() {

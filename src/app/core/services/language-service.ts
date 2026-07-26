@@ -32,6 +32,7 @@ export class languageService {
 
         this.currentLangSignal.set(language);
         this.updateDocumentDirection(language);
+        this.cookieService.set('lang', language, { path: '/' });
       });
 
     const initialLanguage = this.normalizeLanguage(
