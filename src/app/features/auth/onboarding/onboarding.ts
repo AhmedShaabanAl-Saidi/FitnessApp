@@ -8,10 +8,12 @@ import { Button } from '../../../shared/components/button/button';
 import { NumberPicker } from '../../../shared/components/number-picker/number-picker';
 import { GOAL_OPTIONS, ONBOARDING_STEPS } from './onboarding-data';
 import { AuthService } from '../services/auth.service';
+import { SignupRequest } from '../register/register.interface';
+import { ActivityLevel } from './onboarding.interface';
 import { TokenService } from '../services/token.service';
 import { languageService } from '../../../core/services/language-service';
-import { SignupRequest, ActivityLevel } from '../interfaces';
 import { Gender } from '../enums/gender.enum';
+import { UserPreferenceService } from '../../../core/services/user-preference.service';
 
 @Component({
   selector: 'app-onboarding',
@@ -22,6 +24,7 @@ export class Onboarding implements OnInit {
   private readonly router = inject(Router);
   private readonly authService = inject(AuthService);
   private readonly tokenService = inject(TokenService);
+  private readonly userPrefService = inject(UserPreferenceService);
   private readonly langService = inject(languageService);
   private readonly destroyRef = inject(DestroyRef);
 
@@ -100,6 +103,7 @@ export class Onboarding implements OnInit {
       .subscribe({
         next: (res) => {
           this.tokenService.setToken(res.token);
+          this.userPrefService.savePreferences(this.goal(), this.activity(), this.weight());
           void this.router.navigateByUrl('/home');
         },
       });

@@ -1,0 +1,36 @@
+@if (!isProfilePage()) {
+<div
+  class="fixed bottom-6 left-6 z-50 flex flex-col items-center gap-1.5 rounded-full border border-white/25 bg-black/40 p-1.5 backdrop-blur-md shadow-2xl transition-all duration-300 hover:scale-105"
+  dir="ltr">
+  <nav class="flex flex-col gap-1">
+    @for (language of languages; track language.code) {
+    <button type="button"
+      class="size-8 cursor-pointer rounded-full text-xs font-bold transition-colors flex items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-brand"
+      [class.bg-primary-brand]="currentLanguage() === language.code"
+      [class.text-white]="currentLanguage() === language.code"
+      [class.text-white/65]="currentLanguage() !== language.code" [attr.aria-label]="language.nameKey | translate"
+      [attr.aria-pressed]="currentLanguage() === language.code" (click)="changeLanguage(language.code)">
+      {{ language.label }}
+    </button>
+    }
+  </nav>
+
+  <div class="w-4 h-px bg-white/25"></div>
+
+  <nav class="flex flex-col gap-1">
+    <button type="button"
+      class="size-8 cursor-pointer rounded-full text-xs font-bold transition-colors flex items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-brand"
+      [class.bg-primary-brand]="!isDarkMode()" [class.text-white]="!isDarkMode()" [class.text-white/65]="isDarkMode()"
+      [attr.aria-pressed]="!isDarkMode()" (click)="setTheme(false)" aria-label="Light mode">
+      <i class="pi pi-sun text-xs"></i>
+    </button>
+
+    <button type="button"
+      class="size-8 cursor-pointer rounded-full text-xs font-bold transition-colors flex items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-brand"
+      [class.bg-primary-brand]="isDarkMode()" [class.text-white]="isDarkMode()" [class.text-white/65]="!isDarkMode()"
+      [attr.aria-pressed]="isDarkMode()" (click)="setTheme(true)" aria-label="Dark mode">
+      <i class="pi pi-moon text-xs"></i>
+    </button>
+  </nav>
+</div>
+}

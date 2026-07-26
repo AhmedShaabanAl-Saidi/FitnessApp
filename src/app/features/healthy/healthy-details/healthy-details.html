@@ -1,11 +1,11 @@
 <section
-  class="min-h-screen bg-slate-50 text-neutral-950 dark:bg-[#111214] dark:text-white px-4 lg:px-16 pb-5 pt-24 transition-colors duration-300"
+  class="min-h-screen bg-[#d0d3d7] text-neutral-950 dark:bg-[#111214] dark:text-white px-4 lg:px-16 pb-5 pt-24 transition-colors duration-300"
 >
   <div class="mb-6 flex items-center justify-between">
     <button
       (click)="goBack()"
       type="button"
-      class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400 hover:text-primary-brand dark:hover:text-white transition-colors cursor-pointer"
+      class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-700 dark:text-neutral-400 hover:text-primary-brand dark:hover:text-white transition-colors cursor-pointer"
     >
       <i class="pi pi-arrow-left rtl:rotate-180" aria-hidden="true"></i>
       {{ 'HEALTHY.BACK' | translate }}
@@ -19,7 +19,7 @@
 
   @if (loading()) {
     <div
-      class="rounded-3xl border border-neutral-200 dark:border-white/5 bg-white dark:bg-[#18191d] p-16 text-center text-neutral-500 dark:text-neutral-400 shadow-sm"
+      class="rounded-3xl border border-neutral-300 dark:border-white/5 bg-[#b8bcbf]/80 dark:bg-[#18191d] p-16 text-center text-neutral-800 dark:text-neutral-400 shadow-sm"
     >
       <div
         class="mx-auto mb-4 h-6 w-6 animate-spin rounded-full border-2 border-primary-brand border-t-transparent"
@@ -35,7 +35,7 @@
   } @else if (meal(); as activeMeal) {
     <div class="grid gap-6 grid-cols-1 lg:grid-cols-12 items-start">
       <aside
-        class="flex flex-col lg:col-span-4 rounded-3xl bg-white dark:bg-[#18191d]/60 border border-neutral-200 dark:border-white/5 p-6 shadow-sm"
+        class="flex flex-col lg:col-span-4 rounded-3xl bg-[#b8bcbf]/80 dark:bg-[#18191d]/60 border border-neutral-400/50 dark:border-white/5 p-6 shadow-sm"
       >
         <h2 class="text-lg font-bold tracking-tight text-neutral-900 dark:text-white mb-5">
           {{ 'HEALTHY.INGREDIENTS' | translate }}

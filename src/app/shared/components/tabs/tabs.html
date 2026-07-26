@@ -1,21 +1,28 @@
-<div
-  class="mx-auto flex px-4 gap-4 overflow-x-auto py-2 scrollbar-none md:w-[min(75%,980px)] [&::-webkit-scrollbar]:hidden"
-  role="tablist"
-  aria-label="Workout categories"
->
-  @for (tab of tabs(); track tab.id) {
-    <button
-      type="button"
-      role="tab"
+<div class="relative mx-auto flex items-center justify-center gap-2 md:w-[min(85%,1020px)] w-full px-2">
+  <button type="button"
+    class="grid size-8 md:size-9 shrink-0 cursor-pointer place-items-center rounded-full bg-neutral-300/80 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-100 hover:bg-primary-brand hover:text-white dark:hover:bg-primary-brand transition-all duration-200 disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:bg-neutral-300/80 dark:disabled:hover:bg-neutral-800 dark:disabled:hover:text-neutral-100 shadow-sm"
+    [disabled]="!canScrollLeft()" (click)="scroll('left')" [attr.aria-label]="'Scroll left'">
+    <i class="pi pi-chevron-left text-xs md:text-sm" aria-hidden="true"></i>
+  </button>
+
+  <div #scrollContainer
+    class="flex items-center gap-2 md:gap-3 overflow-x-auto py-2 scroll-smooth scrollbar-none [&::-webkit-scrollbar]:hidden w-full"
+    role="tablist" aria-label="Workout categories" (scroll)="checkScroll()">
+    @for (tab of tabs(); track tab.id) {
+    <button type="button" role="tab"
       class="shrink-0 cursor-pointer rounded-full border-0 px-[0.8rem] py-[0.45rem] hover:bg-primary-brand hover:text-white text-xs font-bold dark:text-[#F3F3F4] text-[#242424] transition-colors duration-200 md:px-4 md:py-2 md:text-sm"
-      [attr.aria-selected]="activeTabId() === tab.id"
-      [ngClass]="{
-        'bg-primary-brand text-white': activeTabId() === tab.id,
-        'bg-transparent text-black': activeTabId() !== tab.id,
-      }"
-      (click)="tabChange.emit(tab.id)"
-    >
+      [attr.aria-selected]="activeTabId() === tab.id" [ngClass]="{
+          'bg-primary-brand text-white': activeTabId() === tab.id,
+          'bg-transparent text-black': activeTabId() !== tab.id,
+        }" (click)="tabChange.emit(tab.id)">
       {{ tab.label }}
     </button>
-  }
+    }
+  </div>
+
+  <button type="button"
+    class="grid size-8 md:size-9 shrink-0 cursor-pointer place-items-center rounded-full bg-neutral-300/80 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-100 hover:bg-primary-brand hover:text-white dark:hover:bg-primary-brand transition-all duration-200 disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:bg-neutral-300/80 dark:disabled:hover:bg-neutral-800 dark:disabled:hover:text-neutral-100 shadow-sm"
+    [disabled]="!canScrollRight()" (click)="scroll('right')" [attr.aria-label]="'Scroll right'">
+    <i class="pi pi-chevron-right text-xs md:text-sm" aria-hidden="true"></i>
+  </button>
 </div>

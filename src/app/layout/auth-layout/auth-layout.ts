@@ -1,13 +1,14 @@
 import { NgClass, NgOptimizedImage } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
-import { ActivatedRoute, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { AppLanguage, languageService } from '../../core/services/language-service';
 import { AUTH_LAYOUT_ROUTE_DATA_KEY, AuthLayoutRouteData, DEFAULT_LAYOUT_DATA } from './auth-layout-data';
+import { FloatingControls } from '../main-layout/components/floating-controls/floating-controls';
 
 @Component({
   selector: 'app-auth-layout',
-  imports: [NgClass, NgOptimizedImage, RouterOutlet, TranslatePipe],
+  imports: [NgClass, NgOptimizedImage, RouterOutlet, RouterLink, TranslatePipe, FloatingControls],
   templateUrl: './auth-layout.html',
   styleUrl: './auth-layout.css',
 })
