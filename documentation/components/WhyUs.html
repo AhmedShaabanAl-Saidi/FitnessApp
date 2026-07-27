@@ -1,0 +1,638 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>fitness-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">fitness-app documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  WhyUs</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/features/home/components/why-us/why-us.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" class="nav-link"
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-why-us</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                        <div>    <code>TranslatePipe</code>
+</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./why-us.css</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./why-us.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./why-us.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+        <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../components/Home.html" target="_self" >Home</a></code>
+                                </li>
+                        </ul>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                        <code>TranslatePipe</code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <div class="tab-pane fade " id="api">    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#benefits" >benefits</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="benefits"></a>
+                    <span class="name">
+                        <span ><b>benefits</b></span>
+                        <a href="#benefits"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+      number: &#x27;01&#x27;,
+      titleKey: &#x27;WHY_US.BENEFITS.BENEFIT_1.TITLE&#x27;,
+      descKey: &#x27;WHY_US.BENEFITS.BENEFIT_1.DESC&#x27;,
+    },
+    {
+      number: &#x27;02&#x27;,
+      titleKey: &#x27;WHY_US.BENEFITS.BENEFIT_2.TITLE&#x27;,
+      descKey: &#x27;WHY_US.BENEFITS.BENEFIT_2.DESC&#x27;,
+    },
+    {
+      number: &#x27;03&#x27;,
+      titleKey: &#x27;WHY_US.BENEFITS.BENEFIT_3.TITLE&#x27;,
+      descKey: &#x27;WHY_US.BENEFITS.BENEFIT_3.DESC&#x27;,
+    },
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/features/home/components/why-us/why-us.ts:11</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { TranslatePipe } from &#x27;@ngx-translate/core&#x27;;
+
+@Component({
+  selector: &#x27;app-why-us&#x27;,
+  imports: [TranslatePipe],
+  templateUrl: &#x27;./why-us.html&#x27;,
+  styleUrl: &#x27;./why-us.css&#x27;,
+})
+export class WhyUs {
+  benefits &#x3D; [
+    {
+      number: &#x27;01&#x27;,
+      titleKey: &#x27;WHY_US.BENEFITS.BENEFIT_1.TITLE&#x27;,
+      descKey: &#x27;WHY_US.BENEFITS.BENEFIT_1.DESC&#x27;,
+    },
+    {
+      number: &#x27;02&#x27;,
+      titleKey: &#x27;WHY_US.BENEFITS.BENEFIT_2.TITLE&#x27;,
+      descKey: &#x27;WHY_US.BENEFITS.BENEFIT_2.DESC&#x27;,
+    },
+    {
+      number: &#x27;03&#x27;,
+      titleKey: &#x27;WHY_US.BENEFITS.BENEFIT_3.TITLE&#x27;,
+      descKey: &#x27;WHY_US.BENEFITS.BENEFIT_3.DESC&#x27;,
+    },
+  ];
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;section class&#x3D;&quot;relative overflow-hidden py-24 bg-[#d0d3d7] dark:bg-[#18181b]&quot;&gt;
+  &lt;div class&#x3D;&quot;px-6 sm:px-12 lg:px-20&quot;&gt;
+    &lt;div class&#x3D;&quot;grid grid-cols-1 lg:grid-cols-2 gap-20 items-center&quot;&gt;
+      &lt;div class&#x3D;&quot;relative&quot;&gt;
+        &lt;h2
+          class&#x3D;&quot;absolute -top-7 md:-top-12 inset-s-0 text-[64px] md:text-[82px] font-bold uppercase text-transparent [-webkit-text-stroke:2px_#d8d8d8] opacity-40 pointer-events-none select-none&quot;
+        &gt;
+          {{ &#x27;WHY_US.SECTION_TITLE&#x27; | translate }}
+        &lt;/h2&gt;
+
+        &lt;div
+          class&#x3D;&quot;relative z-10 flex items-center gap-2 text-primary-brand font-semibold uppercase tracking-wide&quot;
+        &gt;
+          &lt;svg
+            xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+            width&#x3D;&quot;22&quot;
+            height&#x3D;&quot;22&quot;
+            viewBox&#x3D;&quot;0 0 24 24&quot;
+            fill&#x3D;&quot;none&quot;
+            stroke&#x3D;&quot;currentColor&quot;
+            stroke-width&#x3D;&quot;2&quot;
+          &gt;
+            &lt;path d&#x3D;&quot;M6.5 6.5v11&quot; /&gt;
+            &lt;path d&#x3D;&quot;M17.5 6.5v11&quot; /&gt;
+            &lt;path d&#x3D;&quot;M4 9v6&quot; /&gt;
+            &lt;path d&#x3D;&quot;M20 9v6&quot; /&gt;
+            &lt;path d&#x3D;&quot;M9 4v16&quot; /&gt;
+            &lt;path d&#x3D;&quot;M15 4v16&quot; /&gt;
+            &lt;line x1&#x3D;&quot;9&quot; y1&#x3D;&quot;12&quot; x2&#x3D;&quot;15&quot; y2&#x3D;&quot;12&quot; /&gt;
+          &lt;/svg&gt;
+
+          &lt;span&gt;{{ &#x27;WHY_US.SECTION_TITLE&#x27; | translate }}&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;h1
+          class&#x3D;&quot;mt-8 text-[52px] leading-tight font-black uppercase text-neutral-900 dark:text-white&quot;
+        &gt;
+          {{ &#x27;WHY_US.HEADING&#x27; | translate }}
+
+          &lt;br /&gt;
+
+          &lt;span class&#x3D;&quot;text-primary-brand&quot;&gt;
+            {{ &#x27;WHY_US.HIGHLIGHT&#x27; | translate }}
+          &lt;/span&gt;
+
+          {{ &#x27;WHY_US.HEADING_END&#x27; | translate }}
+        &lt;/h1&gt;
+
+        &lt;p class&#x3D;&quot;mt-6 text-lg leading-9 text-neutral-600 dark:text-neutral-300 max-w-xl&quot;&gt;
+          {{ &#x27;WHY_US.DESCRIPTION&#x27; | translate }}
+        &lt;/p&gt;
+
+        &lt;div class&#x3D;&quot;mt-12 space-y-10&quot;&gt;
+          @for (item of benefits; track item.number) {
+            &lt;div class&#x3D;&quot;flex gap-6&quot;&gt;
+              &lt;div class&#x3D;&quot;flex flex-col items-center&quot;&gt;
+                &lt;div
+                  class&#x3D;&quot;w-14 h-14 rounded-full bg-primary-brand text-white font-bold flex items-center justify-center&quot;
+                &gt;
+                  {{ item.number }}
+                &lt;/div&gt;
+
+                @if (!$last) {
+                  &lt;div class&#x3D;&quot;w-px flex-1 bg-neutral-300 mt-3&quot;&gt;&lt;/div&gt;
+                }
+              &lt;/div&gt;
+
+              &lt;div class&#x3D;&quot;pb-6&quot;&gt;
+                &lt;h3 class&#x3D;&quot;text-2xl font-bold text-neutral-900 dark:text-white mb-3&quot;&gt;
+                  {{ item.titleKey | translate }}
+                &lt;/h3&gt;
+
+                &lt;p class&#x3D;&quot;text-neutral-600 dark:text-neutral-300 leading-8 max-w-lg&quot;&gt;
+                  {{ item.descKey | translate }}
+                &lt;/p&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          }
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div class&#x3D;&quot;grid grid-cols-2 gap-5&quot;&gt;
+        &lt;div class&#x3D;&quot;space-y-5&quot;&gt;
+          &lt;div class&#x3D;&quot;overflow-hidden rounded-3xl h-[360px] shadow-xl&quot;&gt;
+            &lt;img
+              src&#x3D;&quot;/images/WhyUs/fit1.jpg&quot;
+              class&#x3D;&quot;w-full h-full object-cover hover:scale-105 transition duration-500&quot;
+              alt&#x3D;&quot;&quot;
+            /&gt;
+          &lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;overflow-hidden rounded-3xl h-[300px] shadow-xl&quot;&gt;
+            &lt;img
+              src&#x3D;&quot;/images/WhyUs/fit2.png&quot;
+              class&#x3D;&quot;w-full h-full object-cover hover:scale-105 transition duration-500&quot;
+              alt&#x3D;&quot;&quot;
+            /&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;space-y-5 pt-12&quot;&gt;
+          &lt;div class&#x3D;&quot;overflow-hidden rounded-3xl h-[300px] shadow-xl&quot;&gt;
+            &lt;img
+              src&#x3D;&quot;/images/WhyUs/fit3.png&quot;
+              class&#x3D;&quot;w-full h-full object-cover hover:scale-105 transition duration-500&quot;
+              alt&#x3D;&quot;&quot;
+            /&gt;
+          &lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;overflow-hidden rounded-3xl h-[360px] shadow-xl&quot;&gt;
+            &lt;img
+              src&#x3D;&quot; /images/WhyUs/fit4.jpg&quot;
+              class&#x3D;&quot;w-full h-full object-cover hover:scale-105 transition duration-500&quot;
+              alt&#x3D;&quot;&quot;
+            /&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./why-us.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><section class="relative overflow-hidden py-24 bg-[#d0d3d7] dark:bg-[#18181b]">  <div class="px-6 sm:px-12 lg:px-20">    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">      <div class="relative">        <h2          class="absolute -top-7 md:-top-12 inset-s-0 text-[64px] md:text-[82px] font-bold uppercase text-transparent [-webkit-text-stroke:2px_#d8d8d8] opacity-40 pointer-events-none select-none"        >          {{ \'WHY_US.SECTION_TITLE\' | translate }}        </h2>        <div          class="relative z-10 flex items-center gap-2 text-primary-brand font-semibold uppercase tracking-wide"        >          <svg            xmlns="http://www.w3.org/2000/svg"            width="22"            height="22"            viewBox="0 0 24 24"            fill="none"            stroke="currentColor"            stroke-width="2"          >            <path d="M6.5 6.5v11" />            <path d="M17.5 6.5v11" />            <path d="M4 9v6" />            <path d="M20 9v6" />            <path d="M9 4v16" />            <path d="M15 4v16" />            <line x1="9" y1="12" x2="15" y2="12" />          </svg>          <span>{{ \'WHY_US.SECTION_TITLE\' | translate }}</span>        </div>        <h1          class="mt-8 text-[52px] leading-tight font-black uppercase text-neutral-900 dark:text-white"        >          {{ \'WHY_US.HEADING\' | translate }}          <br />          <span class="text-primary-brand">            {{ \'WHY_US.HIGHLIGHT\' | translate }}          </span>          {{ \'WHY_US.HEADING_END\' | translate }}        </h1>        <p class="mt-6 text-lg leading-9 text-neutral-600 dark:text-neutral-300 max-w-xl">          {{ \'WHY_US.DESCRIPTION\' | translate }}        </p>        <div class="mt-12 space-y-10">          @for (item of benefits; track item.number) {            <div class="flex gap-6">              <div class="flex flex-col items-center">                <div                  class="w-14 h-14 rounded-full bg-primary-brand text-white font-bold flex items-center justify-center"                >                  {{ item.number }}                </div>                @if (!$last) {                  <div class="w-px flex-1 bg-neutral-300 mt-3"></div>                }              </div>              <div class="pb-6">                <h3 class="text-2xl font-bold text-neutral-900 dark:text-white mb-3">                  {{ item.titleKey | translate }}                </h3>                <p class="text-neutral-600 dark:text-neutral-300 leading-8 max-w-lg">                  {{ item.descKey | translate }}                </p>              </div>            </div>          }        </div>      </div>      <div class="grid grid-cols-2 gap-5">        <div class="space-y-5">          <div class="overflow-hidden rounded-3xl h-[360px] shadow-xl">            <img              src="/images/WhyUs/fit1.jpg"              class="w-full h-full object-cover hover:scale-105 transition duration-500"              alt=""            />          </div>          <div class="overflow-hidden rounded-3xl h-[300px] shadow-xl">            <img              src="/images/WhyUs/fit2.png"              class="w-full h-full object-cover hover:scale-105 transition duration-500"              alt=""            />          </div>        </div>        <div class="space-y-5 pt-12">          <div class="overflow-hidden rounded-3xl h-[300px] shadow-xl">            <img              src="/images/WhyUs/fit3.png"              class="w-full h-full object-cover hover:scale-105 transition duration-500"              alt=""            />          </div>          <div class="overflow-hidden rounded-3xl h-[360px] shadow-xl">            <img              src=" /images/WhyUs/fit4.jpg"              class="w-full h-full object-cover hover:scale-105 transition duration-500"              alt=""            />          </div>        </div>      </div>    </div>  </div></section></div>'
+    var COMPONENTS = [{'name': 'AboutUs', 'selector': 'app-about-us'},{'name': 'AboutUsSummary', 'selector': 'app-about-us-summary'},{'name': 'App', 'selector': 'app-root'},{'name': 'AuthLayout', 'selector': 'app-auth-layout'},{'name': 'AuthSocialLogin', 'selector': 'app-auth-social-login'},{'name': 'Button', 'selector': 'app-button'},{'name': 'Card', 'selector': 'app-card'},{'name': 'Carousel', 'selector': 'app-carousel'},{'name': 'ChangePasswordModal', 'selector': 'app-change-password-modal'},{'name': 'ChatbotComponent', 'selector': 'app-chatbot'},{'name': 'ChatBubbleComponent', 'selector': 'app-chat-bubble'},{'name': 'ClassDetails', 'selector': 'app-class-details'},{'name': 'Classes', 'selector': 'app-classes'},{'name': 'EditPreferenceModal', 'selector': 'app-edit-preference-modal'},{'name': 'FloatingControls', 'selector': 'app-floating-controls'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'ForgotPassword', 'selector': 'app-forgot-password'},{'name': 'Healthy', 'selector': 'app-healthy'},{'name': 'HealthyDetails', 'selector': 'app-healthy-details'},{'name': 'HealthySection', 'selector': 'app-healthy-section'},{'name': 'HelpModal', 'selector': 'app-help-modal'},{'name': 'Hero', 'selector': 'app-hero'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Input', 'selector': 'app-input'},{'name': 'Login', 'selector': 'app-login'},{'name': 'MainLayout', 'selector': 'app-main-layout'},{'name': 'MarqueeTricker', 'selector': 'app-marquee-tricker'},{'name': 'MessageCardComponent', 'selector': 'app-message-card'},{'name': 'NavBar', 'selector': 'app-nav-bar'},{'name': 'NumberPicker', 'selector': 'app-number-picker'},{'name': 'Onboarding', 'selector': 'app-onboarding'},{'name': 'Otp', 'selector': 'app-otp'},{'name': 'PrivacyPolicyModal', 'selector': 'app-privacy-policy-modal'},{'name': 'Profile', 'selector': 'app-profile'},{'name': 'Register', 'selector': 'app-register'},{'name': 'ResetPassword', 'selector': 'app-reset-password'},{'name': 'SecurityModal', 'selector': 'app-security-modal'},{'name': 'Tabs', 'selector': 'app-tabs'},{'name': 'WhyUs', 'selector': 'app-why-us'},{'name': 'Workouts', 'selector': 'app-workouts'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'WhyUs'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'WhyUs.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

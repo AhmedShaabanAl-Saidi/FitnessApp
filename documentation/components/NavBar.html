@@ -1,0 +1,961 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>fitness-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">fitness-app documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  NavBar</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/layout/main-layout/components/nav-bar/nav-bar.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" class="nav-link"
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-nav-bar</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                        <div>        <code><a href="../components/Button.html" target="_self" >ButtonModule</a></code>
+</div>
+                        <div>    <code>DrawerModule</code>
+</div>
+                        <div>        <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+</div>
+                        <div>        <code><a href="https://angular.dev/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+</div>
+                        <div>        <code><a href="https://angular.dev/api/router/RouterLinkActive" target="_blank" >RouterLinkActive</a></code>
+</div>
+                        <div>        <code><a href="../components/Button.html" target="_self" >Button</a></code>
+</div>
+                        <div>    <code>TranslatePipe</code>
+</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./nav-bar.css</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./nav-bar.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./nav-bar.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+        <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../components/MainLayout.html" target="_self" >MainLayout</a></code>
+                                </li>
+                        </ul>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../components/Button.html" target="_self" >ButtonModule</a></code>
+                                </li>
+                                <li>
+                                        <code>DrawerModule</code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/router/RouterLinkActive" target="_blank" >RouterLinkActive</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/Button.html" target="_self" >Button</a></code>
+                                </li>
+                                <li>
+                                        <code>TranslatePipe</code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <div class="tab-pane fade " id="api">    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#isLoggedIn" >isLoggedIn</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#isScrolled" >isScrolled</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#mobileMenuVisible" >mobileMenuVisible</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#navItems" >navItems</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#tokenService" >tokenService</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier"></span>
+                                <a href="#onWindowScroll" >onWindowScroll</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#toggleMobileMenu" >toggleMobileMenu</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>HostListeners</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">HL</span><a href="#window:scroll" >window:scroll</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    <h3>HostListeners</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="window:scroll"></a>
+                    <span class="name">
+                        <span ><b>window:scroll</b></span>
+                        <a href="#window:scroll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>window:scroll()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="32"
+                                    class="link-to-prism">src/app/layout/main-layout/components/nav-bar/nav-bar.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onWindowScroll"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>onWindowScroll</b></span>
+                        <a href="#onWindowScroll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onWindowScroll()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;window:scroll&#x27;, undefined)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="32"
+                                    class="link-to-prism">src/app/layout/main-layout/components/nav-bar/nav-bar.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleMobileMenu"></a>
+                    <span class="name">
+                        <span ><b>toggleMobileMenu</b></span>
+                        <a href="#toggleMobileMenu"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleMobileMenu()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="43"
+                                    class="link-to-prism">src/app/layout/main-layout/components/nav-bar/nav-bar.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isLoggedIn"></a>
+                    <span class="name">
+                        <span ><b>isLoggedIn</b></span>
+                        <a href="#isLoggedIn"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.tokenService.isLoggedIn</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/layout/main-layout/components/nav-bar/nav-bar.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isScrolled"></a>
+                    <span class="name">
+                        <span ><b>isScrolled</b></span>
+                        <a href="#isScrolled"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/layout/main-layout/components/nav-bar/nav-bar.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mobileMenuVisible"></a>
+                    <span class="name">
+                        <span ><b>mobileMenuVisible</b></span>
+                        <a href="#mobileMenuVisible"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/layout/main-layout/components/nav-bar/nav-bar.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navItems"></a>
+                    <span class="name">
+                        <span ><b>navItems</b></span>
+                        <a href="#navItems"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    { label: &#x27;NAVBAR.HOME&#x27;, link: &#x27;/home&#x27; },
+    { label: &#x27;NAVBAR.ABOUT&#x27;, link: &#x27;/about-us&#x27; },
+    { label: &#x27;NAVBAR.CLASSES&#x27;, link: &#x27;/classes&#x27; },
+    { label: &#x27;NAVBAR.HEALTHY&#x27;, link: &#x27;/healthy&#x27; },
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/layout/main-layout/components/nav-bar/nav-bar.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tokenService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>tokenService</b></span>
+                        <a href="#tokenService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(TokenService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/layout/main-layout/components/nav-bar/nav-bar.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
+import { Component, HostListener, inject, signal } from &#x27;@angular/core&#x27;;
+import { RouterLink, RouterLinkActive } from &#x27;@angular/router&#x27;;
+import { ButtonModule } from &#x27;primeng/button&#x27;;
+import { DrawerModule } from &#x27;primeng/drawer&#x27;;
+import { Button } from &#x27;../../../../shared/components/button/button&#x27;;
+import { TranslatePipe } from &#x27;@ngx-translate/core&#x27;;
+import { TokenService } from &#x27;../../../../features/auth/services/token.service&#x27;;
+
+@Component({
+  selector: &#x27;app-nav-bar&#x27;,
+  imports: [
+    ButtonModule,
+    DrawerModule,
+    CommonModule,
+    RouterLink,
+    RouterLinkActive,
+    Button,
+    TranslatePipe,
+  ],
+  templateUrl: &#x27;./nav-bar.html&#x27;,
+  styleUrl: &#x27;./nav-bar.css&#x27;,
+})
+export class NavBar {
+  private readonly tokenService &#x3D; inject(TokenService);
+
+  mobileMenuVisible &#x3D; signal(false);
+  isScrolled &#x3D; signal(false);
+  isLoggedIn &#x3D; this.tokenService.isLoggedIn;
+
+  @HostListener(&#x27;window:scroll&#x27;, [])
+  onWindowScroll() {
+    this.isScrolled.set(window.scrollY &gt; 20);
+  }
+
+  navItems &#x3D; [
+    { label: &#x27;NAVBAR.HOME&#x27;, link: &#x27;/home&#x27; },
+    { label: &#x27;NAVBAR.ABOUT&#x27;, link: &#x27;/about-us&#x27; },
+    { label: &#x27;NAVBAR.CLASSES&#x27;, link: &#x27;/classes&#x27; },
+    { label: &#x27;NAVBAR.HEALTHY&#x27;, link: &#x27;/healthy&#x27; },
+  ];
+
+  toggleMobileMenu() {
+    this.mobileMenuVisible.update((val) &#x3D;&gt; !val);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;nav
+  class&#x3D;&quot;fixed top-0 left-0 w-full z-50 md:px-20 md:py-4 px-4.5 py-2 flex items-center justify-between transition-all duration-300 text-neutral-800 dark:text-neutral-100&quot;
+  [class.bg-transparent]&#x3D;&quot;!isScrolled()&quot;
+  [class.bg-neutral-100]&#x3D;&quot;isScrolled()&quot;
+  [class.dark:bg-neutral-900]&#x3D;&quot;isScrolled()&quot;
+  [class.shadow-lg]&#x3D;&quot;isScrolled()&quot;
+&gt;
+  &lt;div class&#x3D;&quot;flex items-center&quot;&gt;
+    &lt;a routerLink&#x3D;&quot;/home&quot; class&#x3D;&quot;cursor-pointer&quot;&gt;
+      &lt;img src&#x3D;&quot;images/logo.png&quot; alt&#x3D;&quot;Super Fitness Logo&quot; class&#x3D;&quot;h-13.75 w-auto&quot; /&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;ul class&#x3D;&quot;hidden md:flex items-center gap-6 font-bold text-neutral-800 dark:text-neutral-100&quot;&gt;
+    @for (item of navItems; track item.link) {
+      &lt;li&gt;
+        &lt;a
+          [routerLink]&#x3D;&quot;item.link&quot;
+          routerLinkActive&#x3D;&quot;text-primary-brand&quot;
+          [routerLinkActiveOptions]&#x3D;&quot;{ exact: false }&quot;
+          class&#x3D;&quot;transition-colors duration-200 hover:text-primary-brand&quot;
+        &gt;
+          {{ item.label | translate }}
+        &lt;/a&gt;
+      &lt;/li&gt;
+    }
+  &lt;/ul&gt;
+
+  &lt;div class&#x3D;&quot;hidden md:flex items-center gap-5&quot;&gt;
+    @if (isLoggedIn()) {
+      &lt;a
+        routerLink&#x3D;&quot;/profile&quot;
+        class&#x3D;&quot;grid size-11 place-items-center rounded-full bg-primary-brand text-white transition-transform duration-200 hover:scale-105 active:scale-95 shadow-[0_4px_14px_rgba(255,65,0,0.35)]&quot;
+        [attr.aria-label]&#x3D;&quot;&#x27;NAVBAR.PROFILE&#x27; | translate&quot;
+      &gt;
+        &lt;i class&#x3D;&quot;pi pi-user text-xl&quot;&gt;&lt;/i&gt;
+      &lt;/a&gt;
+    } @else {
+      &lt;app-button variant&#x3D;&quot;solid&quot; [showArrow]&#x3D;&quot;true&quot; routerLink&#x3D;&quot;/auth/login&quot;&gt;
+        {{ &#x27;NAVBAR.LOGIN&#x27; | translate }}
+      &lt;/app-button&gt;
+      &lt;app-button variant&#x3D;&quot;outline&quot; [showArrow]&#x3D;&quot;true&quot; routerLink&#x3D;&quot;/auth/register&quot;&gt;
+        {{ &#x27;NAVBAR.SIGN_UP&#x27; | translate }}
+      &lt;/app-button&gt;
+    }
+  &lt;/div&gt;
+
+  &lt;div class&#x3D;&quot;flex md:hidden items-center gap-3&quot;&gt;
+    @if (isLoggedIn()) {
+      &lt;a
+        routerLink&#x3D;&quot;/profile&quot;
+        class&#x3D;&quot;grid size-10 place-items-center rounded-full bg-primary-brand text-white transition-transform duration-200 hover:scale-105 active:scale-95&quot;
+        [attr.aria-label]&#x3D;&quot;&#x27;NAVBAR.PROFILE&#x27; | translate&quot;
+      &gt;
+        &lt;i class&#x3D;&quot;pi pi-user text-lg&quot;&gt;&lt;/i&gt;
+      &lt;/a&gt;
+    }
+
+    &lt;p-button
+      icon&#x3D;&quot;pi pi-bars&quot;
+      [rounded]&#x3D;&quot;true&quot;
+      severity&#x3D;&quot;danger&quot;
+      styleClass&#x3D;&quot;bg-primary-brand border-none w-10 h-10&quot;
+      (onClick)&#x3D;&quot;toggleMobileMenu()&quot;
+    /&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;
+
+&lt;p-drawer
+  [(visible)]&#x3D;&quot;mobileMenuVisible&quot;
+  position&#x3D;&quot;left&quot;
+  styleClass&#x3D;&quot;w-72 !bg-white dark:!bg-neutral-900 !text-neutral-900 dark:!text-white !border-r !border-neutral-200 dark:!border-neutral-700&quot;
+&gt;
+  &lt;ng-template #header&gt;
+    &lt;div class&#x3D;&quot;flex items-center py-2&quot;&gt;
+      &lt;a routerLink&#x3D;&quot;/home&quot; (click)&#x3D;&quot;mobileMenuVisible.set(false)&quot; class&#x3D;&quot;cursor-pointer&quot;&gt;
+        &lt;img src&#x3D;&quot;images/logo.png&quot; alt&#x3D;&quot;Super Fitness Logo&quot; class&#x3D;&quot;h-15 w-auto&quot; /&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/ng-template&gt;
+
+  &lt;div class&#x3D;&quot;flex flex-col gap-6 font-semibold text-lg px-2&quot;&gt;
+    @for (item of navItems; track item.link) {
+      &lt;a
+        [routerLink]&#x3D;&quot;item.link&quot;
+        (click)&#x3D;&quot;mobileMenuVisible.set(false)&quot;
+        routerLinkActive&#x3D;&quot;text-primary-brand&quot;
+        [routerLinkActiveOptions]&#x3D;&quot;{ exact: true }&quot;
+        class&#x3D;&quot;text-neutral-800 dark:text-neutral-100 hover:text-primary-brand transition-colors duration-200&quot;
+      &gt;
+        {{ item.label | translate }}
+      &lt;/a&gt;
+    }
+
+    @if (!isLoggedIn()) {
+      &lt;div class&#x3D;&quot;mt-4 flex flex-col gap-3&quot;&gt;
+        &lt;app-button variant&#x3D;&quot;solid&quot; [fullWidth]&#x3D;&quot;true&quot; routerLink&#x3D;&quot;/auth/login&quot; (click)&#x3D;&quot;mobileMenuVisible.set(false)&quot;&gt;
+          {{ &#x27;NAVBAR.LOGIN&#x27; | translate }}
+        &lt;/app-button&gt;
+        &lt;app-button variant&#x3D;&quot;outline&quot; [fullWidth]&#x3D;&quot;true&quot; routerLink&#x3D;&quot;/auth/register&quot; (click)&#x3D;&quot;mobileMenuVisible.set(false)&quot;&gt;
+          {{ &#x27;NAVBAR.SIGN_UP&#x27; | translate }}
+        &lt;/app-button&gt;
+      &lt;/div&gt;
+    }
+  &lt;/div&gt;
+&lt;/p-drawer&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./nav-bar.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><nav  class="fixed top-0 left-0 w-full z-50 md:px-20 md:py-4 px-4.5 py-2 flex items-center justify-between transition-all duration-300 text-neutral-800 dark:text-neutral-100"  [class.bg-transparent]="!isScrolled()"  [class.bg-neutral-100]="isScrolled()"  [class.dark:bg-neutral-900]="isScrolled()"  [class.shadow-lg]="isScrolled()">  <div class="flex items-center">    <a routerLink="/home" class="cursor-pointer">      <img src="images/logo.png" alt="Super Fitness Logo" class="h-13.75 w-auto" />    </a>  </div>  <ul class="hidden md:flex items-center gap-6 font-bold text-neutral-800 dark:text-neutral-100">    @for (item of navItems; track item.link) {      <li>        <a          [routerLink]="item.link"          routerLinkActive="text-primary-brand"          [routerLinkActiveOptions]="{ exact: false }"          class="transition-colors duration-200 hover:text-primary-brand"        >          {{ item.label | translate }}        </a>      </li>    }  </ul>  <div class="hidden md:flex items-center gap-5">    @if (isLoggedIn()) {      <a        routerLink="/profile"        class="grid size-11 place-items-center rounded-full bg-primary-brand text-white transition-transform duration-200 hover:scale-105 active:scale-95 shadow-[0_4px_14px_rgba(255,65,0,0.35)]"        [attr.aria-label]="\'NAVBAR.PROFILE\' | translate"      >        <i class="pi pi-user text-xl"></i>      </a>    } @else {      <app-button variant="solid" [showArrow]="true" routerLink="/auth/login">        {{ \'NAVBAR.LOGIN\' | translate }}      </app-button>      <app-button variant="outline" [showArrow]="true" routerLink="/auth/register">        {{ \'NAVBAR.SIGN_UP\' | translate }}      </app-button>    }  </div>  <div class="flex md:hidden items-center gap-3">    @if (isLoggedIn()) {      <a        routerLink="/profile"        class="grid size-10 place-items-center rounded-full bg-primary-brand text-white transition-transform duration-200 hover:scale-105 active:scale-95"        [attr.aria-label]="\'NAVBAR.PROFILE\' | translate"      >        <i class="pi pi-user text-lg"></i>      </a>    }    <p-button      icon="pi pi-bars"      [rounded]="true"      severity="danger"      styleClass="bg-primary-brand border-none w-10 h-10"      (onClick)="toggleMobileMenu()"    />  </div></nav><p-drawer  [(visible)]="mobileMenuVisible"  position="left"  styleClass="w-72 !bg-white dark:!bg-neutral-900 !text-neutral-900 dark:!text-white !border-r !border-neutral-200 dark:!border-neutral-700">  <ng-template #header>    <div class="flex items-center py-2">      <a routerLink="/home" (click)="mobileMenuVisible.set(false)" class="cursor-pointer">        <img src="images/logo.png" alt="Super Fitness Logo" class="h-15 w-auto" />      </a>    </div>  </ng-template>  <div class="flex flex-col gap-6 font-semibold text-lg px-2">    @for (item of navItems; track item.link) {      <a        [routerLink]="item.link"        (click)="mobileMenuVisible.set(false)"        routerLinkActive="text-primary-brand"        [routerLinkActiveOptions]="{ exact: true }"        class="text-neutral-800 dark:text-neutral-100 hover:text-primary-brand transition-colors duration-200"      >        {{ item.label | translate }}      </a>    }    @if (!isLoggedIn()) {      <div class="mt-4 flex flex-col gap-3">        <app-button variant="solid" [fullWidth]="true" routerLink="/auth/login" (click)="mobileMenuVisible.set(false)">          {{ \'NAVBAR.LOGIN\' | translate }}        </app-button>        <app-button variant="outline" [fullWidth]="true" routerLink="/auth/register" (click)="mobileMenuVisible.set(false)">          {{ \'NAVBAR.SIGN_UP\' | translate }}        </app-button>      </div>    }  </div></p-drawer></div>'
+    var COMPONENTS = [{'name': 'AboutUs', 'selector': 'app-about-us'},{'name': 'AboutUsSummary', 'selector': 'app-about-us-summary'},{'name': 'App', 'selector': 'app-root'},{'name': 'AuthLayout', 'selector': 'app-auth-layout'},{'name': 'AuthSocialLogin', 'selector': 'app-auth-social-login'},{'name': 'Button', 'selector': 'app-button'},{'name': 'Card', 'selector': 'app-card'},{'name': 'Carousel', 'selector': 'app-carousel'},{'name': 'ChangePasswordModal', 'selector': 'app-change-password-modal'},{'name': 'ChatbotComponent', 'selector': 'app-chatbot'},{'name': 'ChatBubbleComponent', 'selector': 'app-chat-bubble'},{'name': 'ClassDetails', 'selector': 'app-class-details'},{'name': 'Classes', 'selector': 'app-classes'},{'name': 'EditPreferenceModal', 'selector': 'app-edit-preference-modal'},{'name': 'FloatingControls', 'selector': 'app-floating-controls'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'ForgotPassword', 'selector': 'app-forgot-password'},{'name': 'Healthy', 'selector': 'app-healthy'},{'name': 'HealthyDetails', 'selector': 'app-healthy-details'},{'name': 'HealthySection', 'selector': 'app-healthy-section'},{'name': 'HelpModal', 'selector': 'app-help-modal'},{'name': 'Hero', 'selector': 'app-hero'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Input', 'selector': 'app-input'},{'name': 'Login', 'selector': 'app-login'},{'name': 'MainLayout', 'selector': 'app-main-layout'},{'name': 'MarqueeTricker', 'selector': 'app-marquee-tricker'},{'name': 'MessageCardComponent', 'selector': 'app-message-card'},{'name': 'NavBar', 'selector': 'app-nav-bar'},{'name': 'NumberPicker', 'selector': 'app-number-picker'},{'name': 'Onboarding', 'selector': 'app-onboarding'},{'name': 'Otp', 'selector': 'app-otp'},{'name': 'PrivacyPolicyModal', 'selector': 'app-privacy-policy-modal'},{'name': 'Profile', 'selector': 'app-profile'},{'name': 'Register', 'selector': 'app-register'},{'name': 'ResetPassword', 'selector': 'app-reset-password'},{'name': 'SecurityModal', 'selector': 'app-security-modal'},{'name': 'Tabs', 'selector': 'app-tabs'},{'name': 'WhyUs', 'selector': 'app-why-us'},{'name': 'Workouts', 'selector': 'app-workouts'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'NavBar'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'NavBar.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

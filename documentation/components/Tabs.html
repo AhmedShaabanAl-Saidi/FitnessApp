@@ -1,0 +1,952 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>fitness-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">fitness-app documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  Tabs</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/shared/components/tabs/tabs.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" class="nav-link"
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.dev/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-tabs</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                        <div>        <code><a href="https://angular.dev/api/common/NgClass" target="_blank" >NgClass</a></code>
+</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./tabs.css</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./tabs.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./tabs.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+        <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../components/ClassDetails.html" target="_self" >ClassDetails</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/HealthySection.html" target="_self" >HealthySection</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/Workouts.html" target="_self" >Workouts</a></code>
+                                </li>
+                        </ul>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="https://angular.dev/api/common/NgClass" target="_blank" >NgClass</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <div class="tab-pane fade " id="api">    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#canScrollLeft" >canScrollLeft</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#canScrollRight" >canScrollRight</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#scrollContainer" >scrollContainer</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#checkScroll" >checkScroll</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#scroll" >scroll</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">I</span><a href="#activeTabId" >activeTabId</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">I</span><a href="#tabs" >tabs</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">O</span><a href="#tabChange" >tabChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/shared/components/tabs/tabs.ts:20</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="activeTabId"></a>
+                        <b>activeTabId</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/shared/components/tabs/tabs.ts:14</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tabs"></a>
+                        <b>tabs</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/TabItem.html" target="_self" >TabItem[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/shared/components/tabs/tabs.ts:13</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tabChange"></a>
+                        <b>tabChange</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/shared/components/tabs/tabs.ts:15</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkScroll"></a>
+                    <span class="name">
+                        <span ><b>checkScroll</b></span>
+                        <a href="#checkScroll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checkScroll()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="33"
+                                    class="link-to-prism">src/app/shared/components/tabs/tabs.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                        <span ><b>ngAfterViewInit</b></span>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="29"
+                                    class="link-to-prism">src/app/shared/components/tabs/tabs.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="scroll"></a>
+                    <span class="name">
+                        <span ><b>scroll</b></span>
+                        <a href="#scroll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>scroll(dir: "left" | "right")</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="46"
+                                    class="link-to-prism">src/app/shared/components/tabs/tabs.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>dir</td>
+                                            <td>
+                                                        <code>&quot;left&quot; | &quot;right&quot;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="canScrollLeft"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>canScrollLeft</b></span>
+                        <a href="#canScrollLeft"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/shared/components/tabs/tabs.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="canScrollRight"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>canScrollRight</b></span>
+                        <a href="#canScrollRight"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/shared/components/tabs/tabs.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="scrollContainer"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>scrollContainer</b></span>
+                        <a href="#scrollContainer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>viewChild&lt;ElementRef&lt;HTMLDivElement&gt;&gt;(&#x27;scrollContainer&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/shared/components/tabs/tabs.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgClass } from &#x27;@angular/common&#x27;;
+import { Component, ElementRef, input, output, signal, viewChild, AfterViewInit, effect } from &#x27;@angular/core&#x27;;
+import { TabItem } from &#x27;./tabs.interface&#x27;;
+export type { TabItem } from &#x27;./tabs.interface&#x27;;
+
+@Component({
+  selector: &#x27;app-tabs&#x27;,
+  imports: [NgClass],
+  templateUrl: &#x27;./tabs.html&#x27;,
+  styleUrl: &#x27;./tabs.css&#x27;,
+})
+export class Tabs implements AfterViewInit {
+  readonly tabs &#x3D; input&lt;TabItem[]&gt;([]);
+  readonly activeTabId &#x3D; input&lt;string&gt;(&#x27;&#x27;);
+  readonly tabChange &#x3D; output&lt;string&gt;();
+
+  private readonly scrollContainer &#x3D; viewChild&lt;ElementRef&lt;HTMLDivElement&gt;&gt;(&#x27;scrollContainer&#x27;);
+
+  readonly canScrollLeft &#x3D; signal(false);
+  readonly canScrollRight &#x3D; signal(false);
+
+  constructor() {
+    effect(() &#x3D;&gt; {
+      this.tabs();
+      setTimeout(() &#x3D;&gt; this.checkScroll(), 50);
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.checkScroll();
+  }
+
+  checkScroll(): void {
+    const el &#x3D; this.scrollContainer()?.nativeElement;
+    if (!el) return;
+
+    const { scrollLeft, scrollWidth, clientWidth } &#x3D; el;
+    const isRtl &#x3D; getComputedStyle(el).direction &#x3D;&#x3D;&#x3D; &#x27;rtl&#x27;;
+    const current &#x3D; Math.abs(scrollLeft);
+    const max &#x3D; scrollWidth - clientWidth;
+
+    this.canScrollLeft.set(isRtl ? current &lt; max - 5 : current &gt; 5);
+    this.canScrollRight.set(isRtl ? current &gt; 5 : current &lt; max - 5);
+  }
+
+  scroll(dir: &#x27;left&#x27; | &#x27;right&#x27;): void {
+    const el &#x3D; this.scrollContainer()?.nativeElement;
+    if (!el) return;
+
+    const isRtl &#x3D; getComputedStyle(el).direction &#x3D;&#x3D;&#x3D; &#x27;rtl&#x27;;
+    const amount &#x3D; (dir &#x3D;&#x3D;&#x3D; &#x27;right&#x27; ? 280 : -280) * (isRtl ? -1 : 1);
+
+    el.scrollBy({ left: amount, behavior: &#x27;smooth&#x27; });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;relative mx-auto flex items-center justify-center gap-2 md:w-[min(85%,1020px)] w-full px-2&quot;&gt;
+  &lt;button type&#x3D;&quot;button&quot;
+    class&#x3D;&quot;grid size-8 md:size-9 shrink-0 cursor-pointer place-items-center rounded-full bg-neutral-300/80 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-100 hover:bg-primary-brand hover:text-white dark:hover:bg-primary-brand transition-all duration-200 disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:bg-neutral-300/80 dark:disabled:hover:bg-neutral-800 dark:disabled:hover:text-neutral-100 shadow-sm&quot;
+    [disabled]&#x3D;&quot;!canScrollLeft()&quot; (click)&#x3D;&quot;scroll(&#x27;left&#x27;)&quot; [attr.aria-label]&#x3D;&quot;&#x27;Scroll left&#x27;&quot;&gt;
+    &lt;i class&#x3D;&quot;pi pi-chevron-left text-xs md:text-sm&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/i&gt;
+  &lt;/button&gt;
+
+  &lt;div #scrollContainer
+    class&#x3D;&quot;flex items-center gap-2 md:gap-3 overflow-x-auto py-2 scroll-smooth scrollbar-none [&amp;::-webkit-scrollbar]:hidden w-full&quot;
+    role&#x3D;&quot;tablist&quot; aria-label&#x3D;&quot;Workout categories&quot; (scroll)&#x3D;&quot;checkScroll()&quot;&gt;
+    @for (tab of tabs(); track tab.id) {
+    &lt;button type&#x3D;&quot;button&quot; role&#x3D;&quot;tab&quot;
+      class&#x3D;&quot;shrink-0 cursor-pointer rounded-full border-0 px-[0.8rem] py-[0.45rem] hover:bg-primary-brand hover:text-white text-xs font-bold dark:text-[#F3F3F4] text-[#242424] transition-colors duration-200 md:px-4 md:py-2 md:text-sm&quot;
+      [attr.aria-selected]&#x3D;&quot;activeTabId() &#x3D;&#x3D;&#x3D; tab.id&quot; [ngClass]&#x3D;&quot;{
+          &#x27;bg-primary-brand text-white&#x27;: activeTabId() &#x3D;&#x3D;&#x3D; tab.id,
+          &#x27;bg-transparent text-black&#x27;: activeTabId() !&#x3D;&#x3D; tab.id,
+        }&quot; (click)&#x3D;&quot;tabChange.emit(tab.id)&quot;&gt;
+      {{ tab.label }}
+    &lt;/button&gt;
+    }
+  &lt;/div&gt;
+
+  &lt;button type&#x3D;&quot;button&quot;
+    class&#x3D;&quot;grid size-8 md:size-9 shrink-0 cursor-pointer place-items-center rounded-full bg-neutral-300/80 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-100 hover:bg-primary-brand hover:text-white dark:hover:bg-primary-brand transition-all duration-200 disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:bg-neutral-300/80 dark:disabled:hover:bg-neutral-800 dark:disabled:hover:text-neutral-100 shadow-sm&quot;
+    [disabled]&#x3D;&quot;!canScrollRight()&quot; (click)&#x3D;&quot;scroll(&#x27;right&#x27;)&quot; [attr.aria-label]&#x3D;&quot;&#x27;Scroll right&#x27;&quot;&gt;
+    &lt;i class&#x3D;&quot;pi pi-chevron-right text-xs md:text-sm&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/i&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./tabs.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="relative mx-auto flex items-center justify-center gap-2 md:w-[min(85%,1020px)] w-full px-2">  <button type="button"    class="grid size-8 md:size-9 shrink-0 cursor-pointer place-items-center rounded-full bg-neutral-300/80 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-100 hover:bg-primary-brand hover:text-white dark:hover:bg-primary-brand transition-all duration-200 disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:bg-neutral-300/80 dark:disabled:hover:bg-neutral-800 dark:disabled:hover:text-neutral-100 shadow-sm"    [disabled]="!canScrollLeft()" (click)="scroll(\'left\')" [attr.aria-label]="\'Scroll left\'">    <i class="pi pi-chevron-left text-xs md:text-sm" aria-hidden="true"></i>  </button>  <div #scrollContainer    class="flex items-center gap-2 md:gap-3 overflow-x-auto py-2 scroll-smooth scrollbar-none [&::-webkit-scrollbar]:hidden w-full"    role="tablist" aria-label="Workout categories" (scroll)="checkScroll()">    @for (tab of tabs(); track tab.id) {    <button type="button" role="tab"      class="shrink-0 cursor-pointer rounded-full border-0 px-[0.8rem] py-[0.45rem] hover:bg-primary-brand hover:text-white text-xs font-bold dark:text-[#F3F3F4] text-[#242424] transition-colors duration-200 md:px-4 md:py-2 md:text-sm"      [attr.aria-selected]="activeTabId() === tab.id" [ngClass]="{          \'bg-primary-brand text-white\': activeTabId() === tab.id,          \'bg-transparent text-black\': activeTabId() !== tab.id,        }" (click)="tabChange.emit(tab.id)">      {{ tab.label }}    </button>    }  </div>  <button type="button"    class="grid size-8 md:size-9 shrink-0 cursor-pointer place-items-center rounded-full bg-neutral-300/80 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-100 hover:bg-primary-brand hover:text-white dark:hover:bg-primary-brand transition-all duration-200 disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:bg-neutral-300/80 dark:disabled:hover:bg-neutral-800 dark:disabled:hover:text-neutral-100 shadow-sm"    [disabled]="!canScrollRight()" (click)="scroll(\'right\')" [attr.aria-label]="\'Scroll right\'">    <i class="pi pi-chevron-right text-xs md:text-sm" aria-hidden="true"></i>  </button></div></div>'
+    var COMPONENTS = [{'name': 'AboutUs', 'selector': 'app-about-us'},{'name': 'AboutUsSummary', 'selector': 'app-about-us-summary'},{'name': 'App', 'selector': 'app-root'},{'name': 'AuthLayout', 'selector': 'app-auth-layout'},{'name': 'AuthSocialLogin', 'selector': 'app-auth-social-login'},{'name': 'Button', 'selector': 'app-button'},{'name': 'Card', 'selector': 'app-card'},{'name': 'Carousel', 'selector': 'app-carousel'},{'name': 'ChangePasswordModal', 'selector': 'app-change-password-modal'},{'name': 'ChatbotComponent', 'selector': 'app-chatbot'},{'name': 'ChatBubbleComponent', 'selector': 'app-chat-bubble'},{'name': 'ClassDetails', 'selector': 'app-class-details'},{'name': 'Classes', 'selector': 'app-classes'},{'name': 'EditPreferenceModal', 'selector': 'app-edit-preference-modal'},{'name': 'FloatingControls', 'selector': 'app-floating-controls'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'ForgotPassword', 'selector': 'app-forgot-password'},{'name': 'Healthy', 'selector': 'app-healthy'},{'name': 'HealthyDetails', 'selector': 'app-healthy-details'},{'name': 'HealthySection', 'selector': 'app-healthy-section'},{'name': 'HelpModal', 'selector': 'app-help-modal'},{'name': 'Hero', 'selector': 'app-hero'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Input', 'selector': 'app-input'},{'name': 'Login', 'selector': 'app-login'},{'name': 'MainLayout', 'selector': 'app-main-layout'},{'name': 'MarqueeTricker', 'selector': 'app-marquee-tricker'},{'name': 'MessageCardComponent', 'selector': 'app-message-card'},{'name': 'NavBar', 'selector': 'app-nav-bar'},{'name': 'NumberPicker', 'selector': 'app-number-picker'},{'name': 'Onboarding', 'selector': 'app-onboarding'},{'name': 'Otp', 'selector': 'app-otp'},{'name': 'PrivacyPolicyModal', 'selector': 'app-privacy-policy-modal'},{'name': 'Profile', 'selector': 'app-profile'},{'name': 'Register', 'selector': 'app-register'},{'name': 'ResetPassword', 'selector': 'app-reset-password'},{'name': 'SecurityModal', 'selector': 'app-security-modal'},{'name': 'Tabs', 'selector': 'app-tabs'},{'name': 'WhyUs', 'selector': 'app-why-us'},{'name': 'Workouts', 'selector': 'app-workouts'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'Tabs'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'Tabs.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

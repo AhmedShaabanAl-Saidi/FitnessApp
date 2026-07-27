@@ -1,0 +1,1265 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>fitness-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">fitness-app documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  Workouts</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/shared/components/workouts/workouts.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" class="nav-link"
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-workouts</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                        <div>        <code><a href="../components/Carousel.html" target="_self" >Carousel</a></code>
+</div>
+                        <div>        <code><a href="../components/Tabs.html" target="_self" >Tabs</a></code>
+</div>
+                        <div>        <code><a href="../components/MarqueeTricker.html" target="_self" >MarqueeTricker</a></code>
+</div>
+                        <div>    <code>TranslatePipe</code>
+</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./workouts.css</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./workouts.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./workouts.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+        <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../components/Classes.html" target="_self" >Classes</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/Home.html" target="_self" >Home</a></code>
+                                </li>
+                        </ul>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../components/Carousel.html" target="_self" >Carousel</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/Tabs.html" target="_self" >Tabs</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/MarqueeTricker.html" target="_self" >MarqueeTricker</a></code>
+                                </li>
+                                <li>
+                                        <code>TranslatePipe</code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <div class="tab-pane fade " id="api">    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_destroyRef" >_destroyRef</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#carouselItems" >carouselItems</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#content" >content</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#muscleGroups" >muscleGroups</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#router" >router</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#selectedTab" >selectedTab</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#service" >service</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#tabs" >tabs</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#translate" >translate</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#clickTab" >clickTab</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#loadInitialMuscleGroups" >loadInitialMuscleGroups</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#navigaetTo" >navigaetTo</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">I</span><a href="#rows" >rows</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">I</span><a href="#showMarquee" >showMarquee</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+</section>
+
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rows"></a>
+                        <b>rows</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>1 | 2</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>1</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/shared/components/workouts/workouts.ts:22</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="showMarquee"></a>
+                        <b>showMarquee</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/shared/components/workouts/workouts.ts:23</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clickTab"></a>
+                    <span class="name">
+                        <span ><b>clickTab</b></span>
+                        <a href="#clickTab"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>clickTab(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="60"
+                                    class="link-to-prism">src/app/shared/components/workouts/workouts.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadInitialMuscleGroups"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>loadInitialMuscleGroups</b></span>
+                        <a href="#loadInitialMuscleGroups"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadInitialMuscleGroups()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="43"
+                                    class="link-to-prism">src/app/shared/components/workouts/workouts.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigaetTo"></a>
+                    <span class="name">
+                        <span ><b>navigaetTo</b></span>
+                        <a href="#navigaetTo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigaetTo($event: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="18"
+                                    class="link-to-prism">src/app/shared/components/workouts/workouts.ts:18</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>$event</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="55"
+                                    class="link-to-prism">src/app/shared/components/workouts/workouts.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_destroyRef"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_destroyRef</b></span>
+                        <a href="#_destroyRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(DestroyRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/shared/components/workouts/workouts.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="carouselItems"></a>
+                    <span class="name">
+                        <span ><b>carouselItems</b></span>
+                        <a href="#carouselItems"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt;
+    (this.content()?.muscles ?? []).map((muscle) &#x3D;&gt; ({
+      id: muscle._id,
+      title: muscle.name,
+      image: muscle.image,
+    })),
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/shared/components/workouts/workouts.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="content"></a>
+                    <span class="name">
+                        <span ><b>content</b></span>
+                        <a href="#content"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;MuscleAPIResponse | null&gt;(null)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/shared/components/workouts/workouts.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="muscleGroups"></a>
+                    <span class="name">
+                        <span ><b>muscleGroups</b></span>
+                        <a href="#muscleGroups"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;MuscleGroup[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/shared/components/workouts/workouts.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="router"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>router</b></span>
+                        <a href="#router"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Router)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/shared/components/workouts/workouts.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedTab"></a>
+                    <span class="name">
+                        <span ><b>selectedTab</b></span>
+                        <a href="#selectedTab"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;string&gt;(&#x27;full-body&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/shared/components/workouts/workouts.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="service"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>service</b></span>
+                        <a href="#service"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(MuscleService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/shared/components/workouts/workouts.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tabs"></a>
+                    <span class="name">
+                        <span ><b>tabs</b></span>
+                        <a href="#tabs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed&lt;TabItem[]&gt;(() &#x3D;&gt; [
+    { id: &#x27;full-body&#x27;, label: this.translate.instant(&#x27;WORKOUTS.FULL_BODY&#x27;) },
+    ...this.muscleGroups().map((group) &#x3D;&gt; ({ id: group._id, label: group.name })),
+  ])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/shared/components/workouts/workouts.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="translate"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>translate</b></span>
+                        <a href="#translate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(TranslateService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/shared/components/workouts/workouts.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, computed, DestroyRef, inject, input, OnInit, signal } from &#x27;@angular/core&#x27;;
+import { takeUntilDestroyed } from &#x27;@angular/core/rxjs-interop&#x27;;
+import { map } from &#x27;rxjs&#x27;;
+import { Carousel } from &#x27;../carousel/carousel&#x27;;
+import { TabItem, Tabs } from &#x27;../tabs/tabs&#x27;;
+import { MuscleAPIResponse, MuscleGroup } from &#x27;../../interfaces/muscles&#x27;;
+import { MuscleService } from &#x27;../../services/muscle-service&#x27;;
+import { MarqueeTricker } from &#x27;../marquee-tricker/marquee-tricker&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { TranslatePipe, TranslateService } from &#x27;@ngx-translate/core&#x27;;
+@Component({
+  selector: &#x27;app-workouts&#x27;,
+  imports: [Carousel, Tabs, MarqueeTricker, TranslatePipe],
+  templateUrl: &#x27;./workouts.html&#x27;,
+  styleUrl: &#x27;./workouts.css&#x27;,
+})
+export class Workouts implements OnInit {
+  navigaetTo($event: string) {
+    console.log(&#x27;navigate to&#x27;, $event);
+    this.router.navigate([&#x27;/classes&#x27;, $event]);
+  }
+  rows &#x3D; input&lt;1 | 2&gt;(1);
+  showMarquee &#x3D; input&lt;boolean&gt;(false);
+  muscleGroups &#x3D; signal&lt;MuscleGroup[]&gt;([]);
+  private readonly service &#x3D; inject(MuscleService);
+  private readonly translate &#x3D; inject(TranslateService);
+  selectedTab &#x3D; signal&lt;string&gt;(&#x27;full-body&#x27;);
+  content &#x3D; signal&lt;MuscleAPIResponse | null&gt;(null);
+  private readonly _destroyRef &#x3D; inject(DestroyRef);
+  private readonly router &#x3D; inject(Router);
+  tabs &#x3D; computed&lt;TabItem[]&gt;(() &#x3D;&gt; [
+    { id: &#x27;full-body&#x27;, label: this.translate.instant(&#x27;WORKOUTS.FULL_BODY&#x27;) },
+    ...this.muscleGroups().map((group) &#x3D;&gt; ({ id: group._id, label: group.name })),
+  ]);
+
+  carouselItems &#x3D; computed(() &#x3D;&gt;
+    (this.content()?.muscles ?? []).map((muscle) &#x3D;&gt; ({
+      id: muscle._id,
+      title: muscle.name,
+      image: muscle.image,
+    })),
+  );
+  private loadInitialMuscleGroups(): void {
+    this.service
+      .getMuscleGroups()
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe({
+        next: (res) &#x3D;&gt; {
+          if (res?.musclesGroup) {
+            this.muscleGroups.set([...res.musclesGroup]);
+          }
+        },
+      });
+  }
+  ngOnInit() {
+    this.loadInitialMuscleGroups();
+    this.clickTab(&#x27;full-body&#x27;);
+  }
+
+  clickTab(id: string) {
+    this.selectedTab.set(id);
+
+    const request$ &#x3D;
+      id &#x3D;&#x3D;&#x3D; &#x27;full-body&#x27;
+        ? this.service.getMuscleFullBody()
+        : this.service.getMuscleById(id).pipe(
+            map((res) &#x3D;&gt; ({
+              message: res.message,
+              totalMuscles: res.muscles.length,
+              muscles: res.muscles,
+            })),
+          );
+    request$.pipe(takeUntilDestroyed(this._destroyRef)).subscribe({
+      next: (content) &#x3D;&gt; this.content.set(content),
+      error: (err) &#x3D;&gt; console.error(err),
+    });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;section class&#x3D;&quot;relative w-full pb-10 min-h-screen pt-12 dark:bg-neutral-900 bg-[#d0d3d7]&quot;&gt;
+  &lt;div class&#x3D;&quot;relative w-full&quot;&gt;
+    &lt;h2
+      class&#x3D;&quot;text-[40px] md:text-[60px] text-center font-bold uppercase text-transparent [-webkit-text-stroke:2px_#999999] dark:[-webkit-text-stroke:2px_#d8d8d8] opacity-50 pointer-events-none select-none&quot;
+    &gt;
+      {{ &#x27;WORKOUTS.TITLE&#x27; | translate }}
+    &lt;/h2&gt;
+    &lt;span
+      class&#x3D;&quot;absolute left-1/2 top-1/2 -translate-x-1/2 z-10 flex items-center gap-2 text-primary-brand font-semibold&quot;
+    &gt;
+      &lt;svg
+        xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+        width&#x3D;&quot;24&quot;
+        height&#x3D;&quot;24&quot;
+        viewBox&#x3D;&quot;0 0 24 24&quot;
+        fill&#x3D;&quot;none&quot;
+        stroke&#x3D;&quot;currentColor&quot;
+        stroke-width&#x3D;&quot;2&quot;
+        stroke-linecap&#x3D;&quot;round&quot;
+        stroke-linejoin&#x3D;&quot;round&quot;
+      &gt;
+        &lt;path d&#x3D;&quot;M6.5 6.5v11&quot; /&gt;
+        &lt;path d&#x3D;&quot;M17.5 6.5v11&quot; /&gt;
+        &lt;path d&#x3D;&quot;M4 9v6&quot; /&gt;
+        &lt;path d&#x3D;&quot;M20 9v6&quot; /&gt;
+        &lt;path d&#x3D;&quot;M9 4v16&quot; /&gt;
+        &lt;path d&#x3D;&quot;M15 4v16&quot; /&gt;
+        &lt;line x1&#x3D;&quot;9&quot; y1&#x3D;&quot;12&quot; x2&#x3D;&quot;15&quot; y2&#x3D;&quot;12&quot; /&gt;
+      &lt;/svg&gt;
+
+      &lt;span&gt;{{ &#x27;WORKOUTS.SUBTITLE&#x27; | translate }}&lt;/span&gt;
+    &lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div
+    class&#x3D;&quot;relative bg-[linear-gradient(to_bottom,#b8bcbf_0_30px,transparent_360px_100%)] dark:bg-[linear-gradient(to_bottom,#242424_0_30px,transparent_360px_100%)] md:bg-[linear-gradient(to_bottom,#b8bcbf_0_450px,transparent_450px_100%)] dark:md:bg-[linear-gradient(to_bottom,#242424_0_450px,transparent_450px_100%)]&quot;
+  &gt;
+    &lt;h2
+      class&#x3D;&quot;text-2xl py-5 md:text-[40px] 2xl:w-1/3 text-neutral-900 dark:text-[#F3F3F4] text-center mx-auto font-bold&quot;
+    &gt;
+      {{ &#x27;WORKOUTS.HEADER&#x27; | translate }}
+      &lt;span class&#x3D;&quot;text-primary-brand&quot;&gt;{{ &#x27;WORKOUTS.HEADER_HIGHLIGHT&#x27; | translate }}&lt;/span&gt;
+    &lt;/h2&gt;
+    &lt;app-tabs [tabs]&#x3D;&quot;tabs()&quot; [activeTabId]&#x3D;&quot;selectedTab()&quot; (tabChange)&#x3D;&quot;clickTab($event)&quot; /&gt;
+
+    &lt;div class&#x3D;&quot;mx-auto mt-4 flex w-[calc(100%-2rem)] flex-col px-0 md:mt-8 md:w-3/4 md:px-4&quot;&gt;
+      @if (content() &amp;&amp; content()!.totalMuscles &gt; 0) {
+        &lt;app-carousel [items]&#x3D;&quot;carouselItems()&quot; (navigateTo)&#x3D;&quot;navigaetTo($event)&quot; [rows]&#x3D;&quot;rows()&quot; /&gt;
+      } @else if (content()?.totalMuscles &#x3D;&#x3D;&#x3D; 0) {
+        &lt;div class&#x3D;&quot;text-center py-12 text-neutral-900 dark:text-[#F3F3F4] md:text-4xl&quot;&gt;
+          &lt;p class&#x3D;&quot;animate-pulse&quot;&gt;{{ &#x27;WORKOUTS.NO_WORKOUTS&#x27; | translate }}&lt;/p&gt;
+        &lt;/div&gt;
+      } @else {
+        &lt;div class&#x3D;&quot;text-center py-12 dark:text-[#F3F3F4] text-neutral-500&quot;&gt;
+          &lt;p class&#x3D;&quot;animate-pulse&quot;&gt;{{ &#x27;WORKOUTS.LOADING&#x27; | translate }}&lt;/p&gt;
+        &lt;/div&gt;
+      }
+    &lt;/div&gt;
+  &lt;/div&gt;
+  @if (showMarquee()) {
+    &lt;app-marquee-tricker /&gt;
+  }
+&lt;/section&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./workouts.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><section class="relative w-full pb-10 min-h-screen pt-12 dark:bg-neutral-900 bg-[#d0d3d7]">  <div class="relative w-full">    <h2      class="text-[40px] md:text-[60px] text-center font-bold uppercase text-transparent [-webkit-text-stroke:2px_#999999] dark:[-webkit-text-stroke:2px_#d8d8d8] opacity-50 pointer-events-none select-none"    >      {{ \'WORKOUTS.TITLE\' | translate }}    </h2>    <span      class="absolute left-1/2 top-1/2 -translate-x-1/2 z-10 flex items-center gap-2 text-primary-brand font-semibold"    >      <svg        xmlns="http://www.w3.org/2000/svg"        width="24"        height="24"        viewBox="0 0 24 24"        fill="none"        stroke="currentColor"        stroke-width="2"        stroke-linecap="round"        stroke-linejoin="round"      >        <path d="M6.5 6.5v11" />        <path d="M17.5 6.5v11" />        <path d="M4 9v6" />        <path d="M20 9v6" />        <path d="M9 4v16" />        <path d="M15 4v16" />        <line x1="9" y1="12" x2="15" y2="12" />      </svg>      <span>{{ \'WORKOUTS.SUBTITLE\' | translate }}</span>    </span>  </div>  <div    class="relative bg-[linear-gradient(to_bottom,#b8bcbf_0_30px,transparent_360px_100%)] dark:bg-[linear-gradient(to_bottom,#242424_0_30px,transparent_360px_100%)] md:bg-[linear-gradient(to_bottom,#b8bcbf_0_450px,transparent_450px_100%)] dark:md:bg-[linear-gradient(to_bottom,#242424_0_450px,transparent_450px_100%)]"  >    <h2      class="text-2xl py-5 md:text-[40px] 2xl:w-1/3 text-neutral-900 dark:text-[#F3F3F4] text-center mx-auto font-bold"    >      {{ \'WORKOUTS.HEADER\' | translate }}      <span class="text-primary-brand">{{ \'WORKOUTS.HEADER_HIGHLIGHT\' | translate }}</span>    </h2>    <app-tabs [tabs]="tabs()" [activeTabId]="selectedTab()" (tabChange)="clickTab($event)" />    <div class="mx-auto mt-4 flex w-[calc(100%-2rem)] flex-col px-0 md:mt-8 md:w-3/4 md:px-4">      @if (content() && content()!.totalMuscles > 0) {        <app-carousel [items]="carouselItems()" (navigateTo)="navigaetTo($event)" [rows]="rows()" />      } @else if (content()?.totalMuscles === 0) {        <div class="text-center py-12 text-neutral-900 dark:text-[#F3F3F4] md:text-4xl">          <p class="animate-pulse">{{ \'WORKOUTS.NO_WORKOUTS\' | translate }}</p>        </div>      } @else {        <div class="text-center py-12 dark:text-[#F3F3F4] text-neutral-500">          <p class="animate-pulse">{{ \'WORKOUTS.LOADING\' | translate }}</p>        </div>      }    </div>  </div>  @if (showMarquee()) {    <app-marquee-tricker />  }</section></div>'
+    var COMPONENTS = [{'name': 'AboutUs', 'selector': 'app-about-us'},{'name': 'AboutUsSummary', 'selector': 'app-about-us-summary'},{'name': 'App', 'selector': 'app-root'},{'name': 'AuthLayout', 'selector': 'app-auth-layout'},{'name': 'AuthSocialLogin', 'selector': 'app-auth-social-login'},{'name': 'Button', 'selector': 'app-button'},{'name': 'Card', 'selector': 'app-card'},{'name': 'Carousel', 'selector': 'app-carousel'},{'name': 'ChangePasswordModal', 'selector': 'app-change-password-modal'},{'name': 'ChatbotComponent', 'selector': 'app-chatbot'},{'name': 'ChatBubbleComponent', 'selector': 'app-chat-bubble'},{'name': 'ClassDetails', 'selector': 'app-class-details'},{'name': 'Classes', 'selector': 'app-classes'},{'name': 'EditPreferenceModal', 'selector': 'app-edit-preference-modal'},{'name': 'FloatingControls', 'selector': 'app-floating-controls'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'ForgotPassword', 'selector': 'app-forgot-password'},{'name': 'Healthy', 'selector': 'app-healthy'},{'name': 'HealthyDetails', 'selector': 'app-healthy-details'},{'name': 'HealthySection', 'selector': 'app-healthy-section'},{'name': 'HelpModal', 'selector': 'app-help-modal'},{'name': 'Hero', 'selector': 'app-hero'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Input', 'selector': 'app-input'},{'name': 'Login', 'selector': 'app-login'},{'name': 'MainLayout', 'selector': 'app-main-layout'},{'name': 'MarqueeTricker', 'selector': 'app-marquee-tricker'},{'name': 'MessageCardComponent', 'selector': 'app-message-card'},{'name': 'NavBar', 'selector': 'app-nav-bar'},{'name': 'NumberPicker', 'selector': 'app-number-picker'},{'name': 'Onboarding', 'selector': 'app-onboarding'},{'name': 'Otp', 'selector': 'app-otp'},{'name': 'PrivacyPolicyModal', 'selector': 'app-privacy-policy-modal'},{'name': 'Profile', 'selector': 'app-profile'},{'name': 'Register', 'selector': 'app-register'},{'name': 'ResetPassword', 'selector': 'app-reset-password'},{'name': 'SecurityModal', 'selector': 'app-security-modal'},{'name': 'Tabs', 'selector': 'app-tabs'},{'name': 'WhyUs', 'selector': 'app-why-us'},{'name': 'Workouts', 'selector': 'app-workouts'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'Workouts'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'Workouts.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,1327 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>fitness-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">fitness-app documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content miscellaneous-variables">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Miscellaneous</li>
+  <li class="breadcrumb-item">Variables</li>
+</ol>
+
+<section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <ul class="index-list">
+                        <li>
+                            <a href="#angularApp" title="src/server.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>angularApp</b>&nbsp;&nbsp;&nbsp;(src/.../server.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#app" title="src/server.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>app</b>&nbsp;&nbsp;&nbsp;(src/.../server.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#appConfig" title="src/app/app.config.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>appConfig</b>&nbsp;&nbsp;&nbsp;(src/.../app.config.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#AUTH_LAYOUT_ROUTE_DATA_KEY" title="src/app/layout/auth-layout/auth-layout-data.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>AUTH_LAYOUT_ROUTE_DATA_KEY</b>&nbsp;&nbsp;&nbsp;(src/.../auth-layout-data.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#BASE_CLASSES" title="src/app/shared/components/button/button.interfaces.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>BASE_CLASSES</b>&nbsp;&nbsp;&nbsp;(src/.../button.interfaces.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#bootstrap" title="src/main.server.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>bootstrap</b>&nbsp;&nbsp;&nbsp;(src/.../main.server.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#browserDistFolder" title="src/server.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>browserDistFolder</b>&nbsp;&nbsp;&nbsp;(src/.../server.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#config" title="src/app/app.config.server.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>config</b>&nbsp;&nbsp;&nbsp;(src/.../app.config.server.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#DEFAULT_LAYOUT_DATA" title="src/app/layout/auth-layout/auth-layout-data.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>DEFAULT_LAYOUT_DATA</b>&nbsp;&nbsp;&nbsp;(src/.../auth-layout-data.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#DEFAULT_OTP_LENGTH" title="src/app/shared/components/input/input.interfaces.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>DEFAULT_OTP_LENGTH</b>&nbsp;&nbsp;&nbsp;(src/.../input.interfaces.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#DEFAULT_VISIBLE_ITEMS" title="src/app/shared/components/number-picker/number-picker.interfaces.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>DEFAULT_VISIBLE_ITEMS</b>&nbsp;&nbsp;&nbsp;(src/.../number-picker.interfaces.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#environment" title="src/environments/environment.development.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.development.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#environment" title="src/environments/environment.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#FIELD_CLASSES" title="src/app/shared/components/input/input.interfaces.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>FIELD_CLASSES</b>&nbsp;&nbsp;&nbsp;(src/.../input.interfaces.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#GOAL_OPTIONS" title="src/app/features/auth/onboarding/onboarding-data.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>GOAL_OPTIONS</b>&nbsp;&nbsp;&nbsp;(src/.../onboarding-data.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#languageInterceptor" title="src/app/core/interceptors/language.interceptor.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>languageInterceptor</b>&nbsp;&nbsp;&nbsp;(src/.../language.interceptor.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#mainRoutes" title="src/app/layout/main-layout/main.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>mainRoutes</b>&nbsp;&nbsp;&nbsp;(src/.../main.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#MAX_OTP_LENGTH" title="src/app/shared/components/input/input.interfaces.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>MAX_OTP_LENGTH</b>&nbsp;&nbsp;&nbsp;(src/.../input.interfaces.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#MAX_PICKER_ITEMS" title="src/app/shared/components/number-picker/number-picker.interfaces.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>MAX_PICKER_ITEMS</b>&nbsp;&nbsp;&nbsp;(src/.../number-picker.interfaces.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#MAX_VISIBLE_ITEMS" title="src/app/shared/components/number-picker/number-picker.interfaces.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>MAX_VISIBLE_ITEMS</b>&nbsp;&nbsp;&nbsp;(src/.../number-picker.interfaces.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#NATIVE_INPUT_CLASSES" title="src/app/shared/components/input/input.interfaces.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>NATIVE_INPUT_CLASSES</b>&nbsp;&nbsp;&nbsp;(src/.../input.interfaces.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#ONBOARDING_STEPS" title="src/app/features/auth/onboarding/onboarding-data.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>ONBOARDING_STEPS</b>&nbsp;&nbsp;&nbsp;(src/.../onboarding-data.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#OTP_INPUT_CLASSES" title="src/app/shared/components/input/input.interfaces.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>OTP_INPUT_CLASSES</b>&nbsp;&nbsp;&nbsp;(src/.../input.interfaces.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#PASSWORD_TOGGLE_CLASSES" title="src/app/shared/components/input/input.interfaces.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>PASSWORD_TOGGLE_CLASSES</b>&nbsp;&nbsp;&nbsp;(src/.../input.interfaces.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#reqHandler" title="src/server.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>reqHandler</b>&nbsp;&nbsp;&nbsp;(src/.../server.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#routes" title="src/app/app.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>routes</b>&nbsp;&nbsp;&nbsp;(src/.../app.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#serverConfig" title="src/app/app.config.server.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>serverConfig</b>&nbsp;&nbsp;&nbsp;(src/.../app.config.server.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#serverRoutes" title="src/app/app.routes.server.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>serverRoutes</b>&nbsp;&nbsp;&nbsp;(src/.../app.routes.server.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#SIZE_CLASSES" title="src/app/shared/components/button/button.interfaces.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>SIZE_CLASSES</b>&nbsp;&nbsp;&nbsp;(src/.../button.interfaces.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#VARIANT_CLASSES" title="src/app/shared/components/button/button.interfaces.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>VARIANT_CLASSES</b>&nbsp;&nbsp;&nbsp;(src/.../button.interfaces.ts)</span></a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <h3>src/server.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="angularApp"></a>
+                    <span class="name">
+                        <span ><b>angularApp</b></span>
+                        <a href="#angularApp"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new AngularNodeAppEngine()</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="app"></a>
+                    <span class="name">
+                        <span ><b>app</b></span>
+                        <a href="#app"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>express()</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="browserDistFolder"></a>
+                    <span class="name">
+                        <span ><b>browserDistFolder</b></span>
+                        <a href="#browserDistFolder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>join(import.meta.dirname, &#x27;../browser&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="reqHandler"></a>
+                    <span class="name">
+                        <span ><b>reqHandler</b></span>
+                        <a href="#reqHandler"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createNodeRequestHandler(app)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/app.config.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="appConfig"></a>
+                    <span class="name">
+                        <span ><b>appConfig</b></span>
+                        <a href="#appConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/App.html" target="_self" >ApplicationConfig</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+    provideRouter(
+      routes,
+      withInMemoryScrolling({
+        scrollPositionRestoration: &#x27;top&#x27;,
+        anchorScrolling: &#x27;enabled&#x27;,
+      }),
+    ),
+    provideClientHydration(),
+    provideHttpClient(withFetch(), withInterceptors([languageInterceptor])),
+    provideTranslateService({
+      loader: provideTranslateHttpLoader({ prefix: &#x27;/i18n/&#x27;, suffix: &#x27;.json&#x27; }),
+      fallbackLang: &#x27;en&#x27;,
+    }),
+    provideAppInitializer(() &#x3D;&gt; {
+      inject(languageService);
+    }),
+    importProvidersFrom(LucideAngularModule.pick({ Mail, Lock, Eye, EyeOff, User, Search, MapPin, Check, X })),
+    { provide: ChatService, useClass: GeminiChatService },
+    // PrimeNG configuration
+    providePrimeNG({
+      theme: {
+        preset: Aura,
+      },
+    }),
+  ],
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/layout/auth-layout/auth-layout-data.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AUTH_LAYOUT_ROUTE_DATA_KEY"></a>
+                    <span class="name">
+                        <span ><b>AUTH_LAYOUT_ROUTE_DATA_KEY</b></span>
+                        <a href="#AUTH_LAYOUT_ROUTE_DATA_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;authLayout&#x27;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DEFAULT_LAYOUT_DATA"></a>
+                    <span class="name">
+                        <span ><b>DEFAULT_LAYOUT_DATA</b></span>
+                        <a href="#DEFAULT_LAYOUT_DATA"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/AuthLayoutRouteData.html" target="_self" >AuthLayoutRouteData</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  variant: &#x27;card&#x27;,
+  title: &#x27;&#x27;,
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/shared/components/button/button.interfaces.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BASE_CLASSES"></a>
+                    <span class="name">
+                        <span ><b>BASE_CLASSES</b></span>
+                        <a href="#BASE_CLASSES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;relative inline-flex items-center gap-2 whitespace-nowrap border font-semibold tracking-wide transition-all duration-300 select-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF4100] motion-reduce:transition-none&#x27;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SIZE_CLASSES"></a>
+                    <span class="name">
+                        <span ><b>SIZE_CLASSES</b></span>
+                        <a href="#SIZE_CLASSES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/Button.html" target="_self" >Record&lt;ButtonSize, string&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  sm: &#x27;px-4 py-1.5 text-xs&#x27;,
+  md: &#x27;px-5.5 py-2 text-sm&#x27;,
+  lg: &#x27;px-7 py-3 text-base&#x27;,
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="VARIANT_CLASSES"></a>
+                    <span class="name">
+                        <span ><b>VARIANT_CLASSES</b></span>
+                        <a href="#VARIANT_CLASSES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/Button.html" target="_self" >Record&lt;ButtonVariant, string&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  solid: &#x27;border-transparent bg-[#FF4100] text-white hover:bg-orange-700&#x27;,
+  outline:
+    &#x27;border-[#FF4100] bg-transparent text-[#FF4100] hover:bg-[#FF4100] hover:text-white&#x27;,
+  ghost: &#x27;border-transparent bg-transparent text-[#FF4100] hover:bg-gray-100&#x27;,
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/main.server.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bootstrap"></a>
+                    <span class="name">
+                        <span ><b>bootstrap</b></span>
+                        <a href="#bootstrap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(context: BootstrapContext) &#x3D;&gt; bootstrapApplication(App, config, context)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/app.config.server.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="config"></a>
+                    <span class="name">
+                        <span ><b>config</b></span>
+                        <a href="#config"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>mergeApplicationConfig(appConfig, serverConfig)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="serverConfig"></a>
+                    <span class="name">
+                        <span ><b>serverConfig</b></span>
+                        <a href="#serverConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/App.html" target="_self" >ApplicationConfig</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  providers: [
+    provideServerRendering(withRoutes(serverRoutes))
+  ]
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/shared/components/input/input.interfaces.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DEFAULT_OTP_LENGTH"></a>
+                    <span class="name">
+                        <span ><b>DEFAULT_OTP_LENGTH</b></span>
+                        <a href="#DEFAULT_OTP_LENGTH"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>4</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FIELD_CLASSES"></a>
+                    <span class="name">
+                        <span ><b>FIELD_CLASSES</b></span>
+                        <a href="#FIELD_CLASSES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;flex min-h-11 items-center gap-3 rounded-full border bg-transparent px-4 transition-colors focus-within:border-[#FF4100]&#x27;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MAX_OTP_LENGTH"></a>
+                    <span class="name">
+                        <span ><b>MAX_OTP_LENGTH</b></span>
+                        <a href="#MAX_OTP_LENGTH"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>12</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="NATIVE_INPUT_CLASSES"></a>
+                    <span class="name">
+                        <span ><b>NATIVE_INPUT_CLASSES</b></span>
+                        <a href="#NATIVE_INPUT_CLASSES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;min-w-0 flex-1 border-0 bg-transparent py-2.5 text-sm text-inherit outline-none placeholder:text-neutral-400 disabled:cursor-not-allowed&#x27;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="OTP_INPUT_CLASSES"></a>
+                    <span class="name">
+                        <span ><b>OTP_INPUT_CLASSES</b></span>
+                        <a href="#OTP_INPUT_CLASSES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;h-10 w-12 border-0 border-b-2 bg-transparent text-center text-lg font-semibold text-[#FF4100] caret-[#FF4100] outline-none transition-colors focus:border-[#FF4100] disabled:cursor-not-allowed&#x27;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PASSWORD_TOGGLE_CLASSES"></a>
+                    <span class="name">
+                        <span ><b>PASSWORD_TOGGLE_CLASSES</b></span>
+                        <a href="#PASSWORD_TOGGLE_CLASSES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;grid size-7 shrink-0 place-items-center rounded-full opacity-70 transition-opacity hover:opacity-100 focus-visible:outline-2 focus-visible:outline-[#FF4100] disabled:cursor-not-allowed&#x27;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/shared/components/number-picker/number-picker.interfaces.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DEFAULT_VISIBLE_ITEMS"></a>
+                    <span class="name">
+                        <span ><b>DEFAULT_VISIBLE_ITEMS</b></span>
+                        <a href="#DEFAULT_VISIBLE_ITEMS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>7</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MAX_PICKER_ITEMS"></a>
+                    <span class="name">
+                        <span ><b>MAX_PICKER_ITEMS</b></span>
+                        <a href="#MAX_PICKER_ITEMS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>1000</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MAX_VISIBLE_ITEMS"></a>
+                    <span class="name">
+                        <span ><b>MAX_VISIBLE_ITEMS</b></span>
+                        <a href="#MAX_VISIBLE_ITEMS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>11</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/environments/environment.development.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="environment"></a>
+                    <span class="name">
+                        <span ><b>environment</b></span>
+                        <a href="#environment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  production: false,
+  baseUrl: &#x27;https://fitness.elevateegy.com/api/v1/&#x27;,
+  geminiApiKey: &#x27;AQ.Ab8RN6IbIgY8P915rHdFmPW_mVPm119F9IR3CQATDOBr1XWCJQ&#x27;,
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/environments/environment.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="environment"></a>
+                    <span class="name">
+                        <span ><b>environment</b></span>
+                        <a href="#environment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  baseUrl: &#x27;https://fitness.elevateegy.com/api/v1/&#x27;,
+  production: true,
+  geminiApiKey: &#x27;AQ.Ab8RN6IbIgY8P915rHdFmPW_mVPm119F9IR3CQATDOBr1XWCJQ&#x27;,
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/features/auth/onboarding/onboarding-data.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GOAL_OPTIONS"></a>
+                    <span class="name">
+                        <span ><b>GOAL_OPTIONS</b></span>
+                        <a href="#GOAL_OPTIONS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/OnboardingChoice.html" target="_self" >OnboardingChoice[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { id: &#x27;Gain weight&#x27;, labelKey: &#x27;AUTH.ONBOARDING.GOAL.OPTIONS.GAIN_WEIGHT&#x27; },
+  { id: &#x27;Lose weight&#x27;, labelKey: &#x27;AUTH.ONBOARDING.GOAL.OPTIONS.LOSE_WEIGHT&#x27; },
+  { id: &#x27;Get fitter&#x27;, labelKey: &#x27;AUTH.ONBOARDING.GOAL.OPTIONS.GET_FITTER&#x27; },
+  { id: &#x27;Gain flexibility&#x27;, labelKey: &#x27;AUTH.ONBOARDING.GOAL.OPTIONS.GAIN_FLEXIBILITY&#x27; },
+  { id: &#x27;Learn basics&#x27;, labelKey: &#x27;AUTH.ONBOARDING.GOAL.OPTIONS.LEARN_BASICS&#x27; },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ONBOARDING_STEPS"></a>
+                    <span class="name">
+                        <span ><b>ONBOARDING_STEPS</b></span>
+                        <a href="#ONBOARDING_STEPS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/OnboardingStepData.html" target="_self" >OnboardingStepData[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    id: &#x27;gender&#x27;,
+    titleKey: &#x27;AUTH.ONBOARDING.GENDER.TITLE&#x27;,
+    subtitleKey: &#x27;AUTH.ONBOARDING.GENDER.SUBTITLE&#x27;,
+    actionLabelKey: &#x27;AUTH.COMMON.NEXT&#x27;,
+  },
+  {
+    id: &#x27;age&#x27;,
+    titleKey: &#x27;AUTH.ONBOARDING.AGE.TITLE&#x27;,
+    subtitleKey: &#x27;AUTH.ONBOARDING.PLAN_SUBTITLE&#x27;,
+    actionLabelKey: &#x27;AUTH.COMMON.NEXT&#x27;,
+  },
+  {
+    id: &#x27;weight&#x27;,
+    titleKey: &#x27;AUTH.ONBOARDING.WEIGHT.TITLE&#x27;,
+    subtitleKey: &#x27;AUTH.ONBOARDING.PLAN_SUBTITLE&#x27;,
+    actionLabelKey: &#x27;AUTH.COMMON.DONE&#x27;,
+  },
+  {
+    id: &#x27;height&#x27;,
+    titleKey: &#x27;AUTH.ONBOARDING.HEIGHT.TITLE&#x27;,
+    subtitleKey: &#x27;AUTH.ONBOARDING.PLAN_SUBTITLE&#x27;,
+    actionLabelKey: &#x27;AUTH.COMMON.NEXT&#x27;,
+  },
+  {
+    id: &#x27;goal&#x27;,
+    titleKey: &#x27;AUTH.ONBOARDING.GOAL.TITLE&#x27;,
+    subtitleKey: &#x27;AUTH.ONBOARDING.PLAN_SUBTITLE&#x27;,
+    actionLabelKey: &#x27;AUTH.COMMON.NEXT&#x27;,
+  },
+  {
+    id: &#x27;activity&#x27;,
+    titleKey: &#x27;AUTH.ONBOARDING.ACTIVITY.TITLE&#x27;,
+    subtitleKey: &#x27;AUTH.ONBOARDING.PLAN_SUBTITLE&#x27;,
+    actionLabelKey: &#x27;AUTH.COMMON.NEXT&#x27;,
+  },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/core/interceptors/language.interceptor.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="languageInterceptor"></a>
+                    <span class="name">
+                        <span ><b>languageInterceptor</b></span>
+                        <a href="#languageInterceptor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/common/http/HttpInterceptorFn" target="_blank" >HttpInterceptorFn</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(req, next) &#x3D;&gt; {
+  if (req.url.includes(&#x27;/i18n/&#x27;)) {
+    return next(req);
+  }
+
+  const langService &#x3D; inject(languageService);
+  const currentLang &#x3D; langService.currentLang();
+
+  const modifiedReq &#x3D; req.clone({
+    setHeaders: {
+      &#x27;accept-language&#x27;: currentLang,
+    },
+  });
+
+  return next(modifiedReq);
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/layout/main-layout/main.routes.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mainRoutes"></a>
+                    <span class="name">
+                        <span ><b>mainRoutes</b></span>
+                        <a href="#mainRoutes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    path: &#x27;&#x27;,
+    pathMatch: &#x27;full&#x27;,
+    redirectTo: &#x27;home&#x27;,
+  },
+  {
+    path: &#x27;home&#x27;,
+    loadComponent: () &#x3D;&gt; &quot;import(&#x27;../../features/home/home&#x27;).then((m) &#x3D;&gt; m.Home)&quot;,
+  },
+  {
+    path: &#x27;about-us&#x27;,
+    loadComponent: () &#x3D;&gt; &quot;import(&#x27;../../features/about-us/about-us&#x27;).then((m) &#x3D;&gt; m.AboutUs)&quot;,
+  },
+  {
+    path: &#x27;classes&#x27;,
+    loadComponent: () &#x3D;&gt; &quot;import(&#x27;../../features/classes/classes&#x27;).then((m) &#x3D;&gt; m.Classes)&quot;,
+  },
+  {
+    path: &#x27;classes/:id&#x27;,
+    loadComponent: () &#x3D;&gt;
+      &quot;import(&#x27;../../features/classes/class-details/class-details&#x27;).then((m) &#x3D;&gt; m.ClassDetails)&quot;,
+  },
+  {
+    path: &#x27;healthy&#x27;,
+    loadComponent: () &#x3D;&gt; &quot;import(&#x27;../../features/healthy/healthy&#x27;).then((m) &#x3D;&gt; m.Healthy)&quot;,
+  },
+  {
+    path: &#x27;healthy/:id&#x27;,
+    loadComponent: () &#x3D;&gt;
+      &quot;import(&#x27;../../features/healthy/healthy-details/healthy-details&#x27;).then(\n\
+        (m) &#x3D;&gt; m.HealthyDetails,\n\
+      )&quot;,
+  },
+  {
+    path: &#x27;profile&#x27;,
+    canActivate: [authGuard],
+    loadComponent: () &#x3D;&gt; &quot;import(&#x27;../../features/profile/profile&#x27;).then((m) &#x3D;&gt; m.Profile)&quot;,
+  },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/app.routes.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routes"></a>
+                    <span class="name">
+                        <span ><b>routes</b></span>
+                        <a href="#routes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    path: &#x27;auth&#x27;,
+    canActivate: [noAuthGuard],
+    loadComponent: () &#x3D;&gt; &quot;import(&#x27;./layout/auth-layout/auth-layout&#x27;).then((m) &#x3D;&gt; m.AuthLayout)&quot;,
+    loadChildren: () &#x3D;&gt; &quot;import(&#x27;./features/auth/auth.routes&#x27;).then((m) &#x3D;&gt; m.authRoutes)&quot;,
+  },
+  {
+    path: &#x27;&#x27;,
+    loadComponent: () &#x3D;&gt; &quot;import(&#x27;./layout/main-layout/main-layout&#x27;).then((m) &#x3D;&gt; m.MainLayout)&quot;,
+    loadChildren: () &#x3D;&gt; &quot;import(&#x27;./layout/main-layout/main.routes&#x27;).then((m) &#x3D;&gt; m.mainRoutes)&quot;,
+  },
+  {
+    path: &#x27;**&#x27;,
+    redirectTo: &#x27;home&#x27;,
+  },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/app.routes.server.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="serverRoutes"></a>
+                    <span class="name">
+                        <span ><b>serverRoutes</b></span>
+                        <a href="#serverRoutes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ServerRoute[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    path: &#x27;**&#x27;,
+    renderMode: 0,
+  },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-variables';
+            var COMPODOC_CURRENT_PAGE_URL = 'variables.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

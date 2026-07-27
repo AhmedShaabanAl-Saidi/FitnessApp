@@ -1,0 +1,1726 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>fitness-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">fitness-app documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  Onboarding</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/features/auth/onboarding/onboarding.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" class="nav-link"
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-onboarding</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                        <div>        <code><a href="https://angular.dev/api/forms/FormsModule" target="_blank" >FormsModule</a></code>
+</div>
+                        <div>    <code>TranslatePipe</code>
+</div>
+                        <div>        <code><a href="../components/Button.html" target="_self" >Button</a></code>
+</div>
+                        <div>        <code><a href="../components/NumberPicker.html" target="_self" >NumberPicker</a></code>
+</div>
+                </td>
+            </tr>
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./onboarding.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+        <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <p class="comment"><i>No results matching.</i></p>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="https://angular.dev/api/forms/FormsModule" target="_blank" >FormsModule</a></code>
+                                </li>
+                                <li>
+                                        <code>TranslatePipe</code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/Button.html" target="_self" >Button</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/NumberPicker.html" target="_self" >NumberPicker</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <div class="tab-pane fade " id="api">    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#activity" >activity</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#activityLevels" >activityLevels</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#age" >age</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#authService" >authService</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#currentIndex" >currentIndex</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#currentStep" >currentStep</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#destroyRef" >destroyRef</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#gender" >gender</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#Gender" >Gender</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#goal" >goal</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#goalOptions" >goalOptions</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#height" >height</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#isFirstStep" >isFirstStep</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#lang$" >lang$</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#langService" >langService</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#progressPercentage" >progressPercentage</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#router" >router</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#stepNumber" >stepNumber</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#steps" >steps</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#tokenService" >tokenService</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#userPrefService" >userPrefService</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#weight" >weight</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Protected</span>
+                                <a href="#next" >next</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Protected</span>
+                                <a href="#previous" >previous</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#submitSignup" >submitSignup</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="next"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>next</b></span>
+                        <a href="#next"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>next()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="65"
+                                    class="link-to-prism">src/app/features/auth/onboarding/onboarding.ts:65</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="52"
+                                    class="link-to-prism">src/app/features/auth/onboarding/onboarding.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="previous"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>previous</b></span>
+                        <a href="#previous"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>previous()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="74"
+                                    class="link-to-prism">src/app/features/auth/onboarding/onboarding.ts:74</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submitSignup"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>submitSignup</b></span>
+                        <a href="#submitSignup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>submitSignup()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="78"
+                                    class="link-to-prism">src/app/features/auth/onboarding/onboarding.ts:78</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="activity"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>activity</b></span>
+                        <a href="#activity"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(&#x27;level1&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/features/auth/onboarding/onboarding.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="activityLevels"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>activityLevels</b></span>
+                        <a href="#activityLevels"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;ActivityLevel[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/features/auth/onboarding/onboarding.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="age"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>age</b></span>
+                        <a href="#age"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(25)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/features/auth/onboarding/onboarding.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="authService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>authService</b></span>
+                        <a href="#authService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(AuthService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/features/auth/onboarding/onboarding.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentIndex"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>currentIndex</b></span>
+                        <a href="#currentIndex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(0)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/features/auth/onboarding/onboarding.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentStep"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>currentStep</b></span>
+                        <a href="#currentStep"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; this.steps[this.currentIndex()])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/features/auth/onboarding/onboarding.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="destroyRef"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>destroyRef</b></span>
+                        <a href="#destroyRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(DestroyRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/features/auth/onboarding/onboarding.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="gender"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>gender</b></span>
+                        <a href="#gender"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;Gender&gt;(Gender.MALE)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/features/auth/onboarding/onboarding.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Gender"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>Gender</b></span>
+                        <a href="#Gender"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>Gender</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/features/auth/onboarding/onboarding.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goal"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>goal</b></span>
+                        <a href="#goal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(&#x27;Lose weight&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/features/auth/onboarding/onboarding.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goalOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>goalOptions</b></span>
+                        <a href="#goalOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>GOAL_OPTIONS</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/features/auth/onboarding/onboarding.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="height"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>height</b></span>
+                        <a href="#height"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(167)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/features/auth/onboarding/onboarding.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isFirstStep"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>isFirstStep</b></span>
+                        <a href="#isFirstStep"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; this.currentIndex() &#x3D;&#x3D;&#x3D; 0)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/features/auth/onboarding/onboarding.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="lang$"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>lang$</b></span>
+                        <a href="#lang$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>toObservable(this.langService.currentLang)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/features/auth/onboarding/onboarding.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="langService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>langService</b></span>
+                        <a href="#langService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(languageService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/features/auth/onboarding/onboarding.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="progressPercentage"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>progressPercentage</b></span>
+                        <a href="#progressPercentage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(
+    () &#x3D;&gt; (this.stepNumber() / this.steps.length) * 100,
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/features/auth/onboarding/onboarding.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="router"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>router</b></span>
+                        <a href="#router"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Router)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/features/auth/onboarding/onboarding.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="stepNumber"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>stepNumber</b></span>
+                        <a href="#stepNumber"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; this.currentIndex() + 1)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/features/auth/onboarding/onboarding.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="steps"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>steps</b></span>
+                        <a href="#steps"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ONBOARDING_STEPS</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/features/auth/onboarding/onboarding.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tokenService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>tokenService</b></span>
+                        <a href="#tokenService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(TokenService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/features/auth/onboarding/onboarding.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="userPrefService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>userPrefService</b></span>
+                        <a href="#userPrefService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(UserPreferenceService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/features/auth/onboarding/onboarding.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="weight"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>weight</b></span>
+                        <a href="#weight"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(90)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/features/auth/onboarding/onboarding.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, computed, DestroyRef, inject, OnInit, signal } from &#x27;@angular/core&#x27;;
+import { takeUntilDestroyed, toObservable } from &#x27;@angular/core/rxjs-interop&#x27;;
+import { switchMap } from &#x27;rxjs&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { TranslatePipe } from &#x27;@ngx-translate/core&#x27;;
+import { Button } from &#x27;../../../shared/components/button/button&#x27;;
+import { NumberPicker } from &#x27;../../../shared/components/number-picker/number-picker&#x27;;
+import { GOAL_OPTIONS, ONBOARDING_STEPS } from &#x27;./onboarding-data&#x27;;
+import { AuthService } from &#x27;../services/auth.service&#x27;;
+import { SignupRequest } from &#x27;../register/register.interface&#x27;;
+import { ActivityLevel } from &#x27;./onboarding.interface&#x27;;
+import { TokenService } from &#x27;../services/token.service&#x27;;
+import { languageService } from &#x27;../../../core/services/language-service&#x27;;
+import { Gender } from &#x27;../enums/gender.enum&#x27;;
+import { UserPreferenceService } from &#x27;../../../core/services/user-preference.service&#x27;;
+
+@Component({
+  selector: &#x27;app-onboarding&#x27;,
+  imports: [FormsModule, TranslatePipe, Button, NumberPicker],
+  templateUrl: &#x27;./onboarding.html&#x27;,
+})
+export class Onboarding implements OnInit {
+  private readonly router &#x3D; inject(Router);
+  private readonly authService &#x3D; inject(AuthService);
+  private readonly tokenService &#x3D; inject(TokenService);
+  private readonly userPrefService &#x3D; inject(UserPreferenceService);
+  private readonly langService &#x3D; inject(languageService);
+  private readonly destroyRef &#x3D; inject(DestroyRef);
+
+  protected readonly steps &#x3D; ONBOARDING_STEPS;
+  protected readonly goalOptions &#x3D; GOAL_OPTIONS;
+  protected readonly currentIndex &#x3D; signal(0);
+  protected readonly currentStep &#x3D; computed(() &#x3D;&gt; this.steps[this.currentIndex()]);
+  protected readonly stepNumber &#x3D; computed(() &#x3D;&gt; this.currentIndex() + 1);
+  protected readonly progressPercentage &#x3D; computed(
+    () &#x3D;&gt; (this.stepNumber() / this.steps.length) * 100,
+  );
+  protected readonly isFirstStep &#x3D; computed(() &#x3D;&gt; this.currentIndex() &#x3D;&#x3D;&#x3D; 0);
+  protected readonly age &#x3D; signal(25);
+  protected readonly weight &#x3D; signal(90);
+  protected readonly height &#x3D; signal(167);
+  protected readonly Gender &#x3D; Gender;
+  protected readonly gender &#x3D; signal&lt;Gender&gt;(Gender.MALE);
+  protected readonly goal &#x3D; signal(&#x27;Lose weight&#x27;);
+  protected readonly activity &#x3D; signal(&#x27;level1&#x27;);
+
+  private readonly lang$ &#x3D; toObservable(this.langService.currentLang);
+
+  protected readonly activityLevels &#x3D; signal&lt;ActivityLevel[]&gt;([]);
+
+  ngOnInit(): void {
+    this.lang$
+      .pipe(
+        switchMap(() &#x3D;&gt; this.authService.getActivityLevels()),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe({
+        next: (res) &#x3D;&gt; {
+          this.activityLevels.set(res.levels.slice(0, 5));
+        },
+      });
+  }
+
+  protected next(): void {
+    if (this.currentIndex() &#x3D;&#x3D;&#x3D; this.steps.length - 1) {
+      this.submitSignup();
+      return;
+    }
+
+    this.currentIndex.update((index) &#x3D;&gt; index + 1);
+  }
+
+  protected previous(): void {
+    this.currentIndex.update((index) &#x3D;&gt; Math.max(0, index - 1));
+  }
+
+  private submitSignup(): void {
+    const registrationData &#x3D; history.state?.registrationData;
+
+    if (!registrationData?.email) {
+      void this.router.navigateByUrl(&#x27;/auth/register&#x27;);
+      return;
+    }
+
+    const signupData: SignupRequest &#x3D; {
+      firstName: registrationData.firstName,
+      lastName: registrationData.lastName,
+      email: registrationData.email,
+      password: registrationData.password,
+      rePassword: registrationData.rePassword,
+      gender: this.gender(),
+      age: this.age(),
+      weight: this.weight(),
+      height: this.height(),
+      goal: this.goal(),
+      activityLevel: this.activity(),
+    };
+
+    this.authService
+      .signup(signupData)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (res) &#x3D;&gt; {
+          this.tokenService.setToken(res.token);
+          this.userPrefService.savePreferences(this.goal(), this.activity(), this.weight());
+          void this.router.navigateByUrl(&#x27;/home&#x27;);
+        },
+      });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;section class&#x3D;&quot;mx-auto w-full max-w-xl text-center&quot; aria-live&#x3D;&quot;polite&quot;&gt;
+  &lt;div class&#x3D;&quot;mb-4 flex justify-center&quot;&gt;
+    &lt;div
+      class&#x3D;&quot;grid size-12 place-items-center rounded-full bg-[conic-gradient(var(--color-primary-brand)_var(--onboarding-progress),rgba(255,255,255,0.2)_0)] shadow-[0_0_22px_rgba(255,65,0,0.2)]&quot;
+      role&#x3D;&quot;progressbar&quot; aria-valuemin&#x3D;&quot;1&quot; [attr.aria-valuemax]&#x3D;&quot;steps.length&quot; [attr.aria-valuenow]&#x3D;&quot;stepNumber()&quot;
+      [attr.aria-label]&#x3D;&quot;&#x27;AUTH.COMMON.STEP_OF&#x27; | translate: { current: stepNumber(), total: steps.length }&quot;
+      [style.--onboarding-progress]&#x3D;&quot;progressPercentage() + &#x27;%&#x27;&quot;&gt;
+      &lt;span class&#x3D;&quot;grid size-10 place-items-center rounded-full bg-[#242426] text-xs font-semibold&quot;&gt;
+        {{ stepNumber() }}/{{ steps.length }}
+      &lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;header class&#x3D;&quot;mb-7&quot;&gt;
+    &lt;h1 class&#x3D;&quot;text-2xl font-extrabold leading-tight text-white sm:text-3xl&quot;&gt;
+      {{ currentStep().titleKey | translate }}
+    &lt;/h1&gt;
+    &lt;p class&#x3D;&quot;mt-1 text-xs text-white/65 sm:text-sm&quot;&gt;{{ currentStep().subtitleKey | translate }}&lt;/p&gt;
+  &lt;/header&gt;
+
+  &lt;div class&#x3D;&quot;mx-auto w-full max-w-lg&quot;&gt;
+    @switch (currentStep().id) {
+    @case (&#x27;gender&#x27;) {
+    &lt;div class&#x3D;&quot;flex items-center justify-center gap-6&quot; role&#x3D;&quot;radiogroup&quot;
+      [attr.aria-label]&#x3D;&quot;&#x27;AUTH.ONBOARDING.GENDER.GROUP_LABEL&#x27; | translate&quot;&gt;
+      &lt;button type&#x3D;&quot;button&quot; role&#x3D;&quot;radio&quot; [attr.aria-checked]&#x3D;&quot;gender() &#x3D;&#x3D;&#x3D; Gender.MALE&quot;
+        class&#x3D;&quot;grid size-20 place-items-center rounded-full border text-white transition-colors&quot;
+        [class.border-primary-brand]&#x3D;&quot;gender() &#x3D;&#x3D;&#x3D; Gender.MALE&quot; [class.bg-primary-brand]&#x3D;&quot;gender() &#x3D;&#x3D;&#x3D; Gender.MALE&quot;
+        [class.shadow-[0_10px_28px_rgba(255,65,0,0.28)]]&#x3D;&quot;gender() &#x3D;&#x3D;&#x3D; Gender.MALE&quot;
+        [class.border-white/65]&#x3D;&quot;gender() !&#x3D;&#x3D; Gender.MALE&quot; [class.bg-white/3]&#x3D;&quot;gender() !&#x3D;&#x3D; Gender.MALE&quot;
+        (click)&#x3D;&quot;gender.set(Gender.MALE)&quot;&gt;
+        &lt;span&gt;
+          &lt;i class&#x3D;&quot;pi pi-mars block text-2xl&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/i&gt;
+          &lt;span class&#x3D;&quot;mt-1 block text-[10px] font-semibold&quot;&gt;{{ &#x27;AUTH.ONBOARDING.GENDER.MALE&#x27; | translate }}&lt;/span&gt;
+        &lt;/span&gt;
+      &lt;/button&gt;
+      &lt;button type&#x3D;&quot;button&quot; role&#x3D;&quot;radio&quot; [attr.aria-checked]&#x3D;&quot;gender() &#x3D;&#x3D;&#x3D; Gender.FEMALE&quot;
+        class&#x3D;&quot;grid size-20 place-items-center rounded-full border text-white transition-colors&quot;
+        [class.border-primary-brand]&#x3D;&quot;gender() &#x3D;&#x3D;&#x3D; Gender.FEMALE&quot; [class.bg-primary-brand]&#x3D;&quot;gender() &#x3D;&#x3D;&#x3D; Gender.FEMALE&quot;
+        [class.shadow-[0_10px_28px_rgba(255,65,0,0.28)]]&#x3D;&quot;gender() &#x3D;&#x3D;&#x3D; Gender.FEMALE&quot;
+        [class.border-white/65]&#x3D;&quot;gender() !&#x3D;&#x3D; Gender.FEMALE&quot; [class.bg-white/3]&#x3D;&quot;gender() !&#x3D;&#x3D; Gender.FEMALE&quot;
+        (click)&#x3D;&quot;gender.set(Gender.FEMALE)&quot;&gt;
+        &lt;span&gt;
+          &lt;i class&#x3D;&quot;pi pi-venus block text-2xl&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/i&gt;
+          &lt;span class&#x3D;&quot;mt-1 block text-[10px] font-semibold&quot;&gt;{{ &#x27;AUTH.ONBOARDING.GENDER.FEMALE&#x27; | translate }}&lt;/span&gt;
+        &lt;/span&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+    }
+
+    @case (&#x27;age&#x27;) {
+    &lt;app-number-picker id&#x3D;&quot;onboarding-age&quot; [ariaLabel]&#x3D;&quot;&#x27;AUTH.ONBOARDING.AGE.SELECTED_LABEL&#x27; | translate&quot; [min]&#x3D;&quot;18&quot;
+      [max]&#x3D;&quot;80&quot; [unit]&#x3D;&quot;&#x27;AUTH.ONBOARDING.UNITS.YEAR&#x27; | translate&quot; [ngModel]&#x3D;&quot;age()&quot; (ngModelChange)&#x3D;&quot;age.set($event)&quot;
+      [ngModelOptions]&#x3D;&quot;{ standalone: true }&quot; /&gt;
+    }
+
+    @case (&#x27;weight&#x27;) {
+    &lt;app-number-picker id&#x3D;&quot;onboarding-weight&quot; [ariaLabel]&#x3D;&quot;&#x27;AUTH.ONBOARDING.WEIGHT.SELECTED_LABEL&#x27; | translate&quot;
+      [min]&#x3D;&quot;40&quot; [max]&#x3D;&quot;180&quot; [unit]&#x3D;&quot;&#x27;AUTH.ONBOARDING.UNITS.KILOGRAM&#x27; | translate&quot; [ngModel]&#x3D;&quot;weight()&quot;
+      (ngModelChange)&#x3D;&quot;weight.set($event)&quot; [ngModelOptions]&#x3D;&quot;{ standalone: true }&quot; /&gt;
+    }
+
+    @case (&#x27;height&#x27;) {
+    &lt;app-number-picker id&#x3D;&quot;onboarding-height&quot; [ariaLabel]&#x3D;&quot;&#x27;AUTH.ONBOARDING.HEIGHT.SELECTED_LABEL&#x27; | translate&quot;
+      [min]&#x3D;&quot;120&quot; [max]&#x3D;&quot;220&quot; [unit]&#x3D;&quot;&#x27;AUTH.ONBOARDING.UNITS.CENTIMETER&#x27; | translate&quot; [ngModel]&#x3D;&quot;height()&quot;
+      (ngModelChange)&#x3D;&quot;height.set($event)&quot; [ngModelOptions]&#x3D;&quot;{ standalone: true }&quot; /&gt;
+    }
+
+    @case (&#x27;goal&#x27;) {
+    &lt;div class&#x3D;&quot;mx-auto max-w-100 space-y-5&quot; role&#x3D;&quot;radiogroup&quot;
+      [attr.aria-label]&#x3D;&quot;&#x27;AUTH.ONBOARDING.GOAL.GROUP_LABEL&#x27; | translate&quot;&gt;
+      @for (option of goalOptions; track option.id) {
+      &lt;button type&#x3D;&quot;button&quot; role&#x3D;&quot;radio&quot; [attr.aria-checked]&#x3D;&quot;goal() &#x3D;&#x3D;&#x3D; option.id&quot;
+        class&#x3D;&quot;flex min-h-15 w-full items-center justify-between rounded-[1.75rem] border-2 bg-white/10 px-6 text-start text-lg font-bold backdrop-blur-md transition-[border-color,color,background-color] duration-200&quot;
+        [class.border-primary-brand]&#x3D;&quot;goal() &#x3D;&#x3D;&#x3D; option.id&quot; [class.text-primary-brand]&#x3D;&quot;goal() &#x3D;&#x3D;&#x3D; option.id&quot;
+        [class.border-white/75]&#x3D;&quot;goal() !&#x3D;&#x3D; option.id&quot; [class.text-white]&#x3D;&quot;goal() !&#x3D;&#x3D; option.id&quot;
+        (click)&#x3D;&quot;goal.set(option.id)&quot;&gt;
+        &lt;span&gt;{{ option.labelKey | translate }}&lt;/span&gt;
+        &lt;span class&#x3D;&quot;grid size-6 shrink-0 place-items-center rounded-full border-2 border-white/75&quot; aria-hidden&#x3D;&quot;true&quot;&gt;
+          @if (goal() &#x3D;&#x3D;&#x3D; option.id) {
+          &lt;span class&#x3D;&quot;size-3 rounded-full bg-primary-brand&quot;&gt;&lt;/span&gt;
+          }
+        &lt;/span&gt;
+      &lt;/button&gt;
+      }
+    &lt;/div&gt;
+    }
+
+    @case (&#x27;activity&#x27;) {
+    &lt;div class&#x3D;&quot;mx-auto max-w-100 space-y-5&quot; role&#x3D;&quot;radiogroup&quot;
+      [attr.aria-label]&#x3D;&quot;&#x27;AUTH.ONBOARDING.ACTIVITY.GROUP_LABEL&#x27; | translate&quot;&gt;
+      @for (level of activityLevels(); track level._id; let i &#x3D; $index) {
+      &lt;button type&#x3D;&quot;button&quot; role&#x3D;&quot;radio&quot; [attr.aria-checked]&#x3D;&quot;activity() &#x3D;&#x3D;&#x3D; &#x27;level&#x27; + (i + 1)&quot;
+        class&#x3D;&quot;flex min-h-15 w-full items-center justify-between rounded-[1.75rem] border-2 bg-white/10 px-6 text-start text-lg font-bold backdrop-blur-md transition-[border-color,color,background-color] duration-200&quot;
+        [class.border-primary-brand]&#x3D;&quot;activity() &#x3D;&#x3D;&#x3D; &#x27;level&#x27; + (i + 1)&quot; [class.text-primary-brand]&#x3D;&quot;activity() &#x3D;&#x3D;&#x3D; &#x27;level&#x27; + (i + 1)&quot;
+        [class.border-white/75]&#x3D;&quot;activity() !&#x3D;&#x3D; &#x27;level&#x27; + (i + 1)&quot; [class.text-white]&#x3D;&quot;activity() !&#x3D;&#x3D; &#x27;level&#x27; + (i + 1)&quot;
+        (click)&#x3D;&quot;activity.set(&#x27;level&#x27; + (i + 1))&quot;&gt;
+        &lt;span&gt;{{ level.name }}&lt;/span&gt;
+        &lt;span class&#x3D;&quot;grid size-6 shrink-0 place-items-center rounded-full border-2 border-white/75&quot; aria-hidden&#x3D;&quot;true&quot;&gt;
+          @if (activity() &#x3D;&#x3D;&#x3D; &#x27;level&#x27; + (i + 1)) {
+          &lt;span class&#x3D;&quot;size-3 rounded-full bg-primary-brand&quot;&gt;&lt;/span&gt;
+          }
+        &lt;/span&gt;
+      &lt;/button&gt;
+      }
+    &lt;/div&gt;
+    }
+    }
+  &lt;/div&gt;
+
+  &lt;div class&#x3D;&quot;mx-auto mt-8 w-full max-w-110&quot;&gt;
+    &lt;app-button size&#x3D;&quot;lg&quot; [fullWidth]&#x3D;&quot;true&quot; (onClick)&#x3D;&quot;next()&quot;&gt;
+      {{ currentStep().actionLabelKey | translate }}
+    &lt;/app-button&gt;
+
+    @if (!isFirstStep()) {
+    &lt;button type&#x3D;&quot;button&quot; dir&#x3D;&quot;ltr&quot;
+      class&#x3D;&quot;mt-3 inline-flex items-center gap-1 text-xs text-white/55 hover:text-primary-brand&quot; (click)&#x3D;&quot;previous()&quot;&gt;
+      &lt;i class&#x3D;&quot;pi pi-arrow-left text-[10px]&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;span dir&#x3D;&quot;auto&quot;&gt;{{ &#x27;AUTH.COMMON.BACK&#x27; | translate }}&lt;/span&gt;
+    &lt;/button&gt;
+    }
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><section class="mx-auto w-full max-w-xl text-center" aria-live="polite">  <div class="mb-4 flex justify-center">    <div      class="grid size-12 place-items-center rounded-full bg-[conic-gradient(var(--color-primary-brand)_var(--onboarding-progress),rgba(255,255,255,0.2)_0)] shadow-[0_0_22px_rgba(255,65,0,0.2)]"      role="progressbar" aria-valuemin="1" [attr.aria-valuemax]="steps.length" [attr.aria-valuenow]="stepNumber()"      [attr.aria-label]="\'AUTH.COMMON.STEP_OF\' | translate: { current: stepNumber(), total: steps.length }"      [style.--onboarding-progress]="progressPercentage() + \'%\'">      <span class="grid size-10 place-items-center rounded-full bg-[#242426] text-xs font-semibold">        {{ stepNumber() }}/{{ steps.length }}      </span>    </div>  </div>  <header class="mb-7">    <h1 class="text-2xl font-extrabold leading-tight text-white sm:text-3xl">      {{ currentStep().titleKey | translate }}    </h1>    <p class="mt-1 text-xs text-white/65 sm:text-sm">{{ currentStep().subtitleKey | translate }}</p>  </header>  <div class="mx-auto w-full max-w-lg">    @switch (currentStep().id) {    @case (\'gender\') {    <div class="flex items-center justify-center gap-6" role="radiogroup"      [attr.aria-label]="\'AUTH.ONBOARDING.GENDER.GROUP_LABEL\' | translate">      <button type="button" role="radio" [attr.aria-checked]="gender() === Gender.MALE"        class="grid size-20 place-items-center rounded-full border text-white transition-colors"        [class.border-primary-brand]="gender() === Gender.MALE" [class.bg-primary-brand]="gender() === Gender.MALE"        [class.shadow-[0_10px_28px_rgba(255,65,0,0.28)]]="gender() === Gender.MALE"        [class.border-white/65]="gender() !== Gender.MALE" [class.bg-white/3]="gender() !== Gender.MALE"        (click)="gender.set(Gender.MALE)">        <span>          <i class="pi pi-mars block text-2xl" aria-hidden="true"></i>          <span class="mt-1 block text-[10px] font-semibold">{{ \'AUTH.ONBOARDING.GENDER.MALE\' | translate }}</span>        </span>      </button>      <button type="button" role="radio" [attr.aria-checked]="gender() === Gender.FEMALE"        class="grid size-20 place-items-center rounded-full border text-white transition-colors"        [class.border-primary-brand]="gender() === Gender.FEMALE" [class.bg-primary-brand]="gender() === Gender.FEMALE"        [class.shadow-[0_10px_28px_rgba(255,65,0,0.28)]]="gender() === Gender.FEMALE"        [class.border-white/65]="gender() !== Gender.FEMALE" [class.bg-white/3]="gender() !== Gender.FEMALE"        (click)="gender.set(Gender.FEMALE)">        <span>          <i class="pi pi-venus block text-2xl" aria-hidden="true"></i>          <span class="mt-1 block text-[10px] font-semibold">{{ \'AUTH.ONBOARDING.GENDER.FEMALE\' | translate }}</span>        </span>      </button>    </div>    }    @case (\'age\') {    <app-number-picker id="onboarding-age" [ariaLabel]="\'AUTH.ONBOARDING.AGE.SELECTED_LABEL\' | translate" [min]="18"      [max]="80" [unit]="\'AUTH.ONBOARDING.UNITS.YEAR\' | translate" [ngModel]="age()" (ngModelChange)="age.set($event)"      [ngModelOptions]="{ standalone: true }" />    }    @case (\'weight\') {    <app-number-picker id="onboarding-weight" [ariaLabel]="\'AUTH.ONBOARDING.WEIGHT.SELECTED_LABEL\' | translate"      [min]="40" [max]="180" [unit]="\'AUTH.ONBOARDING.UNITS.KILOGRAM\' | translate" [ngModel]="weight()"      (ngModelChange)="weight.set($event)" [ngModelOptions]="{ standalone: true }" />    }    @case (\'height\') {    <app-number-picker id="onboarding-height" [ariaLabel]="\'AUTH.ONBOARDING.HEIGHT.SELECTED_LABEL\' | translate"      [min]="120" [max]="220" [unit]="\'AUTH.ONBOARDING.UNITS.CENTIMETER\' | translate" [ngModel]="height()"      (ngModelChange)="height.set($event)" [ngModelOptions]="{ standalone: true }" />    }    @case (\'goal\') {    <div class="mx-auto max-w-100 space-y-5" role="radiogroup"      [attr.aria-label]="\'AUTH.ONBOARDING.GOAL.GROUP_LABEL\' | translate">      @for (option of goalOptions; track option.id) {      <button type="button" role="radio" [attr.aria-checked]="goal() === option.id"        class="flex min-h-15 w-full items-center justify-between rounded-[1.75rem] border-2 bg-white/10 px-6 text-start text-lg font-bold backdrop-blur-md transition-[border-color,color,background-color] duration-200"        [class.border-primary-brand]="goal() === option.id" [class.text-primary-brand]="goal() === option.id"        [class.border-white/75]="goal() !== option.id" [class.text-white]="goal() !== option.id"        (click)="goal.set(option.id)">        <span>{{ option.labelKey | translate }}</span>        <span class="grid size-6 shrink-0 place-items-center rounded-full border-2 border-white/75" aria-hidden="true">          @if (goal() === option.id) {          <span class="size-3 rounded-full bg-primary-brand"></span>          }        </span>      </button>      }    </div>    }    @case (\'activity\') {    <div class="mx-auto max-w-100 space-y-5" role="radiogroup"      [attr.aria-label]="\'AUTH.ONBOARDING.ACTIVITY.GROUP_LABEL\' | translate">      @for (level of activityLevels(); track level._id; let i = $index) {      <button type="button" role="radio" [attr.aria-checked]="activity() === \'level\' + (i + 1)"        class="flex min-h-15 w-full items-center justify-between rounded-[1.75rem] border-2 bg-white/10 px-6 text-start text-lg font-bold backdrop-blur-md transition-[border-color,color,background-color] duration-200"        [class.border-primary-brand]="activity() === \'level\' + (i + 1)" [class.text-primary-brand]="activity() === \'level\' + (i + 1)"        [class.border-white/75]="activity() !== \'level\' + (i + 1)" [class.text-white]="activity() !== \'level\' + (i + 1)"        (click)="activity.set(\'level\' + (i + 1))">        <span>{{ level.name }}</span>        <span class="grid size-6 shrink-0 place-items-center rounded-full border-2 border-white/75" aria-hidden="true">          @if (activity() === \'level\' + (i + 1)) {          <span class="size-3 rounded-full bg-primary-brand"></span>          }        </span>      </button>      }    </div>    }    }  </div>  <div class="mx-auto mt-8 w-full max-w-110">    <app-button size="lg" [fullWidth]="true" (onClick)="next()">      {{ currentStep().actionLabelKey | translate }}    </app-button>    @if (!isFirstStep()) {    <button type="button" dir="ltr"      class="mt-3 inline-flex items-center gap-1 text-xs text-white/55 hover:text-primary-brand" (click)="previous()">      <i class="pi pi-arrow-left text-[10px]" aria-hidden="true"></i>      <span dir="auto">{{ \'AUTH.COMMON.BACK\' | translate }}</span>    </button>    }  </div></section></div>'
+    var COMPONENTS = [{'name': 'AboutUs', 'selector': 'app-about-us'},{'name': 'AboutUsSummary', 'selector': 'app-about-us-summary'},{'name': 'App', 'selector': 'app-root'},{'name': 'AuthLayout', 'selector': 'app-auth-layout'},{'name': 'AuthSocialLogin', 'selector': 'app-auth-social-login'},{'name': 'Button', 'selector': 'app-button'},{'name': 'Card', 'selector': 'app-card'},{'name': 'Carousel', 'selector': 'app-carousel'},{'name': 'ChangePasswordModal', 'selector': 'app-change-password-modal'},{'name': 'ChatbotComponent', 'selector': 'app-chatbot'},{'name': 'ChatBubbleComponent', 'selector': 'app-chat-bubble'},{'name': 'ClassDetails', 'selector': 'app-class-details'},{'name': 'Classes', 'selector': 'app-classes'},{'name': 'EditPreferenceModal', 'selector': 'app-edit-preference-modal'},{'name': 'FloatingControls', 'selector': 'app-floating-controls'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'ForgotPassword', 'selector': 'app-forgot-password'},{'name': 'Healthy', 'selector': 'app-healthy'},{'name': 'HealthyDetails', 'selector': 'app-healthy-details'},{'name': 'HealthySection', 'selector': 'app-healthy-section'},{'name': 'HelpModal', 'selector': 'app-help-modal'},{'name': 'Hero', 'selector': 'app-hero'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Input', 'selector': 'app-input'},{'name': 'Login', 'selector': 'app-login'},{'name': 'MainLayout', 'selector': 'app-main-layout'},{'name': 'MarqueeTricker', 'selector': 'app-marquee-tricker'},{'name': 'MessageCardComponent', 'selector': 'app-message-card'},{'name': 'NavBar', 'selector': 'app-nav-bar'},{'name': 'NumberPicker', 'selector': 'app-number-picker'},{'name': 'Onboarding', 'selector': 'app-onboarding'},{'name': 'Otp', 'selector': 'app-otp'},{'name': 'PrivacyPolicyModal', 'selector': 'app-privacy-policy-modal'},{'name': 'Profile', 'selector': 'app-profile'},{'name': 'Register', 'selector': 'app-register'},{'name': 'ResetPassword', 'selector': 'app-reset-password'},{'name': 'SecurityModal', 'selector': 'app-security-modal'},{'name': 'Tabs', 'selector': 'app-tabs'},{'name': 'WhyUs', 'selector': 'app-why-us'},{'name': 'Workouts', 'selector': 'app-workouts'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'Onboarding'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'Onboarding.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

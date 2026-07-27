@@ -1,0 +1,1115 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>fitness-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">fitness-app documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  AuthLayout</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/layout/auth-layout/auth-layout.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" class="nav-link"
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-auth-layout</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                        <div>        <code><a href="https://angular.dev/api/common/NgClass" target="_blank" >NgClass</a></code>
+</div>
+                        <div>        <code><a href="https://angular.dev/api/common/NgOptimizedImage" target="_blank" >NgOptimizedImage</a></code>
+</div>
+                        <div>        <code><a href="https://angular.dev/api/router/RouterOutlet" target="_blank" >RouterOutlet</a></code>
+</div>
+                        <div>        <code><a href="https://angular.dev/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+</div>
+                        <div>    <code>TranslatePipe</code>
+</div>
+                        <div>        <code><a href="../components/FloatingControls.html" target="_self" >FloatingControls</a></code>
+</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./auth-layout.css</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./auth-layout.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./auth-layout.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+        <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <p class="comment"><i>No results matching.</i></p>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="https://angular.dev/api/common/NgClass" target="_blank" >NgClass</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/common/NgOptimizedImage" target="_blank" >NgOptimizedImage</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/router/RouterOutlet" target="_blank" >RouterOutlet</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+                                </li>
+                                <li>
+                                        <code>TranslatePipe</code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/FloatingControls.html" target="_self" >FloatingControls</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <div class="tab-pane fade " id="api">    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#activatedRoute" >activatedRoute</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#currentLanguage" >currentLanguage</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#isCardVariant" >isCardVariant</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#languages" >languages</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#languageService" >languageService</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#layoutData" >layoutData</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#progressPercentage" >progressPercentage</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Protected</span>
+                                <a href="#changeLanguage" >changeLanguage</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Protected</span>
+                                <a href="#resetLayoutData" >resetLayoutData</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Protected</span>
+                                <a href="#syncLayoutData" >syncLayoutData</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeLanguage"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>changeLanguage</b></span>
+                        <a href="#changeLanguage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>changeLanguage(language: <a href="../miscellaneous/typealiases.html#AppLanguage" target="_self">AppLanguage</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="46"
+                                    class="link-to-prism">src/app/layout/auth-layout/auth-layout.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>language</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#AppLanguage" target="_self" >AppLanguage</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetLayoutData"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>resetLayoutData</b></span>
+                        <a href="#resetLayoutData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>resetLayoutData()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="42"
+                                    class="link-to-prism">src/app/layout/auth-layout/auth-layout.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="syncLayoutData"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>syncLayoutData</b></span>
+                        <a href="#syncLayoutData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>syncLayoutData()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="36"
+                                    class="link-to-prism">src/app/layout/auth-layout/auth-layout.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="activatedRoute"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>activatedRoute</b></span>
+                        <a href="#activatedRoute"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ActivatedRoute)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/layout/auth-layout/auth-layout.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentLanguage"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>currentLanguage</b></span>
+                        <a href="#currentLanguage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.languageService.currentLang</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/layout/auth-layout/auth-layout.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isCardVariant"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>isCardVariant</b></span>
+                        <a href="#isCardVariant"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; this.layoutData().variant &#x3D;&#x3D;&#x3D; &#x27;card&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/layout/auth-layout/auth-layout.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="languages"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>languages</b></span>
+                        <a href="#languages"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/App.html" target="_self" >ReadonlyArray&lt;{ code: AppLanguage; label: string; nameKey: string }&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    { code: &#x27;en&#x27;, label: &#x27;EN&#x27;, nameKey: &#x27;AUTH.COMMON.ENGLISH&#x27; },
+    { code: &#x27;ar&#x27;, label: &#x27;AR&#x27;, nameKey: &#x27;AUTH.COMMON.ARABIC&#x27; },
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/layout/auth-layout/auth-layout.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="languageService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>languageService</b></span>
+                        <a href="#languageService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(languageService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/layout/auth-layout/auth-layout.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="layoutData"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>layoutData</b></span>
+                        <a href="#layoutData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;AuthLayoutRouteData&gt;(DEFAULT_LAYOUT_DATA)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/layout/auth-layout/auth-layout.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="progressPercentage"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>progressPercentage</b></span>
+                        <a href="#progressPercentage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    const step &#x3D; this.layoutData().step;
+
+    if (!step || step.total &lt;&#x3D; 0) {
+      return 0;
+    }
+
+    return Math.min(100, Math.max(0, (step.current / step.total) * 100));
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/layout/auth-layout/auth-layout.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgClass, NgOptimizedImage } from &#x27;@angular/common&#x27;;
+import { Component, computed, inject, signal } from &#x27;@angular/core&#x27;;
+import { ActivatedRoute, RouterLink, RouterOutlet } from &#x27;@angular/router&#x27;;
+import { TranslatePipe } from &#x27;@ngx-translate/core&#x27;;
+import { AppLanguage, languageService } from &#x27;../../core/services/language-service&#x27;;
+import { AUTH_LAYOUT_ROUTE_DATA_KEY, AuthLayoutRouteData, DEFAULT_LAYOUT_DATA } from &#x27;./auth-layout-data&#x27;;
+import { FloatingControls } from &#x27;../main-layout/components/floating-controls/floating-controls&#x27;;
+
+@Component({
+  selector: &#x27;app-auth-layout&#x27;,
+  imports: [NgClass, NgOptimizedImage, RouterOutlet, RouterLink, TranslatePipe, FloatingControls],
+  templateUrl: &#x27;./auth-layout.html&#x27;,
+  styleUrl: &#x27;./auth-layout.css&#x27;,
+})
+export class AuthLayout {
+  private readonly activatedRoute &#x3D; inject(ActivatedRoute);
+  private readonly languageService &#x3D; inject(languageService);
+
+  protected readonly currentLanguage &#x3D; this.languageService.currentLang;
+  protected readonly languages: ReadonlyArray&lt;{ code: AppLanguage; label: string; nameKey: string }&gt; &#x3D; [
+    { code: &#x27;en&#x27;, label: &#x27;EN&#x27;, nameKey: &#x27;AUTH.COMMON.ENGLISH&#x27; },
+    { code: &#x27;ar&#x27;, label: &#x27;AR&#x27;, nameKey: &#x27;AUTH.COMMON.ARABIC&#x27; },
+  ];
+  protected readonly layoutData &#x3D; signal&lt;AuthLayoutRouteData&gt;(DEFAULT_LAYOUT_DATA);
+  protected readonly isCardVariant &#x3D; computed(() &#x3D;&gt; this.layoutData().variant &#x3D;&#x3D;&#x3D; &#x27;card&#x27;);
+  protected readonly progressPercentage &#x3D; computed(() &#x3D;&gt; {
+    const step &#x3D; this.layoutData().step;
+
+    if (!step || step.total &lt;&#x3D; 0) {
+      return 0;
+    }
+
+    return Math.min(100, Math.max(0, (step.current / step.total) * 100));
+  });
+
+  protected syncLayoutData(): void {
+    const routeData &#x3D; this.activatedRoute.firstChild?.snapshot.data[AUTH_LAYOUT_ROUTE_DATA_KEY];
+
+    this.layoutData.set(isAuthLayoutRouteData(routeData) ? routeData : DEFAULT_LAYOUT_DATA);
+  }
+
+  protected resetLayoutData(): void {
+    this.layoutData.set(DEFAULT_LAYOUT_DATA);
+  }
+
+  protected changeLanguage(language: AppLanguage): void {
+    this.languageService.changeLanguage(language);
+  }
+}
+
+function isAuthLayoutRouteData(value: unknown): value is AuthLayoutRouteData {
+  if (!isRecord(value)) {
+    return false;
+  }
+
+  const hasValidVariant &#x3D; value[&#x27;variant&#x27;] &#x3D;&#x3D;&#x3D; &#x27;card&#x27; || value[&#x27;variant&#x27;] &#x3D;&#x3D;&#x3D; &#x27;step&#x27;;
+  const hasValidTitle &#x3D; typeof value[&#x27;title&#x27;] &#x3D;&#x3D;&#x3D; &#x27;string&#x27;;
+  const optionalStringsAreValid &#x3D; [&#x27;eyebrow&#x27;, &#x27;subtitle&#x27;, &#x27;cardTitle&#x27;, &#x27;cardDescription&#x27;].every(
+    (key) &#x3D;&gt; value[key] &#x3D;&#x3D;&#x3D; undefined || typeof value[key] &#x3D;&#x3D;&#x3D; &#x27;string&#x27;,
+  );
+
+  return hasValidVariant &amp;&amp; hasValidTitle &amp;&amp; optionalStringsAreValid &amp;&amp; isValidStep(value[&#x27;step&#x27;]);
+}
+
+function isValidStep(value: unknown): boolean {
+  if (value &#x3D;&#x3D;&#x3D; undefined) {
+    return true;
+  }
+
+  if (!isRecord(value)) {
+    return false;
+  }
+
+  const current &#x3D; value[&#x27;current&#x27;];
+  const total &#x3D; value[&#x27;total&#x27;];
+
+  return (
+    typeof current &#x3D;&#x3D;&#x3D; &#x27;number&#x27; &amp;&amp;
+    Number.isInteger(current) &amp;&amp;
+    typeof total &#x3D;&#x3D;&#x3D; &#x27;number&#x27; &amp;&amp;
+    Number.isInteger(total) &amp;&amp;
+    current &gt;&#x3D; 1 &amp;&amp;
+    current &lt;&#x3D; total
+  );
+}
+
+function isRecord(value: unknown): value is Record&lt;string, unknown&gt; {
+  return typeof value &#x3D;&#x3D;&#x3D; &#x27;object&#x27; &amp;&amp; value !&#x3D;&#x3D; null;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;main class&#x3D;&quot;relative min-h-dvh overflow-hidden bg-[#d0d3d7] dark:bg-[#171719] text-neutral-900 dark:text-white transition-colors duration-300&quot;
+  [attr.aria-labelledby]&#x3D;&quot;layoutData().title ? &#x27;auth-page-title&#x27; : null&quot;
+  [attr.aria-label]&#x3D;&quot;layoutData().title ? null : (&#x27;AUTH.COMMON.AUTHENTICATION&#x27; | translate)&quot;&gt;
+  &lt;a routerLink&#x3D;&quot;/home&quot;
+    class&#x3D;&quot;fixed top-6 left-6 z-50 flex size-10 cursor-pointer items-center justify-center rounded-full border border-neutral-300 dark:border-white/20 bg-white/70 dark:bg-black/40 text-neutral-800 dark:text-white backdrop-blur-md shadow-md transition-all duration-300 hover:scale-105 hover:bg-primary-brand hover:text-white dark:hover:bg-primary-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-brand&quot;
+    [attr.aria-label]&#x3D;&quot;&#x27;AUTH.COMMON.BACK_TO_HOME&#x27; | translate&quot; title&#x3D;&quot;Home&quot;&gt;
+    &lt;i class&#x3D;&quot;pi pi-home text-base&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/i&gt;
+  &lt;/a&gt;
+
+  &lt;div class&#x3D;&quot;pointer-events-none absolute inset-0&quot; aria-hidden&#x3D;&quot;true&quot;&gt;
+    &lt;img ngSrc&#x3D;&quot;/images/auth/authlayout-bg.png&quot; fill priority sizes&#x3D;&quot;100vw&quot; alt&#x3D;&quot;&quot;
+      class&#x3D;&quot;scale-110 object-cover object-center blur-2xl opacity-20 dark:opacity-100 dark:brightness-[0.18] dark:saturate-50&quot; /&gt;
+    &lt;div class&#x3D;&quot;absolute inset-0 bg-neutral-200/50 dark:bg-[#171719]/70&quot;&gt;&lt;/div&gt;
+    &lt;div
+      class&#x3D;&quot;absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(0,0,0,0.06),transparent_34%),linear-gradient(115deg,rgba(255,65,0,0.08),transparent_42%)] dark:bg-[radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.14),transparent_34%),linear-gradient(115deg,rgba(255,65,0,0.08),transparent_42%)]&quot;&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class&#x3D;&quot;relative z-10 grid min-h-dvh grid-cols-1 lg:grid-cols-2&quot;&gt;
+    &lt;div class&#x3D;&quot;relative hidden min-h-dvh overflow-hidden border-e border-primary-brand/25 lg:block&quot;&gt;
+      &lt;a routerLink&#x3D;&quot;/home&quot; class&#x3D;&quot;cursor-pointer&quot;&gt;
+        &lt;img ngSrc&#x3D;&quot;/images/auth/auth-logo.png&quot; width&#x3D;&quot;243&quot; height&#x3D;&quot;151&quot; [alt]&#x3D;&quot;&#x27;AUTH.COMMON.SUPER_FITNESS&#x27; | translate&quot;
+          class&#x3D;&quot;absolute left-1/2 top-[11%] h-auto w-[clamp(10rem,14vw,15.25rem)] -translate-x-1/2 object-contain drop-shadow-2xl cursor-pointer&quot; /&gt;
+      &lt;/a&gt;
+
+      &lt;img ngSrc&#x3D;&quot;/images/auth/authlayout-img.png&quot; width&#x3D;&quot;628&quot; height&#x3D;&quot;474&quot; alt&#x3D;&quot;&quot; priority
+        class&#x3D;&quot;absolute bottom-[8%] left-1/2 h-auto w-[min(92%,39.25rem)] -translate-x-1/2 object-contain drop-shadow-[0_28px_45px_rgba(0,0,0,0.55)]&quot; /&gt;
+    &lt;/div&gt;
+
+    &lt;section
+      class&#x3D;&quot;relative flex min-h-dvh items-center justify-center overflow-y-auto px-4 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-16&quot;&gt;
+      &lt;div class&#x3D;&quot;w-full max-w-136&quot;&gt;
+        @if (layoutData().variant &#x3D;&#x3D;&#x3D; &#x27;step&#x27; &amp;&amp; layoutData().step; as step) {
+        &lt;div class&#x3D;&quot;mb-4 flex justify-center&quot;&gt;
+          &lt;div
+            class&#x3D;&quot;grid size-12 place-items-center rounded-full bg-[conic-gradient(var(--color-primary-brand)_var(--auth-progress),rgba(0,0,0,0.12)_0)] dark:bg-[conic-gradient(var(--color-primary-brand)_var(--auth-progress),rgba(255,255,255,0.22)_0)] shadow-[0_0_24px_rgba(255,65,0,0.18)] [--auth-progress:0%]&quot;
+            role&#x3D;&quot;progressbar&quot;
+            [attr.aria-label]&#x3D;&quot;&#x27;AUTH.COMMON.STEP_OF&#x27; | translate: { current: step.current, total: step.total }&quot;
+            aria-valuemin&#x3D;&quot;1&quot; [attr.aria-valuemax]&#x3D;&quot;step.total&quot; [attr.aria-valuenow]&#x3D;&quot;step.current&quot;
+            [style.--auth-progress]&#x3D;&quot;progressPercentage() + &#x27;%&#x27;&quot;&gt;
+            &lt;span class&#x3D;&quot;grid size-10 place-items-center rounded-full bg-white dark:bg-[#242426] text-xs font-semibold text-neutral-900 dark:text-white shadow-sm&quot;&gt;
+              {{ step.current }}/{{ step.total }}
+            &lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        }
+
+        @if (layoutData().eyebrow || layoutData().title || layoutData().subtitle) {
+        &lt;header class&#x3D;&quot;mb-6 text-center&quot;&gt;
+          @if (layoutData().eyebrow) {
+          &lt;p class&#x3D;&quot;mb-2 text-sm font-medium text-neutral-600 dark:text-white/70&quot;&gt;
+            {{ layoutData().eyebrow | translate }}
+          &lt;/p&gt;
+          }
+
+          @if (layoutData().title) {
+          &lt;h1 id&#x3D;&quot;auth-page-title&quot; class&#x3D;&quot;text-3xl font-extrabold leading-tight tracking-tight text-neutral-900 dark:text-white sm:text-4xl&quot;&gt;
+            {{ layoutData().title | translate }}
+          &lt;/h1&gt;
+          }
+
+          @if (layoutData().subtitle) {
+          &lt;p class&#x3D;&quot;mt-2 text-sm leading-relaxed text-neutral-600 dark:text-white/65&quot;&gt;
+            {{ layoutData().subtitle | translate }}
+          &lt;/p&gt;
+          }
+        &lt;/header&gt;
+        }
+
+        &lt;div
+          class&#x3D;&quot;w-full transition-[background-color,border-color,box-shadow] duration-200 ease-out motion-reduce:transition-none&quot;
+          [ngClass]&#x3D;&quot;{
+            &#x27;rounded-4xl border border-neutral-300/80 dark:border-white/55 bg-white/70 dark:bg-transparent dark:bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.01))] p-[clamp(1.5rem,4vw,2.5rem)] shadow-xl dark:shadow-[0_28px_80px_rgba(0,0,0,0.28)] backdrop-blur-[10px]&#x27;:
+              isCardVariant(),
+            &#x27;py-2&#x27;: !isCardVariant(),
+          }&quot; [attr.data-auth-surface]&#x3D;&quot;layoutData().variant&quot;&gt;
+          @if (isCardVariant() &amp;&amp; (layoutData().cardTitle || layoutData().cardDescription)) {
+          &lt;header class&#x3D;&quot;mb-6 text-center&quot;&gt;
+            @if (layoutData().cardTitle) {
+            &lt;h2 class&#x3D;&quot;text-lg font-bold text-neutral-900 dark:text-white&quot;&gt;
+              {{ layoutData().cardTitle | translate }}
+            &lt;/h2&gt;
+            }
+
+            @if (layoutData().cardDescription) {
+            &lt;p class&#x3D;&quot;mt-2 text-sm leading-relaxed text-neutral-600 dark:text-white/65&quot;&gt;
+              {{ layoutData().cardDescription | translate }}
+            &lt;/p&gt;
+            }
+          &lt;/header&gt;
+          }
+
+          &lt;router-outlet (activate)&#x3D;&quot;syncLayoutData()&quot; (deactivate)&#x3D;&quot;resetLayoutData()&quot; /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+  &lt;/div&gt;
+
+  &lt;app-floating-controls /&gt;
+&lt;/main&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./auth-layout.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">:host {
+  display: block;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><main class="relative min-h-dvh overflow-hidden bg-[#d0d3d7] dark:bg-[#171719] text-neutral-900 dark:text-white transition-colors duration-300"  [attr.aria-labelledby]="layoutData().title ? \'auth-page-title\' : null"  [attr.aria-label]="layoutData().title ? null : (\'AUTH.COMMON.AUTHENTICATION\' | translate)">  <a routerLink="/home"    class="fixed top-6 left-6 z-50 flex size-10 cursor-pointer items-center justify-center rounded-full border border-neutral-300 dark:border-white/20 bg-white/70 dark:bg-black/40 text-neutral-800 dark:text-white backdrop-blur-md shadow-md transition-all duration-300 hover:scale-105 hover:bg-primary-brand hover:text-white dark:hover:bg-primary-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-brand"    [attr.aria-label]="\'AUTH.COMMON.BACK_TO_HOME\' | translate" title="Home">    <i class="pi pi-home text-base" aria-hidden="true"></i>  </a>  <div class="pointer-events-none absolute inset-0" aria-hidden="true">    <img ngSrc="/images/auth/authlayout-bg.png" fill priority sizes="100vw" alt=""      class="scale-110 object-cover object-center blur-2xl opacity-20 dark:opacity-100 dark:brightness-[0.18] dark:saturate-50" />    <div class="absolute inset-0 bg-neutral-200/50 dark:bg-[#171719]/70"></div>    <div      class="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(0,0,0,0.06),transparent_34%),linear-gradient(115deg,rgba(255,65,0,0.08),transparent_42%)] dark:bg-[radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.14),transparent_34%),linear-gradient(115deg,rgba(255,65,0,0.08),transparent_42%)]">    </div>  </div>  <div class="relative z-10 grid min-h-dvh grid-cols-1 lg:grid-cols-2">    <div class="relative hidden min-h-dvh overflow-hidden border-e border-primary-brand/25 lg:block">      <a routerLink="/home" class="cursor-pointer">        <img ngSrc="/images/auth/auth-logo.png" width="243" height="151" [alt]="\'AUTH.COMMON.SUPER_FITNESS\' | translate"          class="absolute left-1/2 top-[11%] h-auto w-[clamp(10rem,14vw,15.25rem)] -translate-x-1/2 object-contain drop-shadow-2xl cursor-pointer" />      </a>      <img ngSrc="/images/auth/authlayout-img.png" width="628" height="474" alt="" priority        class="absolute bottom-[8%] left-1/2 h-auto w-[min(92%,39.25rem)] -translate-x-1/2 object-contain drop-shadow-[0_28px_45px_rgba(0,0,0,0.55)]" />    </div>    <section      class="relative flex min-h-dvh items-center justify-center overflow-y-auto px-4 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-16">      <div class="w-full max-w-136">        @if (layoutData().variant === \'step\' && layoutData().step; as step) {        <div class="mb-4 flex justify-center">          <div            class="grid size-12 place-items-center rounded-full bg-[conic-gradient(var(--color-primary-brand)_var(--auth-progress),rgba(0,0,0,0.12)_0)] dark:bg-[conic-gradient(var(--color-primary-brand)_var(--auth-progress),rgba(255,255,255,0.22)_0)] shadow-[0_0_24px_rgba(255,65,0,0.18)] [--auth-progress:0%]"            role="progressbar"            [attr.aria-label]="\'AUTH.COMMON.STEP_OF\' | translate: { current: step.current, total: step.total }"            aria-valuemin="1" [attr.aria-valuemax]="step.total" [attr.aria-valuenow]="step.current"            [style.--auth-progress]="progressPercentage() + \'%\'">            <span class="grid size-10 place-items-center rounded-full bg-white dark:bg-[#242426] text-xs font-semibold text-neutral-900 dark:text-white shadow-sm">              {{ step.current }}/{{ step.total }}            </span>          </div>        </div>        }        @if (layoutData().eyebrow || layoutData().title || layoutData().subtitle) {        <header class="mb-6 text-center">          @if (layoutData().eyebrow) {          <p class="mb-2 text-sm font-medium text-neutral-600 dark:text-white/70">            {{ layoutData().eyebrow | translate }}          </p>          }          @if (layoutData().title) {          <h1 id="auth-page-title" class="text-3xl font-extrabold leading-tight tracking-tight text-neutral-900 dark:text-white sm:text-4xl">            {{ layoutData().title | translate }}          </h1>          }          @if (layoutData().subtitle) {          <p class="mt-2 text-sm leading-relaxed text-neutral-600 dark:text-white/65">            {{ layoutData().subtitle | translate }}          </p>          }        </header>        }        <div          class="w-full transition-[background-color,border-color,box-shadow] duration-200 ease-out motion-reduce:transition-none"          [ngClass]="{            \'rounded-4xl border border-neutral-300/80 dark:border-white/55 bg-white/70 dark:bg-transparent dark:bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.01))] p-[clamp(1.5rem,4vw,2.5rem)] shadow-xl dark:shadow-[0_28px_80px_rgba(0,0,0,0.28)] backdrop-blur-[10px]\':              isCardVariant(),            \'py-2\': !isCardVariant(),          }" [attr.data-auth-surface]="layoutData().variant">          @if (isCardVariant() && (layoutData().cardTitle || layoutData().cardDescription)) {          <header class="mb-6 text-center">            @if (layoutData().cardTitle) {            <h2 class="text-lg font-bold text-neutral-900 dark:text-white">              {{ layoutData().cardTitle | translate }}            </h2>            }            @if (layoutData().cardDescription) {            <p class="mt-2 text-sm leading-relaxed text-neutral-600 dark:text-white/65">              {{ layoutData().cardDescription | translate }}            </p>            }          </header>          }          <router-outlet (activate)="syncLayoutData()" (deactivate)="resetLayoutData()" />        </div>      </div>    </section>  </div>  <app-floating-controls /></main></div>'
+    var COMPONENTS = [{'name': 'AboutUs', 'selector': 'app-about-us'},{'name': 'AboutUsSummary', 'selector': 'app-about-us-summary'},{'name': 'App', 'selector': 'app-root'},{'name': 'AuthLayout', 'selector': 'app-auth-layout'},{'name': 'AuthSocialLogin', 'selector': 'app-auth-social-login'},{'name': 'Button', 'selector': 'app-button'},{'name': 'Card', 'selector': 'app-card'},{'name': 'Carousel', 'selector': 'app-carousel'},{'name': 'ChangePasswordModal', 'selector': 'app-change-password-modal'},{'name': 'ChatbotComponent', 'selector': 'app-chatbot'},{'name': 'ChatBubbleComponent', 'selector': 'app-chat-bubble'},{'name': 'ClassDetails', 'selector': 'app-class-details'},{'name': 'Classes', 'selector': 'app-classes'},{'name': 'EditPreferenceModal', 'selector': 'app-edit-preference-modal'},{'name': 'FloatingControls', 'selector': 'app-floating-controls'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'ForgotPassword', 'selector': 'app-forgot-password'},{'name': 'Healthy', 'selector': 'app-healthy'},{'name': 'HealthyDetails', 'selector': 'app-healthy-details'},{'name': 'HealthySection', 'selector': 'app-healthy-section'},{'name': 'HelpModal', 'selector': 'app-help-modal'},{'name': 'Hero', 'selector': 'app-hero'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Input', 'selector': 'app-input'},{'name': 'Login', 'selector': 'app-login'},{'name': 'MainLayout', 'selector': 'app-main-layout'},{'name': 'MarqueeTricker', 'selector': 'app-marquee-tricker'},{'name': 'MessageCardComponent', 'selector': 'app-message-card'},{'name': 'NavBar', 'selector': 'app-nav-bar'},{'name': 'NumberPicker', 'selector': 'app-number-picker'},{'name': 'Onboarding', 'selector': 'app-onboarding'},{'name': 'Otp', 'selector': 'app-otp'},{'name': 'PrivacyPolicyModal', 'selector': 'app-privacy-policy-modal'},{'name': 'Profile', 'selector': 'app-profile'},{'name': 'Register', 'selector': 'app-register'},{'name': 'ResetPassword', 'selector': 'app-reset-password'},{'name': 'SecurityModal', 'selector': 'app-security-modal'},{'name': 'Tabs', 'selector': 'app-tabs'},{'name': 'WhyUs', 'selector': 'app-why-us'},{'name': 'Workouts', 'selector': 'app-workouts'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'AuthLayout'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AuthLayout.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
