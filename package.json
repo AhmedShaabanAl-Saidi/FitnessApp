@@ -10,7 +10,8 @@
     "serve:ssr:FitnessApp": "node dist/FitnessApp/server/server.mjs",
     "doc:generate": "compodoc -p tsconfig.app.json",
     "doc:serve": "compodoc -s -p tsconfig.app.json",
-    "doc:watch": "compodoc -s -p tsconfig.app.json -w"
+    "doc:watch": "compodoc -s -p tsconfig.app.json -w",
+    "vercel-build": "npm run build && npm run doc:generate && mkdir -p dist/FitnessApp/browser/docs && cp -r documentation/* dist/FitnessApp/browser/docs/"
   },
   "private": true,
   "packageManager": "npm@11.16.0",
