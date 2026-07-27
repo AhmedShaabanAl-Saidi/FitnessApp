@@ -1,6 +1,7 @@
 import {
   ApplicationConfig,
   inject,
+  importProvidersFrom,
   provideAppInitializer,
   provideBrowserGlobalErrorListeners,
 } from '@angular/core';
@@ -14,6 +15,9 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { languageService } from './core/services/language-service';
 import { languageInterceptor } from './core/interceptors/language.interceptor';
+import { LucideAngularModule, Mail, Lock, Eye, EyeOff, User, Search, MapPin, Check, X } from 'lucide-angular';
+import { ChatService } from './features/chatbot/services/chat-service';
+import { GeminiChatService } from './features/chatbot/services/gemini-chat.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -34,6 +38,8 @@ export const appConfig: ApplicationConfig = {
     provideAppInitializer(() => {
       inject(languageService);
     }),
+    importProvidersFrom(LucideAngularModule.pick({ Mail, Lock, Eye, EyeOff, User, Search, MapPin, Check, X })),
+    { provide: ChatService, useClass: GeminiChatService },
     // PrimeNG configuration
     providePrimeNG({
       theme: {
