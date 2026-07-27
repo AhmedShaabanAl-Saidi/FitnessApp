@@ -1,6 +1,12 @@
 {
   "buildCommand": "npm run vercel-build",
   "outputDirectory": "dist/FitnessApp/browser",
+  "redirects": [
+    {
+      "source": "/docs",
+      "destination": "/docs/"
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",
